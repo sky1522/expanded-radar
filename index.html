@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>expanded-radar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        .image-frame {
+            width: 49%;
+            height: 100%;
+            position: relative;
+        }
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .toolbar-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .toolbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+        }
+        .toolbar select {
+            width: 32%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-frame">
+            <img id="satelliteImage1" alt="Satellite Image 1">
+        </div>
+        <div class="image-frame">
+            <img id="satelliteImage2" alt="Satellite Image 2">
+        </div>
+    </div>
+    <div class="toolbar-container">
+        <div class="toolbar">
+            <select id="imageURLDropdown30Min" onchange="onSelectChange(this)"></select>
+            <select id="imageURLDropdown1Hour" onchange="onSelectChange(this)"></select>
+            <select id="imageURLDropdown3Hour" onchange="onSelectChange(this)"></select>
+        </div>
+    </div>
+
+    <script>
+        const imageURLs = [
+            "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
+            "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=830&yp=900&zoom=6&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0"
+        ];
+
+        function generateImageURL(time, urlIndex) {
+            const year = time.getFullYear();
+            const month = String(time.getMonth() + 1).padStart(2, '0');
+            const day = String(time.getDate()).padStart(2, '0');
+            const hours = String(time.getHours()).padStart(2, '0');
+            const minutes = String(time.getMinutes()).padStart(2, '0');
+
+            const dateString = `${year}${month}${day}${hours}${minutes}`;
+            return imageURLs[urlIndex].replace("{0}", dateString);
+        }
+
+        function formatDateForDisplay(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+            return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+        }
+
+        function updateImageURL() {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - 2);
+            const adjustedMinutes = Math.floor(now.getUTCMinutes() / 10) * 10;
+            now.setMinutes(adjustedMinutes);
+
+            const imageURL1 = generateImageURL(now, 0);
+            const imageURL2 = generateImageURL(now, 1);
+            document.getElementById('satelliteImage1').src = imageURL1;
+            document.getElementById('satelliteImage2').src = imageURL2;
+
+            const intervals = [30, 60, 180];
+            const dropdownIds = ["imageURLDropdown30Min", "imageURLDropdown1Hour", "imageURLDropdown3Hour"];
+            const intervalLabels = ["30분 간격", "1시간 간격", "3시간 간격"];
+            intervals.forEach((interval, idx) => {
+                const dropdown = document.getElementById(dropdownIds[idx]);
+                const fragment = document.createDocumentFragment();
+                fragment.appendChild(new Option(intervalLabels[idx], '', true, true));
+
+                for (let i = 0; i < 20; i++) {
+                    const pastTime = new Date(now.getTime() - (i * interval * 60000));
+                    const pastURL1 = generateImageURL(pastTime, 0);
+                    const pastURL2 = generateImageURL(pastTime, 1);
+
+                    const option = new Option(formatDateForDisplay(pastTime), JSON.stringify({time: pastTime.getTime(), url1: pastURL1, url2: pastURL2}));
+                    fragment.appendChild(option);
+                }
+
+                dropdown.innerHTML = '';
+                dropdown.appendChild(fragment);
+            });
+
+            setTimeout(updateImageURL, 5 * 60 * 1000);
+        }
+
+        function onSelectChange(dropdown) {
+            const selectedValue = JSON.parse(dropdown.value);
+            document.getElementById('satelliteImage1').src = selectedValue.url1;
+            document.getElementById('satelliteImage2').src = selectedValue.url2;
+            
+            // 다른 드롭다운도 동기화
+            const dropdowns = document.querySelectorAll('.toolbar select');
+            dropdowns.forEach(d => {
+                if (d !== dropdown) {
+                    const options = Array.from(d.options);
+                    const targetOption = options.find(opt => {
+                        if (opt.value) {
+                            const optValue = JSON.parse(opt.value);
+                            return optValue.time === selectedValue.time;
+                        }
+                        return false;
+                    });
+                    if (targetOption) {
+                        d.value = targetOption.value;
+                    } else {
+                        d.selectedIndex = 0;
+                    }
+                }
+            });
+        }
+
+        window.onload = updateImageURL;
+    </script>
+</body>
+</html>
