@@ -33,18 +33,32 @@
         }
         .toolbar-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px;
             background-color: #f0f0f0;
         }
-        .toolbar {
-            width: 100%;
+        .screen-buttons {
             display: flex;
-            justify-content: space-between;
-            max-width: 600px;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .time-control {
+            display: flex;
+            align-items: center;
         }
         .toolbar select {
-            width: 32%;
+            width: 150px;
+        }
+        .arrow-button, .screen-button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -59,18 +73,44 @@
         </div>
     </div>
     <div class="toolbar-container">
-        <div class="toolbar">
-            <select id="imageURLDropdown30Min" onchange="onSelectChange(this)"></select>
-            <select id="imageURLDropdown1Hour" onchange="onSelectChange(this)"></select>
-            <select id="imageURLDropdown3Hour" onchange="onSelectChange(this)"></select>
+        <div class="screen-buttons">
+            <button class="screen-button" onclick="changeScreen(0)">화면 1</button>
+            <button class="screen-button" onclick="changeScreen(1)">화면 2</button>
+            <button class="screen-button" onclick="changeScreen(2)">화면 3</button>
+            <button class="screen-button" onclick="changeScreen(3)">화면 4</button>
         </div>
+        <div class="toolbar">
+            <div class="time-control">
+                <button class="arrow-button" onclick="changeTime('30Min', 1)">&#9664;</button>
+                <select id="imageURLDropdown30Min" onchange="onSelectChange(this)"></select>
+                <button class="arrow-button" onclick="changeTime('30Min', -1)">&#9654;</button>
+            </div>
+            <div class="time-control">
+                <button class="arrow-button" onclick="changeTime('1Hour', 1)">&#9664;</button>
+                <select id="imageURLDropdown1Hour" onchange="onSelectChange(this)"></select>
+                <button class="arrow-button" onclick="changeTime('1Hour', -1)">&#9654;</button>
+            </div>
+            <div class="time-control">
+                <button class="arrow-button" onclick="changeTime('3Hour', 1)">&#9664;</button>
+                <select id="imageURLDropdown3Hour" onchange="onSelectChange(this)"></select>
+                <button class="arrow-button" onclick="changeTime('3Hour', -1)">&#9654;</button>
+            </div>
+        </div>
+        <div style="width: 100px;"></div> <!-- 오른쪽 여백을 위한 빈 div -->
     </div>
 
     <script>
         const imageURLs = [
             "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
-            "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=D4&grid=2&legend=1&size=900&itv=5&zoom_level=1&zoom_x=2300000&zoom_y=5200000&gov="
+            [
+                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HR&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=2500000&zoom_y=5200000&gov=",
+                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3300000&zoom_y=4200000&gov=",
+                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=E&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3100000&zoom_y=5400000&gov=",
+                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=4220000&gov="
+            ]
         ];
+
+        let currentScreenIndex = 0;
 
         function generateImageURL(time, urlIndex) {
             const year = time.getFullYear();
@@ -80,7 +120,8 @@
             const minutes = String(Math.floor(time.getMinutes() / 10) * 10).padStart(2, '0');
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
-            return imageURLs[urlIndex].replace("{0}", dateString);
+            const url = urlIndex === 0 ? imageURLs[0] : imageURLs[1][currentScreenIndex];
+            return url.replace("{0}", dateString);
         }
 
         function formatDateForDisplay(date) {
@@ -152,6 +193,22 @@
                     }
                 }
             });
+        }
+
+        function changeTime(dropdownId, direction) {
+            const dropdown = document.getElementById(`imageURLDropdown${dropdownId}`);
+            const currentIndex = dropdown.selectedIndex;
+            const newIndex = currentIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < dropdown.options.length) {
+                dropdown.selectedIndex = newIndex;
+                onSelectChange(dropdown);
+            }
+        }
+
+        function changeScreen(screenIndex) {
+            currentScreenIndex = screenIndex;
+            updateImageURL();
         }
 
         window.onload = updateImageURL;
