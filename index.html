@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>expanded-radar</title>
+    <title>Expanded Radar Analytics Tool</title>
     <style>
         body {
             margin: 0;
@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            font-family: Arial, sans-serif;
         }
         .container {
             display: flex;
@@ -33,32 +34,56 @@
         }
         .toolbar-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: 10px;
             background-color: #f0f0f0;
         }
-        .screen-buttons {
+        .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls {
             display: flex;
+            align-items: center;
+            margin: 0 10px;
         }
-        .toolbar {
-            display: flex;
-            justify-content: center;
-            flex-grow: 1;
-        }
-        .time-control {
+        .slider-container {
+            position: relative;
+            width: 400px;
             display: flex;
             align-items: center;
         }
-        .toolbar select {
-            width: 150px;
+        .slider {
+            width: 300px;
+            margin: 0;
         }
-        .arrow-button, .screen-button {
+        .slider-wrapper {
+            position: relative;
+            width: 300px;
+        }
+        .time-labels {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            pointer-events: none;
+        }
+        .screen-button, button {
             padding: 5px 10px;
-            margin: 0 5px;
+            margin: 0 2px;
             background-color: #ddd;
             border: none;
             cursor: pointer;
+            border-radius: 3px;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+        #currentTime {
+            font-weight: bold;
+            min-width: 120px;
+            text-align: left;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -66,10 +91,10 @@
 <body>
     <div class="container">
         <div class="image-frame">
-            <img id="satelliteImage1" alt="Satellite Image 1">
+            <img id="satelliteImage1" alt="위성 이미지 1">
         </div>
         <div class="image-frame">
-            <img id="satelliteImage2" alt="Satellite Image 2">
+            <img id="satelliteImage2" alt="위성 이미지 2">
         </div>
     </div>
     <div class="toolbar-container">
@@ -79,24 +104,32 @@
             <button class="screen-button" onclick="changeScreen(2)">화면 3</button>
             <button class="screen-button" onclick="changeScreen(3)">화면 4</button>
         </div>
-        <div class="toolbar">
-            <div class="time-control">
-                <button class="arrow-button" onclick="changeTime('30Min', 1)">&#9664;</button>
-                <select id="imageURLDropdown30Min" onchange="onSelectChange(this)"></select>
-                <button class="arrow-button" onclick="changeTime('30Min', -1)">&#9654;</button>
-            </div>
-            <div class="time-control">
-                <button class="arrow-button" onclick="changeTime('1Hour', 1)">&#9664;</button>
-                <select id="imageURLDropdown1Hour" onchange="onSelectChange(this)"></select>
-                <button class="arrow-button" onclick="changeTime('1Hour', -1)">&#9654;</button>
-            </div>
-            <div class="time-control">
-                <button class="arrow-button" onclick="changeTime('3Hour', 1)">&#9664;</button>
-                <select id="imageURLDropdown3Hour" onchange="onSelectChange(this)"></select>
-                <button class="arrow-button" onclick="changeTime('3Hour', -1)">&#9654;</button>
-            </div>
+        <div class="date-picker">
+            <input type="datetime-local" id="datePicker">
+            <button onclick="jumpToDate()">이동</button>
         </div>
-        <div style="width: 100px;"></div> <!-- 오른쪽 여백을 위한 빈 div -->
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <input type="range" min="0" max="96" value="96" class="slider" id="timeSlider">
+                <div class="time-labels" id="timeLabels"></div>
+            </div>
+            <span id="currentTime"></span>
+        </div>
+        <div class="time-buttons">
+            <button onclick="adjustTime(-180)">3시간 전</button>
+            <button onclick="adjustTime(-60)">1시간 전</button>
+            <button onclick="adjustTime(-30)">30분 전</button>
+            <button onclick="setLatestTime()">최신</button>
+            <button onclick="adjustTime(30)">30분 후</button>
+            <button onclick="adjustTime(60)">1시간 후</button>
+            <button onclick="adjustTime(180)">3시간 후</button>
+        </div>
+        <div class="play-controls">
+            <button id="playButton" onclick="togglePlay()">재생</button>
+            <label>
+                <input type="checkbox" id="repeatCheckbox"> 반복
+            </label>
+        </div>
     </div>
 
     <script>
@@ -111,13 +144,16 @@
         ];
 
         let currentScreenIndex = 0;
+        let isPlaying = false;
+        let playInterval;
+        let currentTime = new Date();
 
         function generateImageURL(time, urlIndex) {
             const year = time.getFullYear();
             const month = String(time.getMonth() + 1).padStart(2, '0');
             const day = String(time.getDate()).padStart(2, '0');
             const hours = String(time.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(time.getMinutes() / 10) * 10).padStart(2, '0');
+            const minutes = String(Math.floor(time.getMinutes() / 30) * 30).padStart(2, '0');
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
             const url = urlIndex === 0 ? imageURLs[0] : imageURLs[1][currentScreenIndex];
@@ -125,93 +161,106 @@
         }
 
         function formatDateForDisplay(date) {
-            const year = date.getFullYear();
+            const year = date.getFullYear().toString().slice(-2);
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
             const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(date.getMinutes() / 10) * 10).padStart(2, '0');
+            const minutes = String(Math.floor(date.getMinutes() / 30) * 30).padStart(2, '0');
 
-            return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+            return `${year}/${month}/${day} ${hours}:${minutes}`;
         }
 
-        function updateImageURL() {
-            const now = new Date();
-            now.setMinutes(now.getMinutes() - 2);
-            const adjustedMinutes = Math.floor(now.getUTCMinutes() / 10) * 10;
-            now.setMinutes(adjustedMinutes);
+        function createTimeLabels() {
+            const timeLabels = document.getElementById('timeLabels');
+            const labelTimes = [-48, -36, -24, -12, 0];
+            labelTimes.forEach((hours) => {
+                const label = document.createElement('span');
+                label.textContent = `${hours}h`;
+                timeLabels.appendChild(label);
+            });
+        }
 
-            const imageURL1 = generateImageURL(now, 0);
-            const imageURL2 = generateImageURL(now, 1);
+        function updateSlider() {
+            const slider = document.getElementById('timeSlider');
+            const currentTimeDisplay = document.getElementById('currentTime');
+            const selectedTime = new Date(currentTime.getTime() - ((96 - slider.value) * 30 * 60000));
+            currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
+            updateImages(selectedTime);
+        }
+
+        function adjustTime(minutes) {
+            const slider = document.getElementById('timeSlider');
+            let newValue = parseInt(slider.value) + minutes / 30;
+            if (newValue < 0) newValue = 0;
+            if (newValue > 96) newValue = 96;
+            slider.value = newValue;
+            updateSlider();
+        }
+
+        function setLatestTime() {
+            currentTime = new Date();
+            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 30) * 30);
+            currentTime.setSeconds(0);
+            currentTime.setMilliseconds(0);
+            document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
+            document.getElementById('timeSlider').value = 96;
+            updateSlider();
+        }
+
+        function jumpToDate() {
+            const datePicker = document.getElementById('datePicker');
+            currentTime = new Date(datePicker.value);
+            document.getElementById('timeSlider').value = 96;
+            updateSlider();
+        }
+
+        function togglePlay() {
+            const playButton = document.getElementById('playButton');
+            const slider = document.getElementById('timeSlider');
+            if (isPlaying) {
+                clearInterval(playInterval);
+                playButton.textContent = '재생';
+            } else {
+                const startValue = parseInt(slider.value);
+                playInterval = setInterval(() => {
+                    if (slider.value < 96) {
+                        slider.value = parseInt(slider.value) + 2; // 1시간 단위로 변경 (30분 * 2 = 1시간)
+                    } else {
+                        if (document.getElementById('repeatCheckbox').checked) {
+                            slider.value = startValue;
+                        } else {
+                            clearInterval(playInterval);
+                            playButton.textContent = '재생';
+                            isPlaying = false;
+                            return;
+                        }
+                    }
+                    updateSlider();
+                }, 1000);
+                playButton.textContent = '정지';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function updateImages(time) {
+            const imageURL1 = generateImageURL(time, 0);
+            const imageURL2 = generateImageURL(time, 1);
             document.getElementById('satelliteImage1').src = imageURL1;
             document.getElementById('satelliteImage2').src = imageURL2;
-
-            const intervals = [30, 60, 180];
-            const dropdownIds = ["imageURLDropdown30Min", "imageURLDropdown1Hour", "imageURLDropdown3Hour"];
-            const intervalLabels = ["30분 간격", "1시간 간격", "3시간 간격"];
-            intervals.forEach((interval, idx) => {
-                const dropdown = document.getElementById(dropdownIds[idx]);
-                const fragment = document.createDocumentFragment();
-                fragment.appendChild(new Option(intervalLabels[idx], '', true, true));
-
-                for (let i = 0; i < 20; i++) {
-                    const pastTime = new Date(now.getTime() - (i * interval * 60000));
-                    const pastURL1 = generateImageURL(pastTime, 0);
-                    const pastURL2 = generateImageURL(pastTime, 1);
-
-                    const option = new Option(formatDateForDisplay(pastTime), JSON.stringify({time: pastTime.getTime(), url1: pastURL1, url2: pastURL2}));
-                    fragment.appendChild(option);
-                }
-
-                dropdown.innerHTML = '';
-                dropdown.appendChild(fragment);
-            });
-
-            setTimeout(updateImageURL, 5 * 60 * 1000);
-        }
-
-        function onSelectChange(dropdown) {
-            const selectedValue = JSON.parse(dropdown.value);
-            document.getElementById('satelliteImage1').src = selectedValue.url1;
-            document.getElementById('satelliteImage2').src = selectedValue.url2;
-            
-            // 다른 드롭다운도 동기화
-            const dropdowns = document.querySelectorAll('.toolbar select');
-            dropdowns.forEach(d => {
-                if (d !== dropdown) {
-                    const options = Array.from(d.options);
-                    const targetOption = options.find(opt => {
-                        if (opt.value) {
-                            const optValue = JSON.parse(opt.value);
-                            return optValue.time === selectedValue.time;
-                        }
-                        return false;
-                    });
-                    if (targetOption) {
-                        d.value = targetOption.value;
-                    } else {
-                        d.selectedIndex = 0;
-                    }
-                }
-            });
-        }
-
-        function changeTime(dropdownId, direction) {
-            const dropdown = document.getElementById(`imageURLDropdown${dropdownId}`);
-            const currentIndex = dropdown.selectedIndex;
-            const newIndex = currentIndex + direction;
-            
-            if (newIndex >= 0 && newIndex < dropdown.options.length) {
-                dropdown.selectedIndex = newIndex;
-                onSelectChange(dropdown);
-            }
         }
 
         function changeScreen(screenIndex) {
             currentScreenIndex = screenIndex;
-            updateImageURL();
+            updateSlider();
         }
 
-        window.onload = updateImageURL;
+        function initializePage() {
+            setLatestTime();
+            createTimeLabels();
+        }
+
+        document.getElementById('timeSlider').addEventListener('input', updateSlider);
+        window.onload = initializePage;
     </script>
 </body>
 </html>
