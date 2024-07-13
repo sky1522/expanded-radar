@@ -465,11 +465,12 @@ function stopAutoUpdate() {
     clearTimeout(autoUpdateInterval);
 }
 
-        function initializePage() {
+function initializePage() {
     setLatestTime();
     createTimeLabels();
     updateImages(currentTime);
     document.addEventListener('contextmenu', disableRightClick);
+    console.log("Right-click disabled");
 
     // 자동 업데이트 상태 확인 및 설정
     const autoUpdateEnabled = localStorage.getItem('autoUpdateEnabled') === 'true';
@@ -479,6 +480,11 @@ function stopAutoUpdate() {
         startAutoUpdate();
         showNextUpdateDisplay();
     }
+}
+
+function disableRightClick(e) {
+    e.preventDefault();
+    return false;
 }
 
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
