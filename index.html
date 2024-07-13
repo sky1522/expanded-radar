@@ -420,10 +420,15 @@ function toggleAutoUpdate() {
                 document.body.appendChild(nextUpdateDisplay);
             }
 
-            function updateNextUpdateDisplay() {
-                const nextUpdate = getNextUpdateTime();
-                nextUpdateDisplay.textContent = `Next: ${nextUpdate.toLocaleString('ko-KR', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'})}`;
-            }
+function updateNextUpdateDisplay() {
+    const nextUpdate = getNextUpdateTime();
+    const month = String(nextUpdate.getMonth() + 1).padStart(1, '0');
+    const day = String(nextUpdate.getDate()).padStart(2, '0');
+    const hours = String(nextUpdate.getHours()).padStart(2, '0');
+    const minutes = String(nextUpdate.getMinutes()).padStart(2, '0');
+    const seconds = String(nextUpdate.getSeconds()).padStart(2, '0');
+    nextUpdateDisplay.textContent = `Next: ${month}/${day} ${hours}:${minutes}:${seconds}`;
+}
 
             updateNextUpdateDisplay();
             nextUpdateDisplayInterval = setInterval(updateNextUpdateDisplay, 1000);
@@ -486,8 +491,3 @@ function stopAutoUpdate() {
     </script>
 </body>
 </html>
-
-
-
-
-
