@@ -156,20 +156,20 @@
         </div>
         <div class="slider-container">
             <div class="slider-wrapper">
-                <input type="range" min="0" max="576" value="576" class="slider" id="timeSlider">
+                <input type="range" min="0" max="48" value="48" step="1.0" class="slider" id="timeSlider">
                 <div class="time-labels" id="timeLabels"></div>
             </div>
             <span id="currentTime"></span>
         </div>
         <span style="width: 30px;"></span>
         <div class="time-buttons">
-            <button onclick="adjustTime(-180)">-3h</button>
-            <button onclick="adjustTime(-60)">-1h</button>
-            <button onclick="adjustTime(-30)">-30m</button>
+            <button onclick="adjustTime(-3)">-3h</button>
+            <button onclick="adjustTime(-1)">-1h</button>
+            <button onclick="adjustTime(-0.5)">-30m</button>
             <button onclick="setLatestTime()">현재</button>
-            <button onclick="adjustTime(30)">+30m</button>
-            <button onclick="adjustTime(60)">+1h</button>
-            <button onclick="adjustTime(180)">+3h</button>
+            <button onclick="adjustTime(0.5)">+30m</button>
+            <button onclick="adjustTime(1)">+1h</button>
+            <button onclick="adjustTime(3)">+3h</button>
         </div>
         <div class="play-controls">
             <button id="playButton" onclick="togglePlay()">재생</button>
@@ -241,16 +241,16 @@
         function updateSlider() {
             const slider = document.getElementById('timeSlider');
             const currentTimeDisplay = document.getElementById('currentTime');
-            const selectedTime = new Date(currentTime.getTime() - ((576 - slider.value) * 60 * 60000));
+            const selectedTime = new Date(currentTime.getTime() - ((48 - slider.value) * 60 * 60000));
             currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
             updateImages(selectedTime);
         }
 
-        function adjustTime(minutes) {
+        function adjustTime(hours) {
             const slider = document.getElementById('timeSlider');
-            let newValue = parseInt(slider.value) + minutes / 5;
+            let newValue = parseFloat(slider.value) + hours;
             if (newValue < 0) newValue = 0;
-            if (newValue > 576) newValue = 576;
+            if (newValue > 48) newValue = 48;
             slider.value = newValue;
             updateSlider();
         }
@@ -261,7 +261,7 @@
             currentTime.setSeconds(0);
             currentTime.setMilliseconds(0);
             document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
-            document.getElementById('timeSlider').value = 576;
+            document.getElementById('timeSlider').value = 48;
             updateSlider();
         }
 
@@ -269,7 +269,7 @@
             const datePicker = document.getElementById('datePicker');
             currentTime = new Date(datePicker.value);
             currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
-            document.getElementById('timeSlider').value = 576;
+            document.getElementById('timeSlider').value = 48;
             updateSlider();
         }
 
@@ -280,10 +280,10 @@
                 clearInterval(playInterval);
                 playButton.textContent = '재생';
             } else {
-                const startValue = parseInt(slider.value);
+                const startValue = parseFloat(slider.value);
                 playInterval = setInterval(() => {
-                    if (slider.value < 576) {
-                        slider.value = parseInt(slider.value) + 12;
+                    if (slider.value < 48) {
+                        slider.value = parseFloat(slider.value) + 0.1;
                     } else {
                         if (document.getElementById('repeatCheckbox').checked) {
                             slider.value = startValue;
@@ -371,9 +371,9 @@
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
         window.onload = initializePage;
         
-        // 화면 크기 변경 시 이미지 업데이트
+// 화면 크기 변경 시 이미지 업데이트
         window.addEventListener('resize', function() {
-            updateImages(new Date(currentTime.getTime() - ((576 - document.getElementById('timeSlider').value) * 60 * 60000)));
+            updateImages(new Date(currentTime.getTime() - ((48 - document.getElementById('timeSlider').value) * 60 * 60000)));
         });
     </script>
 </body>
