@@ -277,7 +277,7 @@
         function updateSlider() {
             const slider = document.getElementById('timeSlider');
             const currentTimeDisplay = document.getElementById('currentTime');
-            const selectedTime = new Date(currentTime.getTime() - ((48 - slider.value) * 60 * 10000));
+            const selectedTime = new Date(currentTime.getTime() - ((48 - slider.value) * 60 * 60000));
             currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
             updateImages(selectedTime);
         }
@@ -386,7 +386,7 @@
         function startAutoUpdate() {
             autoUpdateInterval = setInterval(() => {
                 setLatestTime();
-            }, 60000);
+            }, 10000);
         }
 
         function stopAutoUpdate() {
