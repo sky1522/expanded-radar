@@ -88,7 +88,7 @@
             font-weight: bold;
             min-width: 120px;
             text-align: right;
-            margin-left: 15px;
+            margin-left: -10px;
             font-size: 16px;
         }
 
@@ -118,12 +118,10 @@
             .slider-container {
                 flex-direction: column;
                 align-items: stretch;
-                margin-bottom: 10px; /* 이 부분을 추가 */
             }
             .slider-wrapper {
                 width: 100%;
                 margin-bottom: 5px;
-                margin-bottom: 10px; /* 이 부분을 추가 */
             }
             .slider {
                 width: 100%;
@@ -131,8 +129,7 @@
             #currentTime {
                 align-self: flex-end;
                 margin-left: 0;
-                font-size: 14px;
-                margin-top: 5px; /* 이 부분을 추가 */
+                font-size: 12px;
             }
             .time-buttons {
                 display: grid;
@@ -323,7 +320,7 @@
                 const startValue = parseFloat(slider.value);
                 playInterval = setInterval(() => {
                     if (slider.value < 48) {
-                        slider.value = parseFloat(slider.value) + 0.5;
+                        slider.value = parseFloat(slider.value) + 1.0;
                     } else {
                         if (document.getElementById('repeatCheckbox').checked) {
                             slider.value = startValue;
