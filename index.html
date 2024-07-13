@@ -123,20 +123,23 @@
                 width: 100%;
                 margin-bottom: 10px;
             }
+            .slider {
+                width: 100%;
+            }
             #currentTime {
                 align-self: flex-start;
                 margin-left: 0;
             }
             .time-buttons {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 5px;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 2px;
                 width: 100%;
             }
             .time-buttons button {
                 width: 100%;
-                padding: 10px 5px;
-                font-size: 14px;
+                padding: 5px 2px;
+                font-size: 12px;
             }
             .date-picker {
                 display: flex;
@@ -351,13 +354,15 @@
                 frame1.style.width = '100%';
                 frame2.style.width = '100%';
             } else {
+                frame1.style.width
+} else {
                 frame1.style.width = `${imageSizes[0].width}%`;
                 frame2.style.width = `${imageSizes[currentScreenIndex].width}%`;
             }
             
             img1.style.width = '100%';
             img1.style.height = '100%';
-img2.style.width = '100%';
+            img2.style.width = '100%';
             img2.style.height = '100%';
 
             if (currentScreenIndex === 1 || currentScreenIndex === 3) {
