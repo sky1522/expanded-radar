@@ -91,6 +91,16 @@
             margin-left: -10px;
             font-size: 16px;
         }
+        #nextUpdateDisplay {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
         @media (max-width: 768px) {
             body {
@@ -193,7 +203,7 @@
         </div>
         <div class="slider-container">
             <div class="slider-wrapper">
-                <input type="range" min="0" max="48" value="48" step="0.5" class="slider" id="timeSlider">
+<input type="range" min="0" max="48" value="48" step="0.5" class="slider" id="timeSlider">
                 <div class="time-labels" id="timeLabels"></div>
             </div>
             <span id="currentTime"></span>
@@ -264,43 +274,43 @@
             return `${year}/${month}/${day} ${hours}:${minutes}`;
         }
 
-        function createTimeLabels() {
-            const timeLabels = document.getElementById('timeLabels');
-            const labelTimes = [-48, -36, -24, -12, 0];
-            labelTimes.forEach((hours) => {
-                const label = document.createElement('span');
-                label.textContent = `${hours}h`;
-                timeLabels.appendChild(label);
-            });
-        }
+function createTimeLabels() {
+    const timeLabels = document.getElementById('timeLabels');
+    const labelTimes = [-48, -36, -24, -12, 0];
+    labelTimes.forEach((hours) => {
+        const label = document.createElement('span');
+        label.textContent = `${hours}h`;
+        timeLabels.appendChild(label);
+    });
+}
 
-        function updateSlider() {
-            const slider = document.getElementById('timeSlider');
-            const currentTimeDisplay = document.getElementById('currentTime');
-            const selectedTime = new Date(currentTime.getTime() - ((48 - slider.value) * 60 * 60000));
-            currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
-            updateImages(selectedTime);
-        }
+function updateSlider() {
+    const slider = document.getElementById('timeSlider');
+    const currentTimeDisplay = document.getElementById('currentTime');
+    const sliderValue = parseFloat(slider.value);
+    const hoursDiff = 48 - sliderValue;
+    const selectedTime = new Date(currentTime.getTime() - (hoursDiff * 60 * 60000));
+    currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
+    updateImages(selectedTime);
+}
 
-        function adjustTime(hours) {
-            const slider = document.getElementById('timeSlider');
-            let newValue = parseFloat(slider.value) + hours;
-            newValue = Math.round(newValue * 2) / 2; // 가장 가까운 0.5 단위로 반올림
-            if (newValue < 0) newValue = 0;
-            if (newValue > 48) newValue = 48;
-            slider.value = newValue;
-            updateSlider();
-        }
+function adjustTime(hours) {
+    const slider = document.getElementById('timeSlider');
+    let newValue = parseFloat(slider.value) + hours;
+    newValue = Math.max(0, Math.min(48, newValue));
+    slider.value = newValue;
+    updateSlider();
+}
 
-        function setLatestTime() {
-            currentTime = new Date();
-            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
-            currentTime.setSeconds(0);
-            currentTime.setMilliseconds(0);
-            document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
-            document.getElementById('timeSlider').value = 48;
-            updateSlider();
-        }
+function setLatestTime() {
+    currentTime = new Date();
+    currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
+    currentTime.setSeconds(0);
+    currentTime.setMilliseconds(0);
+    document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
+    document.getElementById('timeSlider').value = 48;
+    updateSlider();
+}
 
         function jumpToDate() {
             const datePicker = document.getElementById('datePicker');
@@ -310,33 +320,35 @@
             updateSlider();
         }
 
-        function togglePlay() {
-            const playButton = document.getElementById('playButton');
-            const slider = document.getElementById('timeSlider');
-            if (isPlaying) {
-                clearInterval(playInterval);
-                playButton.textContent = '재생';
+let playStartValue;  // 재생 시작 지점을 저장할 전역 변수
+
+function togglePlay() {
+    const playButton = document.getElementById('playButton');
+    const slider = document.getElementById('timeSlider');
+    if (isPlaying) {
+        clearInterval(playInterval);
+        playButton.textContent = '재생';
+    } else {
+        playStartValue = parseFloat(slider.value);  // 재생 시작 지점 저장
+        playInterval = setInterval(() => {
+            if (slider.value < 48) {
+                slider.value = parseFloat(slider.value) + 1.0;
             } else {
-                const startValue = parseFloat(slider.value);
-                playInterval = setInterval(() => {
-                    if (slider.value < 48) {
-                        slider.value = parseFloat(slider.value) + 1.0;
-                    } else {
-                        if (document.getElementById('repeatCheckbox').checked) {
-                            slider.value = startValue;
-                        } else {
-                            clearInterval(playInterval);
-                            playButton.textContent = '재생';
-                            isPlaying = false;
-                            return;
-                        }
-                    }
-                    updateSlider();
-                }, 1000);
-                playButton.textContent = '정지';
+                if (document.getElementById('repeatCheckbox').checked) {
+                    slider.value = playStartValue;  // 시작 지점으로 돌아감
+                } else {
+                    clearInterval(playInterval);
+                    playButton.textContent = '재생';
+                    isPlaying = false;
+                    return;
+                }
             }
-            isPlaying = !isPlaying;
-        }
+            updateSlider();
+        }, 1000);
+        playButton.textContent = '정지';
+    }
+    isPlaying = !isPlaying;
+}
 
         function updateImages(time) {
             const imageURL1 = generateImageURL(time, 0);
@@ -346,14 +358,15 @@
             const img1 = document.getElementById('satelliteImage1');
             const img2 = document.getElementById('satelliteImage2');
             
-            img1.src = imageURL1;
-            img2.src = imageURL2;
+    const timestamp = new Date().getTime();
+    img1.src = `${imageURL1}&t=${timestamp}`;
+    img2.src = `${imageURL2}&t=${timestamp}`;
             
             if (window.innerWidth <= 768) {
                 frame1.style.width = '100%';
                 frame2.style.width = '100%';
-          } else {
-                frame1.style.width = `${imageSizes[0].width}%`;
+            } else {
+frame1.style.width = `${imageSizes[0].width}%`;
                 frame2.style.width = `${imageSizes[currentScreenIndex].width}%`;
             }
             
@@ -374,36 +387,94 @@
             updateSlider();
         }
 
-        function toggleAutoUpdate() {
-            const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
-            if (autoUpdateCheckbox.checked) {
-                startAutoUpdate();
-            } else {
-                stopAutoUpdate();
+ function getNextUpdateTime() {
+            const now = new Date();
+            const minutes = Math.floor(now.getMinutes() / 5) * 5;
+            const nextUpdate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), minutes, 0, 0);
+            nextUpdate.setMinutes(nextUpdate.getMinutes() + 4);
+            nextUpdate.setSeconds(10); // 4분 10초로 설정
+            if (nextUpdate <= now) {
+                nextUpdate.setMinutes(nextUpdate.getMinutes() + 5);
             }
+            return nextUpdate;
         }
 
-        function startAutoUpdate() {
-            autoUpdateInterval = setInterval(() => {
-                setLatestTime();
-            }, 10000);
+        let nextUpdateDisplayInterval;
+
+function toggleAutoUpdate() {
+    const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
+    if (autoUpdateCheckbox.checked) {
+        startAutoUpdate();
+        showNextUpdateDisplay();
+    } else {
+        stopAutoUpdate();
+        hideNextUpdateDisplay();
+    }
+}
+
+        function showNextUpdateDisplay() {
+            let nextUpdateDisplay = document.getElementById('nextUpdateDisplay');
+            if (!nextUpdateDisplay) {
+                nextUpdateDisplay = document.createElement('div');
+                nextUpdateDisplay.id = 'nextUpdateDisplay';
+                document.body.appendChild(nextUpdateDisplay);
+            }
+
+            function updateNextUpdateDisplay() {
+                const nextUpdate = getNextUpdateTime();
+                nextUpdateDisplay.textContent = `Next: ${nextUpdate.toLocaleString('ko-KR', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'})}`;
+            }
+
+            updateNextUpdateDisplay();
+            nextUpdateDisplayInterval = setInterval(updateNextUpdateDisplay, 1000);
         }
 
-        function stopAutoUpdate() {
-            clearInterval(autoUpdateInterval);
+        function hideNextUpdateDisplay() {
+            const nextUpdateDisplay = document.getElementById('nextUpdateDisplay');
+            if (nextUpdateDisplay) {
+                nextUpdateDisplay.remove();
+            }
+            clearInterval(nextUpdateDisplayInterval);
         }
 
-        function disableRightClick(e) {
-            e.preventDefault();
-            return false;
-        }
+
+function startAutoUpdate() {
+    function scheduleNextUpdate() {
+        const now = new Date();
+        const nextUpdate = getNextUpdateTime();
+        const timeUntilUpdate = nextUpdate.getTime() - now.getTime();
+
+        console.log(`Next update scheduled at: ${nextUpdate.toLocaleString()}`);
+
+        autoUpdateInterval = setTimeout(() => {
+            setLatestTime();
+            updateImages(currentTime);
+            scheduleNextUpdate(); // 다음 업데이트 예약
+        }, timeUntilUpdate);
+    }
+
+    scheduleNextUpdate();
+}
+
+function stopAutoUpdate() {
+    clearTimeout(autoUpdateInterval);
+}
 
         function initializePage() {
-            setLatestTime();
-            createTimeLabels();
-            updateImages(currentTime);
-            document.addEventListener('contextmenu', disableRightClick);
-        }
+    setLatestTime();
+    createTimeLabels();
+    updateImages(currentTime);
+    document.addEventListener('contextmenu', disableRightClick);
+
+    // 자동 업데이트 상태 확인 및 설정
+    const autoUpdateEnabled = localStorage.getItem('autoUpdateEnabled') === 'true';
+    const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
+    autoUpdateCheckbox.checked = autoUpdateEnabled;
+    if (autoUpdateEnabled) {
+        startAutoUpdate();
+        showNextUpdateDisplay();
+    }
+}
 
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
         window.onload = initializePage;
@@ -415,3 +486,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+
