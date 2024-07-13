@@ -159,7 +159,6 @@
         let currentTime = new Date();
         let autoUpdateInterval;
 
-        // 이미지 크기 설정 (백분율)
         const imageSizes = [
             { width: 50, height: 100 },  // 화면 1
             { width: 50, height: 100 },  // 화면 2
@@ -244,7 +243,7 @@
                 const startValue = parseInt(slider.value);
                 playInterval = setInterval(() => {
                     if (slider.value < 576) {
-                        slider.value = parseInt(slider.value) + 12; // 1시간 단위로 변경 (5분 * 12 = 1시간)
+                        slider.value = parseInt(slider.value) + 12;
                     } else {
                         if (document.getElementById('repeatCheckbox').checked) {
                             slider.value = startValue;
@@ -273,17 +272,14 @@
             img1.src = imageURL1;
             img2.src = imageURL2;
             
-            // 프레임 크기 설정
             frame1.style.width = `${imageSizes[0].width}%`;
             frame2.style.width = `${imageSizes[currentScreenIndex].width}%`;
             
-            // 이미지 크기 설정
             img1.style.width = '100%';
             img1.style.height = '100%';
             img2.style.width = '100%';
             img2.style.height = '100%';
 
-            // object-fit 설정
             if (currentScreenIndex === 1 || currentScreenIndex === 3) {
                 frame2.classList.add('cover');
             } else {
@@ -308,17 +304,23 @@
         function startAutoUpdate() {
             autoUpdateInterval = setInterval(() => {
                 setLatestTime();
-            }, 180000); // 3분 = 180000 밀리초
+            }, 180000);
         }
 
         function stopAutoUpdate() {
             clearInterval(autoUpdateInterval);
         }
 
+        function disableRightClick(e) {
+            e.preventDefault();
+            return false;
+        }
+
         function initializePage() {
             setLatestTime();
             createTimeLabels();
-            updateImages(currentTime);  // 초기 이미지 로드 및 크기 설정
+            updateImages(currentTime);
+            document.addEventListener('contextmenu', disableRightClick);
         }
 
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
