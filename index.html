@@ -22,15 +22,17 @@
             overflow: hidden;
         }
         .image-frame {
-            width: 49%;
-            height: 102%;
+            width: 50%;
+            height: 100%;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .toolbar-container {
             display: flex;
@@ -64,7 +66,7 @@
             right: 0;
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 14px;
             color: #666;
             pointer-events: none;
         }
@@ -83,7 +85,8 @@
             font-weight: bold;
             min-width: 120px;
             text-align: left;
-            margin-left: 10px;
+            margin-left: 15px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -110,24 +113,28 @@
         </div>
         <div class="slider-container">
             <div class="slider-wrapper">
-                <input type="range" min="0" max="96" value="96" class="slider" id="timeSlider">
+                <input type="range" min="0" max="576" value="576" class="slider" id="timeSlider">
                 <div class="time-labels" id="timeLabels"></div>
             </div>
             <span id="currentTime"></span>
         </div>
+        <span style="width: 30px;"></span>
         <div class="time-buttons">
-            <button onclick="adjustTime(-180)">3시간 전</button>
-            <button onclick="adjustTime(-60)">1시간 전</button>
-            <button onclick="adjustTime(-30)">30분 전</button>
-            <button onclick="setLatestTime()">최신</button>
-            <button onclick="adjustTime(30)">30분 후</button>
-            <button onclick="adjustTime(60)">1시간 후</button>
-            <button onclick="adjustTime(180)">3시간 후</button>
+            <button onclick="adjustTime(-180)">-3h</button>
+            <button onclick="adjustTime(-60)">-1h</button>
+            <button onclick="adjustTime(-30)">-30m</button>
+            <button onclick="setLatestTime()">현재</button>
+            <button onclick="adjustTime(30)">+30m</button>
+            <button onclick="adjustTime(60)">+1h</button>
+            <button onclick="adjustTime(180)">+3h</button>
         </div>
         <div class="play-controls">
             <button id="playButton" onclick="togglePlay()">재생</button>
             <label>
                 <input type="checkbox" id="repeatCheckbox"> 반복
+            </label>
+            <label>
+                <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()"> 자동 업데이트
             </label>
         </div>
     </div>
@@ -147,13 +154,18 @@
         let isPlaying = false;
         let playInterval;
         let currentTime = new Date();
+        let autoUpdateInterval;
+
+        // 이미지 크기 설정 (백분율)
+        const imageWidth = 100;
+        const imageHeight = 100;
 
         function generateImageURL(time, urlIndex) {
             const year = time.getFullYear();
             const month = String(time.getMonth() + 1).padStart(2, '0');
             const day = String(time.getDate()).padStart(2, '0');
             const hours = String(time.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(time.getMinutes() / 30) * 30).padStart(2, '0');
+            const minutes = String(Math.floor(time.getMinutes() / 5) * 5).padStart(2, '0');
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
             const url = urlIndex === 0 ? imageURLs[0] : imageURLs[1][currentScreenIndex];
@@ -165,7 +177,7 @@
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
             const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(date.getMinutes() / 30) * 30).padStart(2, '0');
+            const minutes = String(Math.floor(date.getMinutes() / 5) * 5).padStart(2, '0');
 
             return `${year}/${month}/${day} ${hours}:${minutes}`;
         }
@@ -183,34 +195,35 @@
         function updateSlider() {
             const slider = document.getElementById('timeSlider');
             const currentTimeDisplay = document.getElementById('currentTime');
-            const selectedTime = new Date(currentTime.getTime() - ((96 - slider.value) * 30 * 60000));
+            const selectedTime = new Date(currentTime.getTime() - ((576 - slider.value) * 5 * 60000));
             currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
             updateImages(selectedTime);
         }
 
         function adjustTime(minutes) {
             const slider = document.getElementById('timeSlider');
-            let newValue = parseInt(slider.value) + minutes / 30;
+            let newValue = parseInt(slider.value) + minutes / 5;
             if (newValue < 0) newValue = 0;
-            if (newValue > 96) newValue = 96;
+            if (newValue > 576) newValue = 576;
             slider.value = newValue;
             updateSlider();
         }
 
         function setLatestTime() {
             currentTime = new Date();
-            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 30) * 30);
+            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
             currentTime.setSeconds(0);
             currentTime.setMilliseconds(0);
             document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
-            document.getElementById('timeSlider').value = 96;
+            document.getElementById('timeSlider').value = 576;
             updateSlider();
         }
 
         function jumpToDate() {
             const datePicker = document.getElementById('datePicker');
             currentTime = new Date(datePicker.value);
-            document.getElementById('timeSlider').value = 96;
+            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
+            document.getElementById('timeSlider').value = 576;
             updateSlider();
         }
 
@@ -223,8 +236,8 @@
             } else {
                 const startValue = parseInt(slider.value);
                 playInterval = setInterval(() => {
-                    if (slider.value < 96) {
-                        slider.value = parseInt(slider.value) + 2; // 1시간 단위로 변경 (30분 * 2 = 1시간)
+                    if (slider.value < 576) {
+                        slider.value = parseInt(slider.value) + 12; // 1시간 단위로 변경 (5분 * 12 = 1시간)
                     } else {
                         if (document.getElementById('repeatCheckbox').checked) {
                             slider.value = startValue;
@@ -245,8 +258,17 @@
         function updateImages(time) {
             const imageURL1 = generateImageURL(time, 0);
             const imageURL2 = generateImageURL(time, 1);
-            document.getElementById('satelliteImage1').src = imageURL1;
-            document.getElementById('satelliteImage2').src = imageURL2;
+            const img1 = document.getElementById('satelliteImage1');
+            const img2 = document.getElementById('satelliteImage2');
+            
+            img1.src = imageURL1;
+            img2.src = imageURL2;
+            
+            // 이미지 크기 설정
+            img1.style.width = `${imageWidth}%`;
+            img1.style.height = `${imageHeight}%`;
+            img2.style.width = `${imageWidth}%`;
+            img2.style.height = `${imageHeight}%`;
         }
 
         function changeScreen(screenIndex) {
@@ -254,9 +276,29 @@
             updateSlider();
         }
 
+        function toggleAutoUpdate() {
+            const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
+            if (autoUpdateCheckbox.checked) {
+                startAutoUpdate();
+            } else {
+                stopAutoUpdate();
+            }
+        }
+
+        function startAutoUpdate() {
+            autoUpdateInterval = setInterval(() => {
+                setLatestTime();
+            }, 180000); // 3분 = 180000 밀리초
+        }
+
+        function stopAutoUpdate() {
+            clearInterval(autoUpdateInterval);
+        }
+
         function initializePage() {
             setLatestTime();
             createTimeLabels();
+            updateImages(currentTime);  // 초기 이미지 로드 및 크기 설정
         }
 
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
