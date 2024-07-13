@@ -107,20 +107,54 @@
             .toolbar-container {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 10px 5px;
             }
             .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls {
                 flex-wrap: wrap;
                 justify-content: center;
                 margin: 10px 0;
+                width: 100%;
             }
             .slider-container {
-                width: 100%;
-            }
-            .slider {
-                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
             }
             .slider-wrapper {
                 width: 100%;
+                margin-bottom: 10px;
+            }
+            #currentTime {
+                align-self: flex-start;
+                margin-left: 0;
+            }
+            .time-buttons {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
+                width: 100%;
+            }
+            .time-buttons button {
+                width: 100%;
+                padding: 10px 5px;
+                font-size: 14px;
+            }
+            .date-picker {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .date-picker input, .date-picker button {
+                width: 100%;
+                margin-top: 5px;
+            }
+            .play-controls {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .play-controls button, .play-controls label {
+                flex: 1 0 30%;
+                margin: 5px;
             }
             button, .screen-button {
                 padding: 10px;
@@ -323,7 +357,7 @@
             
             img1.style.width = '100%';
             img1.style.height = '100%';
-            img2.style.width = '100%';
+img2.style.width = '100%';
             img2.style.height = '100%';
 
             if (currentScreenIndex === 1 || currentScreenIndex === 3) {
@@ -372,7 +406,7 @@
         document.getElementById('timeSlider').addEventListener('input', updateSlider);
         window.onload = initializePage;
         
-// 화면 크기 변경 시 이미지 업데이트
+        // 화면 크기 변경 시 이미지 업데이트
         window.addEventListener('resize', function() {
             updateImages(new Date(currentTime.getTime() - ((48 - document.getElementById('timeSlider').value) * 60 * 60000)));
         });
