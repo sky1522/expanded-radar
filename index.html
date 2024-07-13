@@ -118,11 +118,12 @@
             .slider-container {
                 flex-direction: column;
                 align-items: stretch;
-                margin-bottom: 10px;
+                margin-bottom: 10px; /* 이 부분을 추가 */
             }
             .slider-wrapper {
                 width: 100%;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
+                margin-bottom: 10px; /* 이 부분을 추가 */
             }
             .slider {
                 width: 100%;
@@ -131,14 +132,13 @@
                 align-self: flex-end;
                 margin-left: 0;
                 font-size: 14px;
-                margin-top: 5px;
+                margin-top: 5px; /* 이 부분을 추가 */
             }
             .time-buttons {
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
                 gap: 1px;
                 width: 100%;
-                margin-top: 10px;
             }
             .time-buttons button {
                 width: 100%;
@@ -156,24 +156,14 @@
                 margin: 0 2px;
             }
             .play-controls {
-                order: -1;
                 display: flex;
                 flex-wrap: nowrap;
                 justify-content: space-between;
-                margin-bottom: 10px;
             }
             .play-controls button, .play-controls label {
                 flex: 1 0 auto;
                 margin: 2px;
                 font-size: 12px;
-            }
-            .play-controls label {
-                display: flex;
-                align-items: center;
-                margin-right: 10px;
-            }
-            .play-controls label:last-child {
-                margin-right: 0;
             }
             .screen-button, button {
                 padding: 5px;
@@ -211,15 +201,6 @@
             </div>
             <span id="currentTime"></span>
         </div>
-        <div class="play-controls">
-            <button id="playButton" onclick="togglePlay()">재생</button>
-            <label>
-                <input type="checkbox" id="repeatCheckbox"> 반복
-            </label>
-            <label>
-                <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()"> 업데이트
-            </label>
-        </div>
         <div class="time-buttons">
             <button onclick="adjustTime(-3)">-3h</button>
             <button onclick="adjustTime(-1)">-1h</button>
@@ -229,9 +210,18 @@
             <button onclick="adjustTime(1)">+1h</button>
             <button onclick="adjustTime(3)">+3h</button>
         </div>
+        <div class="play-controls">
+            <button id="playButton" onclick="togglePlay()">재생</button>
+            <label>
+                <input type="checkbox" id="repeatCheckbox"> 반복
+            </label>
+            <label>
+                <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()"> 업데이트
+            </label>
+        </div>
     </div>
 
-<script>
+    <script>
         const imageURLs = [
             "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
             [
