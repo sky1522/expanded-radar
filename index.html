@@ -87,7 +87,7 @@
         #currentTime {
             font-weight: bold;
             min-width: 120px;
-            text-align: left;
+            text-align: right;
             margin-left: 15px;
             font-size: 16px;
         }
@@ -107,12 +107,12 @@
             .toolbar-container {
                 flex-direction: column;
                 align-items: stretch;
-                padding: 10px 5px;
+                padding: 5px 2px;
             }
             .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls {
                 flex-wrap: wrap;
                 justify-content: center;
-                margin: 10px 0;
+                margin: 5px 0;
                 width: 100%;
             }
             .slider-container {
@@ -121,51 +121,51 @@
             }
             .slider-wrapper {
                 width: 100%;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
             .slider {
                 width: 100%;
             }
             #currentTime {
-                align-self: flex-start;
+                align-self: flex-end;
                 margin-left: 0;
+                font-size: 12px;
             }
             .time-buttons {
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
-                gap: 2px;
+                gap: 1px;
                 width: 100%;
             }
             .time-buttons button {
                 width: 100%;
-                padding: 5px 2px;
-                font-size: 12px;
+                padding: 3px 1px;
+                font-size: 10px;
             }
             .date-picker {
                 display: flex;
-                flex-direction: column;
-                align-items: stretch;
+                flex-direction: row;
+                align-items: center;
             }
             .date-picker input, .date-picker button {
-                width: 100%;
-                margin-top: 5px;
+                font-size: 12px;
+                padding: 3px;
+                margin: 0 2px;
             }
             .play-controls {
                 display: flex;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 justify-content: space-between;
             }
             .play-controls button, .play-controls label {
-                flex: 1 0 30%;
-                margin: 5px;
+                flex: 1 0 auto;
+                margin: 2px;
+                font-size: 12px;
             }
-            button, .screen-button {
-                padding: 10px;
-                margin: 5px;
-                font-size: 16px;
-            }
-            #currentTime {
-                font-size: 14px;
+            .screen-button, button {
+                padding: 5px;
+                margin: 2px;
+                font-size: 12px;
             }
         }
     </style>
@@ -198,7 +198,6 @@
             </div>
             <span id="currentTime"></span>
         </div>
-        <span style="width: 30px;"></span>
         <div class="time-buttons">
             <button onclick="adjustTime(-3)">-3h</button>
             <button onclick="adjustTime(-1)">-1h</button>
@@ -321,7 +320,7 @@
                 const startValue = parseFloat(slider.value);
                 playInterval = setInterval(() => {
                     if (slider.value < 48) {
-                        slider.value = parseFloat(slider.value) + 0.1;
+                        slider.value = parseFloat(slider.value) + 0.5;
                     } else {
                         if (document.getElementById('repeatCheckbox').checked) {
                             slider.value = startValue;
