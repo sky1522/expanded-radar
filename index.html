@@ -295,14 +295,15 @@ function createTimeLabels() {
     });
 }
 
-function updateSlider() {
+function updateSlider(selectedTime = null) {
     const slider = document.getElementById('timeSlider');
     const currentTimeDisplay = document.getElementById('currentTime');
     const sliderValue = parseFloat(slider.value);
     const hoursDiff = 48 - sliderValue;
-    const selectedTime = new Date(currentTime.getTime() - (hoursDiff * 60 * 60000));
-    currentTimeDisplay.textContent = formatDateForDisplay(selectedTime);
-    updateImages(selectedTime);
+    const timeToUse = selectedTime || currentTime;
+    const displayTime = new Date(timeToUse.getTime() - (hoursDiff * 60 * 60000));
+    currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
+    updateImages(displayTime);
 }
 
 function adjustTime(hours) {
@@ -314,22 +315,31 @@ function adjustTime(hours) {
 }
 
 function setLatestTime() {
-    currentTime = new Date();
+    const now = new Date();
+    const kstOffset = 9 * 60; // KST는 UTC+9
+    currentTime = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000);
     currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
     currentTime.setSeconds(0);
     currentTime.setMilliseconds(0);
-    document.getElementById('datePicker').value = currentTime.toISOString().slice(0, 16);
+    
+    const year = currentTime.getFullYear();
+    const month = String(currentTime.getMonth() + 1).padStart(2, '0');
+    const day = String(currentTime.getDate()).padStart(2, '0');
+    const hours = String(currentTime.getHours()).padStart(2, '0');
+    const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+
+    document.getElementById('datePicker').value = `${year}-${month}-${day}T${hours}:${minutes}`;
     document.getElementById('timeSlider').value = 48;
     updateSlider();
 }
 
-        function jumpToDate() {
-            const datePicker = document.getElementById('datePicker');
-            currentTime = new Date(datePicker.value);
-            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
-            document.getElementById('timeSlider').value = 48;
-            updateSlider();
-        }
+function jumpToDate() {
+    const datePicker = document.getElementById('datePicker');
+    const selectedTime = new Date(datePicker.value);
+    selectedTime.setMinutes(Math.floor(selectedTime.getMinutes() / 5) * 5);
+    document.getElementById('timeSlider').value = 48;
+    updateSlider(selectedTime);
+}
 
 let playStartValue;  // 재생 시작 지점을 저장할 전역 변수
 
@@ -476,10 +486,27 @@ function stopAutoUpdate() {
     clearTimeout(autoUpdateInterval);
 }
 
+function updateDatePickerDefault() {
+    const now = new Date();
+    const kstOffset = 9 * 60; // KST는 UTC+9
+    const kstTime = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000);
+    
+    const year = kstTime.getFullYear();
+    const month = String(kstTime.getMonth() + 1).padStart(2, '0');
+    const day = String(kstTime.getDate()).padStart(2, '0');
+    const hours = String(kstTime.getHours()).padStart(2, '0');
+    const minutes = String(kstTime.getMinutes()).padStart(2, '0');
+
+    const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    document.getElementById('datePicker').value = formattedDateTime;
+}
+
 function initializePage() {
     setLatestTime();
     createTimeLabels();
     updateImages(currentTime);
+    updateDatePickerDefault(); // 새로 추가된 라인
+    setInterval(updateDatePickerDefault, 60000); // 새로 추가된 라인
     document.addEventListener('contextmenu', disableRightClick);
     console.log("Right-click disabled");
 
