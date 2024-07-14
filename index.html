@@ -303,7 +303,7 @@ function updateSlider(selectedTime = null) {
     const timeToUse = selectedTime || currentTime;
     const displayTime = new Date(timeToUse.getTime() - (hoursDiff * 60 * 60000));
     currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
-    updateImages(displayTime);
+    updateImages(displayTime);  // 이 줄이 중요합니다
 }
 
 function adjustTime(hours) {
@@ -525,13 +525,24 @@ function disableRightClick(e) {
     return false;
 }
 
-        document.getElementById('timeSlider').addEventListener('input', updateSlider);
+document.getElementById('timeSlider').addEventListener('change', updateSlider);
+
+document.getElementById('timeSlider').addEventListener('input', function() {
+    const currentTimeDisplay = document.getElementById('currentTime');
+    const sliderValue = parseFloat(this.value);
+    const hoursDiff = 48 - sliderValue;
+    const displayTime = new Date(currentTime.getTime() - (hoursDiff * 60 * 60000));
+    currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
+});
         window.onload = initializePage;
         
         // 화면 크기 변경 시 이미지 업데이트
         window.addEventListener('resize', function() {
             updateImages(new Date(currentTime.getTime() - ((48 - document.getElementById('timeSlider').value) * 60 * 60000)));
         });
+document.getElementById('timeSlider').addEventListener('input', function() {
+    updateSlider();
+});
     </script>
 </body>
 </html>
