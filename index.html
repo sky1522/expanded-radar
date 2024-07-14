@@ -162,16 +162,24 @@
                 padding: 3px;
                 margin: 0 2px;
             }
-            .play-controls {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-            }
-            .play-controls button, .play-controls label {
-                flex: 1 0 auto;
-                margin: 2px;
-                font-size: 12px;
-            }
+.play-controls {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start; /* space-between 대신 flex-start 사용 */
+        gap: 5px; /* 요소들 사이의 간격 추가 */
+    }
+    
+    .play-controls button, 
+    .play-controls label {
+        flex: 0 1 auto; /* flex-grow를 0으로 설정하여 자신의 내용 크기만큼만 차지하도록 함 */
+        margin: 2px;
+        font-size: 12px;
+    }
+    
+    /* 업데이트 체크박스 라벨에 대한 특정 스타일 */
+    .play-controls label:last-of-type {
+        margin-left: -10px; /* 왼쪽 마진을 음수 값으로 설정하여 왼쪽으로 이동 */
+    }
             .screen-button, button {
                 padding: 5px;
                 margin: 5px;
