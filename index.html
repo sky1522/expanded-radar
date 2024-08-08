@@ -43,7 +43,7 @@
             padding: 10px;
             background-color: #f0f0f0;
         }
-        .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls {
+        .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls, .dropdown-container {
             display: flex;
             align-items: center;
             margin: 0 10px;
@@ -73,7 +73,7 @@
             color: #666;
             pointer-events: none;
         }
-        .screen-button, button {
+        .screen-button, button, select {
             padding: 5px 10px;
             margin: 0 2px;
             background-color: #ddd;
@@ -81,7 +81,7 @@
             cursor: pointer;
             border-radius: 3px;
         }
-        button:hover {
+        button:hover, select:hover {
             background-color: #ccc;
         }
         #currentTime {
@@ -118,7 +118,7 @@
                 align-items: stretch;
                 padding: 5px 2px;
             }
-            .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls {
+            .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls, .dropdown-container {
                 flex-wrap: wrap;
                 justify-content: center;
                 margin: 5px 0;
@@ -173,7 +173,7 @@
                 margin: 2px;
                 font-size: 12px;
             }
-            .screen-button, button {
+            .screen-button, button, select {
                 padding: 5px;
                 margin: 5px;
                 font-size: 12px;
@@ -230,6 +230,19 @@
                 <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()"> 업데이트
             </label>
         </div>
+        <div class="dropdown-container">
+            <select id="dropdownMenu" onchange="updateLeftFrame()">
+                <option value="" selected>항목 선택</option>
+                <option value="default">기본 화면</option>
+                <option value="alert">특보 현황</option>
+                <option value="rain_existence">강수 유무</option>
+                <option value="rain_60m">강수(60분)</option>
+                <option value="rain_3h">강수(3H)</option>
+                <option value="daily_rain">일강수량</option>
+                <option value="2days_rain">2일강수량</option>
+                <option value="3days_rain">3일강수량</option>
+            </select>
+        </div>
     </div>
 
     <script>
@@ -242,6 +255,17 @@
                 "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=4220000&gov="
             ]
         ];
+
+        const dropdownURLs = {
+            "default": "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
+            "alert": "https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm={0}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=R&lv=0&_DT=RSW:MAPR",
+            "rain_existence": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RNEX",
+            "rain_60m": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=60&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN60M",
+            "rain_3h": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={0}&tm_st=202408081150&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN03H",
+            "daily_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RNDAY1",
+            "2days_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={0}&tm_st=202408070000&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN02D",
+            "3days_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={0}&tm_st=202408060000&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN03D"
+        };
 
         let currentScreenIndex = 0;
         let isPlaying = false;
@@ -259,7 +283,7 @@
             { width: 50, height: 100 }
         ];
 
-        function generateImageURL(time, urlIndex) {
+        function generateImageURL(time, url) {
             const year = time.getFullYear();
             const month = String(time.getMonth() + 1).padStart(2, '0');
             const day = String(time.getDate()).padStart(2, '0');
@@ -267,8 +291,23 @@
             const minutes = String(Math.floor(time.getMinutes() / 5) * 5).padStart(2, '0');
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
-            const url = urlIndex === 0 ? imageURLs[0] : imageURLs[1][currentScreenIndex];
             return `${url.replace("{0}", dateString)}&cache_bust=${new Date().getTime()}`;
+        }
+
+        function generateAlertImageURL() {
+            const now = new Date();
+            now.setMinutes(Math.floor(now.getMinutes() / 10) * 10);
+            now.setSeconds(0);
+            now.setMilliseconds(0);
+
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            const dateString = `${year}${month}${day}${hours}${minutes}`;
+            return `https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm=${dateString}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=R&lv=0&_DT=RSW:MAPR`;
         }
 
         function formatDateForDisplay(date) {
@@ -367,8 +406,8 @@
         }
 
         function updateImages(time) {
-            const imageURL1 = generateImageURL(time, 0);
-            const imageURL2 = generateImageURL(time, 1);
+            const imageURL1 = generateImageURL(time, imageURLs[0]);
+            const imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
             const frame1 = document.getElementById('imageFrame1');
             const frame2 = document.getElementById('imageFrame2');
             const img1 = document.getElementById('satelliteImage1');
@@ -491,6 +530,25 @@
 
             const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
             document.getElementById('datePicker').value = formattedDateTime;
+        }
+
+        function updateLeftFrame() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const selectedOption = dropdownMenu.value;
+            let selectedURL = dropdownURLs[selectedOption];
+
+            if (selectedOption === "alert") {
+                selectedURL = generateAlertImageURL();
+            } else {
+                const now = new Date();
+                now.setMinutes(Math.floor(now.getMinutes() / 5) * 5);
+                now.setSeconds(0);
+                now.setMilliseconds(0);
+                selectedURL = generateImageURL(now, selectedURL);
+            }
+
+            const img1 = document.getElementById('satelliteImage1');
+            img1.src = `${selectedURL}&t=${new Date().getTime()}`;
         }
 
         function initializePage() {
