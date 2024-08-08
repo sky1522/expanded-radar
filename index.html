@@ -247,6 +247,7 @@
         let isPlaying = false;
         let playInterval;
         let currentTime = new Date();
+        let selectedTime = null;
         let autoUpdateInterval;
         let nextUpdateDisplayInterval;
         let playStartValue;
@@ -290,12 +291,12 @@
             });
         }
 
-        function updateSlider(selectedTime = null) {
+        function updateSlider(selectedTimeOverride = null) {
             const slider = document.getElementById('timeSlider');
             const currentTimeDisplay = document.getElementById('currentTime');
             const sliderValue = parseFloat(slider.value);
             const hoursDiff = 48 - sliderValue;
-            const timeToUse = selectedTime || currentTime;
+            const timeToUse = selectedTimeOverride || selectedTime || currentTime;
             const displayTime = new Date(timeToUse.getTime() - (hoursDiff * 60 * 60000));
             currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
             updateImages(displayTime);
@@ -317,6 +318,8 @@
             currentTime.setSeconds(0);
             currentTime.setMilliseconds(0);
 
+            selectedTime = new Date(currentTime);
+
             const year = currentTime.getFullYear();
             const month = String(currentTime.getMonth() + 1).padStart(2, '0');
             const day = String(currentTime.getDate()).padStart(2, '0');
@@ -330,7 +333,7 @@
 
         function jumpToDate() {
             const datePicker = document.getElementById('datePicker');
-            const selectedTime = new Date(datePicker.value);
+            selectedTime = new Date(datePicker.value);
             selectedTime.setMinutes(Math.floor(selectedTime.getMinutes() / 5) * 5);
             document.getElementById('timeSlider').value = 48;
             updateSlider(selectedTime);
