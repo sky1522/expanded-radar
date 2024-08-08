@@ -268,7 +268,7 @@
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
             const url = urlIndex === 0 ? imageURLs[0] : imageURLs[1][currentScreenIndex];
-            return url.replace("{0}", dateString);
+            return `${url.replace("{0}", dateString)}&cache_bust=${new Date().getTime()}`;
         }
 
         function formatDateForDisplay(date) {
@@ -312,8 +312,7 @@
 
         function setLatestTime() {
             const now = new Date();
-            const kstOffset = 9 * 60;
-            currentTime = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000);
+            currentTime = new Date(now);
             currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
             currentTime.setSeconds(0);
             currentTime.setMilliseconds(0);
