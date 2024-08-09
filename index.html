@@ -261,7 +261,7 @@
 
         const dropdownURLs = {
             "default": "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
-            "alert": "https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm={0}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=R&lv=0&_DT=RSW:MAPR",
+            "alert": "https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm={0}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=W,R,C,D,O,V,T,S,Y,H&lv=0&_DT=RSW:MAPR",
             "rain_existence": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RNEX",
             "rain_60m": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=60&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN60M",
             "rain_3h": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={0}&tm_st=202408081150&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN03H",
@@ -313,7 +313,7 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
-            return `https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm=${dateString}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=R&lv=0&_DT=RSW:MAPR`;
+            return `https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm=${dateString}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=W,R,C,D,O,V,T,S,Y,H&lv=0&_DT=RSW:MAPR`;
         }
 
         function formatDateForDisplay(date) {
