@@ -254,9 +254,13 @@
             [
                 "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HR&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=2500000&zoom_y=5200000&gov=",
                 "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3300000&zoom_y=4200000&gov=",
-                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=E&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3100000&zoom_y=5400000&gov=",
-                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=4220000&gov="
+                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=E&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3100000&zoom_y=5400000&gov="
             ]
+        ];
+
+        const screen4URLs = [
+            "https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=2&wv=01&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
+            "https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=E&size=800&xp=330&yp=620&zoom=5&wv=01&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0"
         ];
 
         const dropdownURLs = {
@@ -298,22 +302,6 @@
 
             const dateString = `${year}${month}${day}${hours}${minutes}`;
             return `${url.replace("{0}", dateString)}&cache_bust=${new Date().getTime()}`;
-        }
-
-        function generateAlertImageURL() {
-            const now = new Date();
-            now.setMinutes(Math.floor(now.getMinutes() / 10) * 10);
-            now.setSeconds(0);
-            now.setMilliseconds(0);
-
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-
-            const dateString = `${year}${month}${day}${hours}${minutes}`;
-            return `https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm=${dateString}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl=202408081440&name=0&out=0&wrn=W,R,C,D,O,V,T,S,Y,H&lv=0&_DT=RSW:MAPR`;
         }
 
         function formatDateForDisplay(date) {
@@ -412,8 +400,16 @@
         }
 
         function updateImages(time) {
-            const imageURL1 = generateImageURL(time, imageURLs[0]);
-            const imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
+            let imageURL1, imageURL2;
+
+            if (currentScreenIndex === 3) {
+                imageURL1 = generateImageURL(time, screen4URLs[0]);
+                imageURL2 = generateImageURL(time, screen4URLs[1]);
+            } else {
+                imageURL1 = generateImageURL(time, imageURLs[0]);
+                imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
+            }
+
             const frame1 = document.getElementById('imageFrame1');
             const frame2 = document.getElementById('imageFrame2');
             const img1 = document.getElementById('satelliteImage1');
