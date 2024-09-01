@@ -441,7 +441,8 @@
 
             const timestamp = new Date().getTime();
             img1.src = `${imageURL1}&t=${timestamp}`;
-            img2.src = `${imageURL2}&t=${timestamp}`;
+            if(currentScreenIndex === 1) {}
+            else img2.src = `${imageURL2}&t=${timestamp}`;
 
             if (window.innerWidth <= 768) {
                 frame1.style.width = '100%';
