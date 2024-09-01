@@ -425,9 +425,13 @@
             if (currentScreenIndex === 3) {
                 imageURL1 = generateImageURL(time, screen4URLs[0]);
                 imageURL2 = generateImageURL(time, screen4URLs[1]);
-            } else {
+            } 
+            else {
                 imageURL1 = generateImageURL(time, imageURLs[0]);
-                imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
+                if(currentScreenIndex === 1){
+                    imageURL2 = 'https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/202409/01/05/gk2a_ami_le1b_rgb-s-daynight_ko020lc_202409010510.png'
+                }
+                else imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
             }
 
             const frame1 = document.getElementById('imageFrame1');
