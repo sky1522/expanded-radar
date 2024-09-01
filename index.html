@@ -429,7 +429,14 @@
             else {
                 imageURL1 = generateImageURL(time, imageURLs[0]);
                 if(currentScreenIndex === 1){
-                    imageURL2 = 'https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/202409/01/05/gk2a_ami_le1b_rgb-s-daynight_ko020lc_202409010510.png'
+                    const year = time.getFullYear();
+                    const month = String(time.getMonth() + 1).padStart(2, '0');
+                    const day = String(time.getDate()).padStart(2, '0');
+                    const hours = String(time.getHours()).padStart(2, '0');
+                    const minutes = String(Math.floor(time.getMinutes() / 5) * 5).padStart(2, '0');
+
+            const dateString = `${year}${month}${day}${hours}${minutes}`;
+                    imageURL2 = `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/${year}${month}/${day}/${hours}/gk2a_ami_le1b_rgb-s-daynight_ko020lc_${dateString}.png`
                 }
                 else imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
             }
