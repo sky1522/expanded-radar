@@ -1,631 +1,109 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expanded Radar Analytics Tool</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            flex-grow: 1;
-            overflow: hidden;
-        }
-        .image-frame {
-            height: 100%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .image-frame img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .image-frame.cover img {
-            object-fit: cover;
-        }
-        .toolbar-container {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-        }
-        .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls, .dropdown-container {
-            display: flex;
-            align-items: center;
-            margin: 0 10px;
-        }
-        .slider-container {
-            position: relative;
-            width: 400px;
-            display: flex;
-            align-items: center;
-        }
-        .slider {
-            width: 300px;
-            margin: 0;
-        }
-        .slider-wrapper {
-            position: relative;
-            width: 300px;
-        }
-        .time-labels {
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #666;
-            pointer-events: none;
-        }
-        .screen-button, button, select {
-            padding: 5px 10px;
-            margin: 0 2px;
-            background-color: #ddd;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        button:hover, select:hover {
-            background-color: #ccc;
-        }
-        #currentTime {
-            font-weight: bold;
-            min-width: 120px;
-            text-align: right;
-            margin-left: -10px;
-            font-size: 16px;
-        }
-        #nextUpdateDisplay {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        @media (max-width: 768px) {
-            body {
-                height: auto;
-            }
-            .container {
-                flex-direction: column;
-                height: auto;
-            }
-            .image-frame {
-                width: 100% !important;
-                height: 50vh;
-            }
-            .toolbar-container {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 5px 2px;
-            }
-            .screen-buttons, .date-picker, .slider-container, .time-buttons, .play-controls, .dropdown-container {
-                flex-wrap: wrap;
-                justify-content: center;
-                margin: 5px 0;
-                width: 100%;
-            }
-            .slider-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .slider-wrapper {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            .slider {
-                width: 100%;
-            }
-            #currentTime {
-                align-self: flex-end;
-                margin-left: 0;
-                font-size: 12px;
-            }
-            .time-buttons {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                gap: 1px;
-                width: 100%;
-            }
-            .time-buttons button {
-                width: 100%;
-                padding: 3px 1px;
-                font-size: 10px;
-            }
-            .date-picker {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-            .date-picker input, .date-picker button {
-                font-size: 12px;
-                padding: 3px;
-                margin: 0 2px;
-            }
-            .play-controls {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                gap: 5px;
-            }
-            .play-controls button,
-            .play-controls label {
-                flex: 0 1 auto;
-                margin: 2px;
-                font-size: 12px;
-            }
-            .screen-button, button, select {
-                padding: 5px;
-                margin: 5px;
-                font-size: 12px;
-            }
-            .play-controls label:last-child {
-                margin-left: -5px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기상 관측 화면</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="index.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div id="imageFrame1" class="image-frame">
-            <img id="satelliteImage1" alt="위성 이미지 1">
+  <div class="container-fluid">
+    <main>
+      <div id="screen">
+        <div id="screenLeft" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
+        <div id="screenRight" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
+      </div>
+    </main>
+    <footer class="center">
+      <!-- 화면 1 ~ 4 : 각화면 초기화용-->
+      <div>
+        <button type="button" onclick="changeScreen(1)">R</button>
+        <button type="button" onclick="changeScreen(2)">R-1</button>
+        <button type="button" onclick="changeScreen(3)">R-Sat</button>
+        <button type="button" onclick="changeScreen(4)">R-Vapor</button>
+        <button type="button" onclick="changeScreen(5)">R-Wind</button>
+        <button type="button" onclick="changeScreen(6)">Sat</button>
+      </div>
+
+      <div class="flex-type">
+        <input type="datetime-local" id="datePicker" />
+        <button type="button" onclick="jumpToDate()">이동</button>
+      </div>
+
+      <div class="flex-type">
+        <div class="range">
+          <div>
+            <input type="range" min="0" max="48" value="48" step="0.5" id="timeSlider"
+              oninput="updateSlider(null, 'input')" onchange="updateSlider(null, 'change')" />
+          </div>
+          <small><span>-48H</span><span>-36H</span><span>-24H</span><span>-12H</span><span>0H</span></small>
         </div>
-        <div id="imageFrame2" class="image-frame">
-            <img id="satelliteImage2" alt="위성 이미지 2">
+        <div id="currentTime">asdfasdfasdf</div>
+      </div>
+
+      <div>
+        <button class="outline contrast" onclick="adjustTime(-3)">-3H</button>
+        <button class="outline contrast" onclick="adjustTime(-1)">-1H</button>
+        <button class="outline contrast" onclick="adjustTime(-0.5)">-30M</button>
+        <button onclick="setLatestTime()">현재</button>
+        <button class="outline contrast" onclick="adjustTime(0.5)">+30M</button>
+        <button class="outline contrast" onclick="adjustTime(1)">+1H</button>
+        <button class="outline contrast" onclick="adjustTime(3)">+3H</button>
+      </div>
+
+      <div class="control">
+        <button id="playButton" onclick="togglePlay()">재생</button>
+        <div>
+          <fieldset>
+            <input type="checkbox" id="repeatCheckbox" />
+            <label for="repeatCheckbox">반복</label>
+            <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()" />
+            <label for="autoUpdateCheckbox">업데이트</label>
+          </fieldset>
+
+          <div id="nextUpdateDisplay"></div>
         </div>
-    </div>
-    <div class="toolbar-container">
-        <div class="screen-buttons">
-            <button class="screen-button" onclick="changeScreen(0)">화면 1</button>
-            <button class="screen-button" onclick="changeScreen(1)">화면 2</button>
-            <button class="screen-button" onclick="changeScreen(2)">화면 3</button>
-            <button class="screen-button" onclick="changeScreen(3)">화면 4</button>
-        </div>
-        <div class="date-picker">
-            <input type="datetime-local" id="datePicker">
-            <button onclick="jumpToDate()">이동</button>
-        </div>
-        <div class="slider-container">
-            <div class="slider-wrapper">
-                <input type="range" min="0" max="48" value="48" step="0.5" class="slider" id="timeSlider">
-                <div class="time-labels" id="timeLabels"></div>
-            </div>
-            <span id="currentTime"></span>
-        </div>
-        <div class="time-buttons">
-            <button onclick="adjustTime(-3)">-3h</button>
-            <button onclick="adjustTime(-1)">-1h</button>
-            <button onclick="adjustTime(-0.5)">-30m</button>
-            <button onclick="setLatestTime()">현재</button>
-            <button onclick="adjustTime(0.5)">+30m</button>
-            <button onclick="adjustTime(1)">+1h</button>
-            <button onclick="adjustTime(3)">+3h</button>
-        </div>
-        <div class="play-controls">
-            <button id="playButton" onclick="togglePlay()">재생</button>
-            <label>
-                <input type="checkbox" id="repeatCheckbox"> 반복
-            </label>
-            <label>
-                <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()"> 업데이트
-            </label>
-        </div>
-        <div class="dropdown-container">
-            <select id="dropdownMenu" onchange="updateLeftFrame()">
-                <option value="" selected>항목 선택</option>
-                <option value="default">기본 화면</option>
-                <option value="alert">특보 현황</option>
-                <option value="rain_existence">강수 유무</option>
-                <option value="rain_60m">강수(60분)</option>
-                <option value="rain_3h">강수(3H)</option>
-                <option value="daily_rain">일강수량</option>
-                <option value="2days_rain">2일강수량</option>
-                <option value="3days_rain">3일강수량</option>
-                <option value="lightning">낙뢰 영상</option>
-                <option value="current_temp">현재 기온</option>
-                <option value="feels_like_temp">체감 온도</option>
-            </select>
-        </div>
-    </div>
+      </div>
 
-    <script>
-        const imageURLs = [
-            "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
-            [
-                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HR&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=2500000&zoom_y=5200000&gov=",
-                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3300000&zoom_y=4200000&gov=",
-                "https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={0}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HC&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov="
-            ]
-        ];
+      <!-- 항목 선택-->
+      <div>
+        <select id="items" name="select" aria-label="Select" required
+          onchange="changeScreen(this.options[this.selectedIndex].value)">
+          <option selected disabled value="">항목 정보</option>
+          <option value="item1">특보 현황</option>
+          <option value="item2">강수 유무</option>
+          <option value="item3">강수(60분)</option>
+          <option value="item4">강수(3H)</option>
+          <option value="item5">일 강수량</option>
+          <option value="item6">2일 강수량</option>
+          <option value="item7">3일 강수량</option>
+          <option value="item8">낙뢰 영상</option>
+          <option value="item9">현재 기온</option>
+          <option value="item10">체감 온도</option>
+          <option value="item11">AWS 관측 데이터</option>
+        </select>
+      </div>
 
-        const screen4URLs = [
-            "https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=2&wv=02&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
-            "https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=E&size=800&xp=330&yp=620&zoom=5&wv=02&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0"
-        ];
+      <!-- 태풍 정보-->
+      <div>
+        <select id="typoons" name="select" aria-label="Select" required
+          onchange="changeScreen(this.options[this.selectedIndex].value)">
+          <option selected disabled value="">태풍 정보</option>
+          <option value="TP1">태풍 현황</option>
+          <option value="TP2">태풍 감시</option>
+          <option value="TP3">태풍 예측</option>
+          <option value="TP4">해수 온도</option>
+          <option value="TP5">일기도</option>
+        </select>
+      </div>
 
-        const dropdownURLs = {
-            "default": "https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={0}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0",
-            "alert": "https://afso.kma.go.kr/cgi/wrn/nph-wrn7?tm={0}&lon=127&lat=37.59&range=80&size=330.00&city=1&tmef=0&tmefl={0}&name=0&out=0&wrn=W,R,C,D,O,V,T,S,Y,H&lv=0&_DT=RSW:MAPR",
-            "rain_existence": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RNEX",
-            "rain_60m": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=60&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN60M",
-            "rain_3h": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={0}&tm_st=202408081150&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN03H",
-            "daily_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RNDAY1",
-            "2days_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={0}&tm_st={1}&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN02D",
-            "3days_rain": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={0}&tm_st={2}&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RN03D",
-            "lightning": "https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={0}&val=1&stn=1&obj=bn&map=E&grid=2&legend=1&size=330.00&itv=30&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:RDRLGT",
-            "current_temp": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:TA",
-            "feels_like_temp": "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={0}&val=1&stn=1&obj=mq&map=E&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3200000&zoom_y=5400000&gov=&_DT=RSW:TACHI"
-        };
-
-        let currentScreenIndex = 0;
-        let isPlaying = false;
-        let playInterval;
-        let currentTime = new Date();
-        let selectedTime = null;
-        let autoUpdateInterval;
-        let nextUpdateDisplayInterval;
-        let playStartValue;
-
-        const imageSizes = [
-            { width: 50, height: 100 },
-            { width: 50, height: 100 },
-            { width: 50, height: 100 },
-            { width: 50, height: 100 }
-        ];
-
-        function generateImageURL(time, url) {
-            const year = time.getFullYear();
-            const month = String(time.getMonth() + 1).padStart(2, '0');
-            const day = String(time.getDate()).padStart(2, '0');
-            const hours = String(time.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(time.getMinutes() / 5) * 5).padStart(2, '0');
-
-            const dateString = `${year}${month}${day}${hours}${minutes}`;
-            return `${url.replace("{0}", dateString)}&cache_bust=${new Date().getTime()}`;
-        }
-
-        function generateAlertImageURL() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(now.getMinutes() / 10) * 10).padStart(2, '0');
-
-            const dateString = `${year}${month}${day}${hours}${minutes}`;
-            return dropdownURLs.alert.replace(/\{0\}/g, dateString);
-        }
-
-        function generateRainImageURL(startTime) {
-            const year = startTime.getFullYear();
-            const month = String(startTime.getMonth() + 1).padStart(2, '0');
-            const day = String(startTime.getDate()).padStart(2, '0');
-
-            return `${year}${month}${day}0000`;
-        }
-
-        function formatDateForDisplay(date) {
-            const year = date.getFullYear().toString().slice(-2);
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(Math.floor(date.getMinutes() / 5) * 5).padStart(2, '0');
-
-            return `${year}/${month}/${day} ${hours}:${minutes}`;
-        }
-
-        function createTimeLabels() {
-            const timeLabels = document.getElementById('timeLabels');
-            const labelTimes = [-48, -36, -24, -12, 0];
-            labelTimes.forEach((hours) => {
-                const label = document.createElement('span');
-                label.textContent = `${hours}h`;
-                timeLabels.appendChild(label);
-            });
-        }
-
-        function updateSlider(selectedTimeOverride = null) {
-            const slider = document.getElementById('timeSlider');
-            const currentTimeDisplay = document.getElementById('currentTime');
-            const sliderValue = parseFloat(slider.value);
-            const hoursDiff = 48 - sliderValue;
-            const timeToUse = selectedTimeOverride || selectedTime || currentTime;
-            const displayTime = new Date(timeToUse.getTime() - (hoursDiff * 60 * 60000));
-            currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
-            updateImages(displayTime);
-        }
-
-        function adjustTime(hours) {
-            const slider = document.getElementById('timeSlider');
-            let newValue = parseFloat(slider.value) + hours;
-            newValue = Math.max(0, Math.min(48, newValue));
-            slider.value = newValue;
-            updateSlider();
-        }
-
-        function setLatestTime() {
-            const now = new Date();
-            currentTime = new Date(now);
-            currentTime.setMinutes(Math.floor(currentTime.getMinutes() / 5) * 5);
-            currentTime.setSeconds(0);
-            currentTime.setMilliseconds(0);
-
-            selectedTime = new Date(currentTime);
-
-            const year = currentTime.getFullYear();
-            const month = String(currentTime.getMonth() + 1).padStart(2, '0');
-            const day = String(currentTime.getDate()).padStart(2, '0');
-            const hours = String(currentTime.getHours()).padStart(2, '0');
-            const minutes = String(currentTime.getMinutes()).padStart(2, '0');
-
-            document.getElementById('datePicker').value = `${year}-${month}-${day}T${hours}:${minutes}`;
-            document.getElementById('timeSlider').value = 48;
-            updateSlider();
-        }
-
-        function jumpToDate() {
-            const datePicker = document.getElementById('datePicker');
-            selectedTime = new Date(datePicker.value);
-            selectedTime.setMinutes(Math.floor(selectedTime.getMinutes() / 5) * 5);
-            document.getElementById('timeSlider').value = 48;
-            updateSlider(selectedTime);
-        }
-
-        function togglePlay() {
-            const playButton = document.getElementById('playButton');
-            const slider = document.getElementById('timeSlider');
-            if (isPlaying) {
-                clearInterval(playInterval);
-                playButton.textContent = '재생';
-            } else {
-                playStartValue = parseFloat(slider.value);
-                playInterval = setInterval(() => {
-                    if (slider.value < 48) {
-                        slider.value = parseFloat(slider.value) + 1.0;
-                    } else {
-                        if (document.getElementById('repeatCheckbox').checked) {
-                            slider.value = playStartValue;
-                        } else {
-                            clearInterval(playInterval);
-                            playButton.textContent = '재생';
-                            isPlaying = false;
-                            return;
-                        }
-                    }
-                    updateSlider();
-                }, 2000);
-                playButton.textContent = '정지';
-            }
-            isPlaying = !isPlaying;
-        }
-
-        function updateImages(time) {
-            let imageURL1, imageURL2;
-
-            if (currentScreenIndex === 3) {
-                imageURL1 = generateImageURL(time, screen4URLs[0]);
-                imageURL2 = generateImageURL(time, screen4URLs[1]);
-            } 
-            else {
-                imageURL1 = generateImageURL(time, imageURLs[0]);
-                imageURL2 = generateImageURL(time, imageURLs[1][currentScreenIndex]);
-            }
-
-            const frame1 = document.getElementById('imageFrame1');
-            const frame2 = document.getElementById('imageFrame2');
-            const img1 = document.getElementById('satelliteImage1');
-            const img2 = document.getElementById('satelliteImage2');
-
-            const timestamp = new Date().getTime();
-            img1.src = `${imageURL1}&t=${timestamp}`;
-            img2.src = `${imageURL2}&t=${timestamp}`;
-
-            if (window.innerWidth <= 768) {
-                frame1.style.width = '100%';
-                frame2.style.width = '100%';
-            } else {
-                frame1.style.width = `${imageSizes[0].width}%`;
-                frame2.style.width = `${imageSizes[currentScreenIndex].width}%`;
-            }
-
-            img1.style.width = '100%';
-            img1.style.height = '100%';
-            img2.style.width = '100%';
-            img2.style.height = '100%';
-
-            if (currentScreenIndex === 1 || currentScreenIndex === 3) {
-                frame2.classList.add('cover');
-            } else {
-                frame2.classList.remove('cover');
-            }
-        }
-
-        function changeScreen(screenIndex) {
-            currentScreenIndex = screenIndex;
-            updateSlider();
-        }
-
-        function getNextUpdateTime() {
-            const now = new Date();
-            const minutes = Math.floor(now.getMinutes() / 5) * 5;
-            const nextUpdate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), minutes, 0, 0);
-            nextUpdate.setMinutes(nextUpdate.getMinutes() + 4);
-            nextUpdate.setSeconds(10);
-            if (nextUpdate <= now) {
-                nextUpdate.setMinutes(nextUpdate.getMinutes() + 5);
-            }
-            return nextUpdate;
-        }
-
-        function toggleAutoUpdate() {
-            const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
-            if (autoUpdateCheckbox.checked) {
-                startAutoUpdate();
-                showNextUpdateDisplay();
-            } else {
-                stopAutoUpdate();
-                hideNextUpdateDisplay();
-            }
-        }
-
-        function showNextUpdateDisplay() {
-            let nextUpdateDisplay = document.getElementById('nextUpdateDisplay');
-            if (!nextUpdateDisplay) {
-                nextUpdateDisplay = document.createElement('div');
-                nextUpdateDisplay.id = 'nextUpdateDisplay';
-                document.body.appendChild(nextUpdateDisplay);
-            }
-
-            function updateNextUpdateDisplay() {
-                const nextUpdate = getNextUpdateTime();
-                const month = String(nextUpdate.getMonth() + 1).padStart(1, '0');
-                const day = String(nextUpdate.getDate()).padStart(2, '0');
-                const hours = String(nextUpdate.getHours()).padStart(2, '0');
-                const minutes = String(nextUpdate.getMinutes()).padStart(2, '0');
-                const seconds = String(nextUpdate.getSeconds()).padStart(2, '0');
-                nextUpdateDisplay.textContent = `Next: ${month}/${day} ${hours}:${minutes}:${seconds}`;
-            }
-
-            updateNextUpdateDisplay();
-            nextUpdateDisplayInterval = setInterval(updateNextUpdateDisplay, 1000);
-        }
-
-        function hideNextUpdateDisplay() {
-            const nextUpdateDisplay = document.getElementById('nextUpdateDisplay');
-            if (nextUpdateDisplay) {
-                nextUpdateDisplay.remove();
-            }
-            clearInterval(nextUpdateDisplayInterval);
-        }
-
-        function startAutoUpdate() {
-            function scheduleNextUpdate() {
-                const now = new Date();
-                const nextUpdate = getNextUpdateTime();
-                const timeUntilUpdate = nextUpdate.getTime() - now.getTime();
-
-                console.log(`Next update scheduled at: ${nextUpdate.toLocaleString()}`);
-
-                autoUpdateInterval = setTimeout(() => {
-                    setLatestTime();
-                    updateImages(currentTime);
-                    scheduleNextUpdate();
-                }, timeUntilUpdate);
-            }
-
-            scheduleNextUpdate();
-        }
-
-        function stopAutoUpdate() {
-            clearTimeout(autoUpdateInterval);
-        }
-
-        function updateDatePickerDefault() {
-            const now = new Date();
-            const kstOffset = 9 * 60;
-            const kstTime = new Date(now.getTime() + (kstOffset + now.getTimezoneOffset()) * 60000);
-
-            const year = kstTime.getFullYear();
-            const month = String(kstTime.getMonth() + 1).padStart(2, '0');
-            const day = String(kstTime.getDate()).padStart(2, '0');
-            const hours = String(kstTime.getHours()).padStart(2, '0');
-            const minutes = String(kstTime.getMinutes()).padStart(2, '0');
-
-            const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
-            document.getElementById('datePicker').value = formattedDateTime;
-        }
-
-        function updateLeftFrame() {
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            const selectedOption = dropdownMenu.value;
-            let selectedURL = dropdownURLs[selectedOption];
-
-            if (selectedOption === "alert") {
-                selectedURL = generateAlertImageURL();
-            } else if (selectedOption === "2days_rain" || selectedOption === "3days_rain") {
-                const now = new Date();
-                const startTime = new Date(now);
-                startTime.setDate(now.getDate() - (selectedOption === "2days_rain" ? 1 : 2));
-                selectedURL = selectedURL.replace("{1}", generateRainImageURL(startTime));
-                selectedURL = selectedURL.replace("{2}", generateRainImageURL(startTime));
-                selectedURL = generateImageURL(now, selectedURL);
-            } else {
-                const now = new Date();
-                now.setMinutes(Math.floor(now.getMinutes() / 5) * 5);
-                now.setSeconds(0);
-                now.setMilliseconds(0);
-                selectedURL = generateImageURL(now, selectedURL);
-            }
-
-            const img1 = document.getElementById('satelliteImage1');
-            img1.src = `${selectedURL}&t=${new Date().getTime()}`;
-
-            // 자동 업데이트 완전히 중지
-            stopAutoUpdate();
-        }
-
-        function initializePage() {
-            setLatestTime();
-            createTimeLabels();
-            updateImages(currentTime);
-            updateDatePickerDefault();
-            setInterval(updateDatePickerDefault, 60000);
-            document.addEventListener('contextmenu', disableRightClick);
-
-            const autoUpdateEnabled = localStorage.getItem('autoUpdateEnabled') === 'true';
-            const autoUpdateCheckbox = document.getElementById('autoUpdateCheckbox');
-            autoUpdateCheckbox.checked = autoUpdateEnabled;
-            if (autoUpdateEnabled) {
-                startAutoUpdate();
-                showNextUpdateDisplay();
-            }
-        }
-
-        function disableRightClick(e) {
-            e.preventDefault();
-            return false;
-        }
-
-        document.getElementById('timeSlider').addEventListener('change', updateSlider);
-
-        document.getElementById('timeSlider').addEventListener('input', function () {
-            const currentTimeDisplay = document.getElementById('currentTime');
-            const sliderValue = parseFloat(this.value);
-            const hoursDiff = 48 - sliderValue;
-            const displayTime = new Date(currentTime.getTime() - (hoursDiff * 60 * 60000));
-            currentTimeDisplay.textContent = formatDateForDisplay(displayTime);
-        });
-
-        window.onload = initializePage;
-
-        window.addEventListener('resize', function () {
-            updateImages(new Date(currentTime.getTime() - ((48 - document.getElementById('timeSlider').value) * 60 * 60000)));
-        });
-
-        document.getElementById('timeSlider').addEventListener('input', function () {
-            updateSlider();
-        });
-    </script>
+    </footer>
+  </div>
 </body>
 
 </html>
