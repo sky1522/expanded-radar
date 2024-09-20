@@ -5,7 +5,7 @@ const TYPOON1_TIME = 202409202230; //태풍 발표 시각
 
 //태풍예측
 const TYPOON2_NAME = "PULASAN"; //태풍 이름
-const TYPOON2_TIME = 2024092012; //태풍 발표 시각
+const TYPOON2_TIME = 2024092006; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
