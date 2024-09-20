@@ -5,6 +5,7 @@ const TYPOON1_TIME = 202409202230; //태풍 발표 시각
 
 //태풍예측
 const TYPOON2_NAME = "PULASAN"; //태풍 이름
+const TYPOON2_SEQ = 14; //태풍 발생 호
 const TYPOON2_TIME = 2024092006; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
@@ -52,7 +53,8 @@ const baseImages = {
   typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T4}.gif`,
   typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T4}.gif`,
 
-  typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
+  //typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
+  typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_large_24${TYPOON2_SEQ}_${TYPOON2_TIME}.gif`,
   typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
 
   typoon4_left_default:
