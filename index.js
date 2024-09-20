@@ -484,3 +484,35 @@ function init() {
 }
 
 init();
+
+// 마우스 우클릭 방지
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+}, false);
+
+// 마우스 오른쪽 버튼 차단
+document.addEventListener('mousedown', function(e) {
+  if (e.button === 2) {
+    e.preventDefault();
+  }
+}, false);
+
+// 텍스트 선택 방지
+document.addEventListener('selectstart', function(e) {
+  e.preventDefault();
+}, false);
+
+// 키보드 단축키 차단 (Ctrl+U, Ctrl+S, Ctrl+C, F12)
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'c')) {
+    e.preventDefault();
+  }
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+}, false);
+
+// 드래그 이벤트 차단
+document.addEventListener('dragstart', function(e) {
+  e.preventDefault();
+}, false);
