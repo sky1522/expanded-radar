@@ -1,6 +1,6 @@
 // 사용자 하드 코딩 영역
 //태풍현황
-const TYPOON1_SEQ = 14; //태풍 발생 호
+const TYPOON1_SEQ = 33; //태풍 발생 호
 const TYPOON1_TIME = 202409202230; //태풍 발표 시각
 
 //태풍예측
@@ -46,7 +46,7 @@ const baseImages = {
 
   //태풍항목
   typoon1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-  typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO63_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
+  typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
   typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T4}.gif`,
   typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T4}.gif`,
