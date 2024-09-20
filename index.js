@@ -1,7 +1,7 @@
 // 사용자 하드 코딩 영역
 //태풍현황
 const TYPOON1_SEQ = 14; //태풍 발생 호
-const TYPOON1_TIME = 202409200400; //태풍 발표 시각
+const TYPOON1_TIME = 202409201000; //태풍 발표 시각
 
 //태풍예측
 const TYPOON2_NAME = "PULASAN"; //태풍 이름
