@@ -51,8 +51,8 @@ const baseImages = {
   typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
   //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
-  typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T4}.gif`,
-  typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T4}.gif`,
+  typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
+  typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
 
   //typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
   typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_${TYPOON2_TIME}.gif`,
