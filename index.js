@@ -247,7 +247,7 @@ function generateImageURL(time, url) {
   }
 
   if (url.includes("{T9}")) {
-    const DELAY = 10;
+    const DELAY = 30;
     const current = new Date(new Date() - UTC_TIME);
     time = new Date(new Date(time) - UTC_TIME);
 
