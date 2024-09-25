@@ -1,12 +1,12 @@
 // 사용자 하드 코딩 영역
 //태풍현황
-const TYPOON1_SEQ = 33; //태풍 발생 호
-const TYPOON1_TIME = 202409211600; //태풍 발표 시각
+const TYPOON1_SEQ = 16; //태풍 발생 호
+const TYPOON1_TIME = 202409251600; //태풍 발표 시각
 
 //태풍예측
-const TYPOON2_NAME = "PULASAN"; //태풍 이름
-const TYPOON2_SEQ = 14; //태풍 발생 호
-const TYPOON2_TIME = 2024092100; //태풍 발표 시각
+const TYPOON2_NAME = "CIMARON"; //태풍 이름
+const TYPOON2_SEQ = 16; //태풍 발생 호
+const TYPOON2_TIME = 2024092500; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -48,7 +48,7 @@ const baseImages = {
 
   //태풍항목
   typoon1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-  typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/202409/21/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
+  typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
   //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
   //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
