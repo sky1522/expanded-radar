@@ -1,12 +1,21 @@
 // 사용자 하드 코딩 영역
-//태풍현황
+//태풍현황1
 const TYPOON1_SEQ = 17; //태풍 발생 호
 const TYPOON1_TIME = 202409280400; //태풍 발표 시각
 
-//태풍예측
+//태풍현황2
+const TYPOON3_SEQ = 39; //태풍 발생 호
+const TYPOON3_TIME = 202409280430; //태풍 발표 시각
+
+//태풍예측1
 const TYPOON2_NAME = "JEBI"; //태풍 이름
 const TYPOON2_SEQ = 17; //태풍 발생 호
 const TYPOON2_TIME = 2024092712; //태풍 발표 시각
+
+//태풍예측2
+const TYPOON4_NAME = "23W"; //태풍 이름
+const TYPOON4_SEQ = 17; //태풍 발생 호
+const TYPOON4_TIME = 2024092712; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -68,6 +77,12 @@ const baseImages = {
     "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
   typoon5_right_default:
     "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
+
+  typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+  typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
+
+  typoon7_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/wpac.png`,
+  typoon7_right_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/${TYPOON4_NAME}.png`,
 
   //항목 선택
   item1_left_default:
@@ -423,7 +438,9 @@ function updateImages(time) {
     currentScreenIndex === "TP2" ||
     currentScreenIndex === "TP3" ||
     currentScreenIndex === "TP4" ||
-    currentScreenIndex === "TP5"
+    currentScreenIndex === "TP5" ||
+    currentScreenIndex === "TP6" ||
+    currentScreenIndex === "TP7"
   ) {
     document.querySelector("#items").options[0].selected = true;
     console.log("tp", currentScreenIndex);
@@ -490,6 +507,7 @@ function init() {
 
 init();
 
+/*
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
@@ -521,3 +539,4 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('dragstart', function(e) {
   e.preventDefault();
 }, false);
+*/
