@@ -188,3 +188,8 @@ footer button.outline {
     display: block;
   }
 }
+
+select {
+  text-align: left;
+  width: 110px; /* 원하는 너비로 설정 */
+}
