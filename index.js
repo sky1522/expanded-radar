@@ -4,7 +4,7 @@ const TYPOON1_SEQ = 17; //태풍 발생 호
 const TYPOON1_TIME = 202409281000; //태풍 발표 시각
 
 //태풍현황2
-const TYPOON3_SEQ = 39; //태풍 발생 호
+const TYPOON3_SEQ = 18; //태풍 발생 호
 const TYPOON3_TIME = 202409281030; //태풍 발표 시각
 
 //태풍예측1
@@ -13,8 +13,8 @@ const TYPOON2_SEQ = 17; //태풍 발생 호
 const TYPOON2_TIME = 2024092712; //태풍 발표 시각
 
 //태풍예측2
-const TYPOON4_NAME = "23W"; //태풍 이름
-const TYPOON4_SEQ = 17; //태풍 발생 호
+const TYPOON4_NAME = "KRATHON"; //태풍 이름
+const TYPOON4_SEQ = 18; //태풍 발생 호
 const TYPOON4_TIME = 2024092712; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
@@ -79,7 +79,7 @@ const baseImages = {
     "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
 
   typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-  typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
+  typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
   typoon7_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/wpac.png`,
   typoon7_right_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/${TYPOON4_NAME}.png`,
