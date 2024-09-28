@@ -81,8 +81,8 @@ const baseImages = {
   typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
   typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
-  typoon7_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/wpac.png`,
-  typoon7_right_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/${TYPOON4_NAME}.png`,
+  typoon7_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON4_TIME}/${TYPOON4_NAME}.png`,
+  typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
 
   //항목 선택
   item1_left_default:
