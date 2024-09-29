@@ -1,7 +1,7 @@
 // 사용자 하드 코딩 영역
 //태풍현황1
 const TYPOON1_SEQ = 17; //태풍 발생 호
-const TYPOON1_TIME = 202409291600; //태풍 발표 시각
+const TYPOON1_TIME = 202409292200; //태풍 발표 시각
 
 //태풍현황2
 const TYPOON3_SEQ = 18; //태풍 발생 호
