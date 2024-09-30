@@ -10,13 +10,13 @@ const TYPOON3_TIME = 202410010430; //태풍 발표 시각
 //태풍예측1
 const TYPOON2_NAME = "JEBI"; //태풍 이름
 const TYPOON2_SEQ = 17; //태풍 발생 호
-const TYPOON2_TIME = 2024100100; //태풍 발표 시각
+const TYPOON2_TIME = 2024093012; //태풍 발표 시각
 
 //태풍예측2
 const TYPOON4_NAME = "KRATHON"; //태풍 이름
 const TYPOON4_NAME1 = "23W"; //태풍 이름
 const TYPOON4_SEQ = 18; //태풍 발생 호
-const TYPOON4_TIME = 2024100100; //태풍 발표 시각
+const TYPOON4_TIME = 2024093012; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -546,6 +546,7 @@ function init() {
 
 init();
 
+/*
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
@@ -572,7 +573,7 @@ document.addEventListener('keydown', function(e) {
     e.preventDefault();
   }
 }, false);
-
+*/
 // 드래그 이벤트 차단
 document.addEventListener('dragstart', function(e) {
   e.preventDefault();
