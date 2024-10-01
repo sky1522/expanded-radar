@@ -130,6 +130,8 @@ const baseImages = {
   dual10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
   dual11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
   dual11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
+  dual12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+  dual12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
 };
 
 //화면 1~4 클릭시 기본화면으로 리셋
@@ -492,7 +494,8 @@ function updateImages(time) {
     currentScreenIndex === "dual8" ||
     currentScreenIndex === "dual9" ||
     currentScreenIndex === "dual10" ||
-    currentScreenIndex === "dual11"
+    currentScreenIndex === "dual11" ||
+    currentScreenIndex === "dual12"
   ) {
     screen(
       generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]),
