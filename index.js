@@ -1,22 +1,22 @@
 // 사용자 하드 코딩 영역
 //태풍현황1
 const TYPOON1_SEQ = 17; //태풍 발생 호
-const TYPOON1_TIME = 202410012200; //태풍 발표 시각
+const TYPOON1_TIME = 202410020400; //태풍 발표 시각
 
 //태풍현황2
 const TYPOON3_SEQ = 18; //태풍 발생 호
-const TYPOON3_TIME = 202410012230; //태풍 발표 시각
+const TYPOON3_TIME = 202410020430; //태풍 발표 시각
 
 //태풍예측1
 const TYPOON2_NAME = "JEBI"; //태풍 이름
 const TYPOON2_SEQ = 17; //태풍 발생 호
-const TYPOON2_TIME = 2024100106; //태풍 발표 시각
+const TYPOON2_TIME = 2024100112; //태풍 발표 시각
 
 //태풍예측2
 const TYPOON4_NAME = "KRATHON"; //태풍 이름
 const TYPOON4_NAME1 = "23W"; //태풍 이름
 const TYPOON4_SEQ = 18; //태풍 발생 호
-const TYPOON4_TIME = 2024100106; //태풍 발표 시각
+const TYPOON4_TIME = 2024100112; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -552,7 +552,7 @@ function init() {
 
 init();
 
-/*
+
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
@@ -584,4 +584,3 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('dragstart', function(e) {
   e.preventDefault();
 }, false);
-*/
