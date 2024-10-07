@@ -134,10 +134,15 @@ const baseImages = {
   dual12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
 };
 
-//화면 1~4 클릭시 기본화면으로 리셋
+//화면 1~6 클릭시 기본화면으로 리셋
 function changeScreen(screenIndex) {
   currentScreenIndex = screenIndex;
   updateSlider();
+
+      if (value === "screenIndex") {
+      document.getElementById("leftIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108";
+      document.getElementById("rightIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109&kind=&reportId=inf%3A202410070610%3A32";
+    }
 }
 
 function screen(left, right) {
