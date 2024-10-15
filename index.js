@@ -110,28 +110,30 @@ const baseImages = {
   // 항목정보 두화면 변경시
   dual1_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
   dual1_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-  dual2_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNEX`,
-  dual2_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX`,
-  dual3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN60M`,
-  dual3_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M`,
-  dual4_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03H`,
-  dual4_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03H`,
-  dual5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNDAY1`,
-  dual5_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNDAY1`,
-  dual6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN02D`,
-  dual6_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN02D`,
-  dual7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03D`,
-  dual7_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03D`,
-  dual8_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RDRLGT`,
-  dual8_right_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT`,
-  dual9_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TA`,
-  dual9_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA`,
-  dual10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-  dual10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
-  dual11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
-  dual11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
-  dual12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-  dual12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+  dual2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+  dual2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+  dual3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNEX`,
+  dual3_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX`,
+  dual4_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN60M`,
+  dual4_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M`,
+  dual5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03H`,
+  dual5_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03H`,
+  dual6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNDAY1`,
+  dual6_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNDAY1`,
+  dual7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN02D`,
+  dual7_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN02D`,
+  dual8_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03D`,
+  dual8_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03D`,
+  dual9_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RDRLGT`,
+  dual9_right_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT`,
+  dual10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TA`,
+  dual10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA`,
+  dual11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+  dual11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+  dual12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
+  dual12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
+  dual13_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+  dual13_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
 };
 
 //화면 1~6 클릭시 기본화면으로 리셋
@@ -500,7 +502,8 @@ function updateImages(time) {
     currentScreenIndex === "dual9" ||
     currentScreenIndex === "dual10" ||
     currentScreenIndex === "dual11" ||
-    currentScreenIndex === "dual12"
+    currentScreenIndex === "dual12" ||
+    currentScreenIndex === "dual13"
   ) {
     screen(
       generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]),
