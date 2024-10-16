@@ -131,8 +131,8 @@ const baseImages = {
     // 초단기 예측
     fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
     fore2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    fore6_left_default: `https://my.meteoblue.com/visimage/meteogram_seasonal_hd?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Suwon&iso2=kr&lat=36.1069&lon=126.849&asl=32&tz=Asia%2FSeoul&dpi=72&apikey=5838a18e295d&lang=en&ts=1729056638&sig=246a8b4e5be026197ffdb999cfc56bbe`,
-    fore6_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+    fore6_left_default: `./meteogram_14day.png`,
+    fore6_right_default: `./2024-10-16T1500_meteogram_seasonal_hd.png`,
 };
 
 $(document).ready(function () {
