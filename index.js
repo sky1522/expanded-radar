@@ -161,7 +161,7 @@ function changeScreen(screenIndex) {
 
     if (screenIndex === "report1") {
         document.getElementById("leftIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108";
-        document.getElementById("rightIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109&kind=&reportId=inf%3A202410070610%3A32";
+        document.getElementById("rightIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109";
     }
 }
 
