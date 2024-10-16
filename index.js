@@ -80,6 +80,9 @@ const baseImages = {
     typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_${TYPOON4_TIME}.gif`,
     typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
 
+    typoon8_left_default: `https://www.weather.go.kr/w/repositary/eng/irwp/down/sst_week.gif`,
+    typoon8_right_default: `https://www.weather.go.kr/w/repositary/eng/irwp/down/global.gif`,
+
     //항목 선택
     item1_left_default: "https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=70&size=330&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg",
     item2_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX",
@@ -471,7 +474,7 @@ function updateImages(time) {
         currentRightSrc = baseImages[`screen${currentScreenIndex}_right_default`];
     }
 
-    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7") {
+    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8") {
         document.querySelector("#items").options[0].selected = true;
         console.log("tp", currentScreenIndex);
 
