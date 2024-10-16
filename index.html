@@ -122,16 +122,19 @@
         </select>
       </div>
 
-      <!-- 예측 정보--> 
-<div>
-  <select id="predict" name="select" aria-label="Select" required onchange="changeScreen(this.options[this.selectedIndex].value)">
-    <option selected disabled value="">예측 정보</option>
-    <option value="predict1">초단기 예측</option>
-    <option value="predict2">강수/구름 예측</option>
-    <option value="predict3">강수/기온 예측</option>
-    <option value="predict4">기상청 통보문</option>
-  </select>
-</div>    
+      <!-- 2024.10.15 예측 정보-->
+      <div>
+<!--        <select id="fore" name="select" aria-label="Select" required onchange="changeScreen(this.options[this.selectedIndex].value)">-->
+        <select id="select-fore" name="select" aria-label="Select" required>
+          <option disabled selected>예측 정보</option>
+          <option value="fore2">초단기 예측</option>
+          <option value="fore3">강수/구름 예측</option>
+          <option value="fore4">강수/기온 예측</option>
+          <option value="fore5">기상청 통보문</option>
+        </select>
+
+        <select id="select-ef"></select>
+      </div>
 
     </footer>
   </div>
