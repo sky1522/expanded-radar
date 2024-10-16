@@ -96,6 +96,8 @@ const baseImages = {
     item10_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=",
 
     // 항목정보 두화면 변경시
+    dual0_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
+    dual0_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HC&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=`,
     dual1_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
     dual1_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
     dual2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
@@ -485,7 +487,7 @@ function updateImages(time) {
     }
 
     // 항목정보 두 화면 변경시
-    if (currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13") {
+    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13") {
         screen(generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_right_default`]));
         currentRightSrc = baseImages[`dual${currentScreenIndex.substr(4)}_right_default`];
     }
