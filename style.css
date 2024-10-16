@@ -193,3 +193,22 @@ select {
   text-align: left;
   width: 110px; /* 원하는 너비로 설정 */
 }
+
+.widget-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* 추가 위젯을 한 줄에 3개씩 배치하기 위해 필요한 설정 */
+}
+
+.widget {
+  flex: 0 0 calc(32% - 10px); /* 32%로 수정 (3개 위젯이 한 줄에 들어가도록) */
+  /*margin: 10px;*/
+  margin: 0px;
+}
+
+.widget iframe {
+  /*width: 100%;*/
+  width: 900px;
+  height: 850px;
+  border: 0;
+}
