@@ -536,6 +536,28 @@ function updateImages(time) {
     );
   }
 
+    if (currentScreenIndex === "fore2") {
+        $('#select-fore').find('option:selected');
+        screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
+    }
+
+    $("#screen, #widget-fore3, #widget-fore4, #widget-fore5").hide();
+    switch (currentScreenIndex) {
+        case "fore3":
+            $("#widget-fore3").show();
+            break;
+        case "fore4":
+            $("#widget-fore4").show();
+            break;
+        case "fore5":
+            $("#widget-fore5").show();
+            break;
+        default:
+            $("#screen").show();
+            break;
+    }
+  
+
   if (currentScreenIndex === "item11") alert("aws 작업중");
 }
 
