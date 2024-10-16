@@ -8,6 +8,13 @@
   <title>경기도 기상 모니터링</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- 2024.10.08 js 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/ko.min.js"></script>
+
   <script defer src="index.js"></script>
 </head>
 
@@ -18,6 +25,57 @@
         <div id="screenLeft" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
         <div id="screenRight" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
       </div>
+
+      <div id="widget-fore3" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
+                  frameborder="0"></iframe>
+        </div>
+
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=clouds&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div id="widget-fore4" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
+                  frameborder="0"></iframe>
+        </div>
+
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=temp&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div id="widget-fore5" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="600"
+                  src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108"
+                  frameborder="0"></iframe>
+        </div>
+
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+
+
+
     </main>
     <footer class="center">
       <!-- 화면 1 ~ 6 : 각화면 초기화용-->
@@ -109,8 +167,8 @@
         <select id="typoons" name="select" aria-label="Select" required
           onchange="changeScreen(this.options[this.selectedIndex].value)">
           <option selected disabled value="">태풍 정보</option>
-         <!--
-          <option value="TP1">(제19호) 태풍 현황</option>
+         <option value="TP1">열대저압부 현황</option>
+          <!--
           <option value="TP3">열대저압부 예측</option>       
            
           <option value="TP6">(18호) 태풍 현황</option>
