@@ -135,6 +135,8 @@ const baseImages = {
     fore6_right_default: `./meteogram_paju.png`,
     fore7_left_default: `./meteogram_14day_suwon.png`,
     fore7_right_default: `./meteogram_14day_paju.png`,
+    fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/t2m.png`,
+    fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/prec.png`,
 };
 
 $(document).ready(function () {
@@ -504,7 +506,7 @@ function updateImages(time) {
         screen(generateImageURL(time, baseImages[`item${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, currentRightSrc));
     }
 
-    if (currentScreenIndex === "fore2"|| currentScreenIndex === "fore6"|| currentScreenIndex === "fore7") {
+    if (currentScreenIndex === "fore2"|| currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8") {
         $('#select-fore').find('option:selected');
         screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
     }
