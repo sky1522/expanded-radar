@@ -131,8 +131,10 @@ const baseImages = {
     // 초단기 예측
     fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
     fore2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    fore6_left_default: `./meteogram_14day.png`,
-    fore6_right_default: `./2024-10-16T1500_meteogram_seasonal_hd.png`,
+    fore6_left_default: `./meteogram_suwon.png`,
+    fore6_right_default: `./meteogram_paju.png`,
+    fore7_left_default: `./meteogram_14day_suwon.png`,
+    fore7_right_default: `./meteogram_14day_paju.png`,
 };
 
 $(document).ready(function () {
@@ -502,7 +504,7 @@ function updateImages(time) {
         screen(generateImageURL(time, baseImages[`item${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, currentRightSrc));
     }
 
-    if (currentScreenIndex === "fore2"|| currentScreenIndex === "fore6") {
+    if (currentScreenIndex === "fore2"|| currentScreenIndex === "fore6"|| currentScreenIndex === "fore7") {
         $('#select-fore').find('option:selected');
         screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
     }
