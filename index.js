@@ -547,7 +547,6 @@ function init() {
 
 init();
 
-/*
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
@@ -579,4 +578,3 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('dragstart', function (e) {
     e.preventDefault();
 }, false);
-*/
