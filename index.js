@@ -502,7 +502,7 @@ function updateImages(time) {
     }
 
     // 항목정보 두 화면 변경시
-    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13") {
+    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13 || currentScreenIndex === "dual14 || currentScreenIndex === "dual15 || currentScreenIndex === "dual16 || currentScreenIndex === "dual17") {
         screen(generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_right_default`]));
         currentRightSrc = baseImages[`dual${currentScreenIndex.substr(4)}_right_default`];
     }
