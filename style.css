@@ -212,3 +212,18 @@ select {
   height: 850px;
   border: 0;
 }
+
+/* 2024.10.23 모바일 > screen 설정 */
+@media screen and (max-width: 600px) {
+    footer.center {
+        width: 100%;
+    }
+}
+
+/* 2024.10.23 모바일 > #widget-fore5 iframe  설정 */
+@media screen and (max-width: 600px) {
+  #widget-fore5 iframe {
+    width: 350px;
+    height: 1200px;
+  }
+}
