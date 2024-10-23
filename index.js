@@ -36,6 +36,38 @@ const $datePicker = document.querySelector("#datePicker");
 const $timeSlider = document.querySelector("#timeSlider");
 const dateStr = changeDateFormat(null, 4);
 
+function generateTUrl() {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+    const updateHours = [22, 4, 10, 16];
+
+    let nextUpdateHour;
+    if (currentHour > 22 || (currentHour === 22 && currentMinute >= 5)) {
+        // 22시 이후에 접속하면 당일의 22시 정시 자료를 사용
+        nextUpdateHour = 22;
+    } else {
+        // 22시 이전에는 다음 업데이트 시간을 찾습니다
+        nextUpdateHour = updateHours.find(hour => (hour > currentHour) || (hour === currentHour && currentMinute < 5)) || updateHours[0];
+        if (nextUpdateHour === 4 && currentHour < 4) {
+            // 4시 이전에 접속하면 이전 날의 22시 자료를 사용
+            nextUpdateHour = 22;
+            currentDate.setDate(currentDate.getDate() - 1);
+        }
+    }
+
+    // URL을 위한 날짜와 시간 설정, 연월과 일을 분리한 형식으로
+    const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+    const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
+    const timeSuffix = `${String(nextUpdateHour).padStart(2, '0')}00`; // 22시 정시를 항상 사용
+
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_${TYPOON1_SEQ}_1.png`;
+    return url;
+}
+
+// URL 생성 및 출력
+console.log("Updated URL:", generateTUrl());
+
 const baseImages = {
     //화면 1 ~ 6
     screen1_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
@@ -58,7 +90,8 @@ const baseImages = {
 
     //태풍항목
     typoon1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
+    typoon1_right_default: generateTUrl(),
+    //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
     //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
     typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
