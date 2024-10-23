@@ -1,16 +1,16 @@
 // 사용자 하드 코딩 영역
 //태풍현황1
-const TYPOON1_SEQ = 45; //태풍 발생 호
-const TYPOON1_TIME = 202410211030; //태풍 발표 시각
+const TYPOON1_SEQ = 20; //태풍 발생 호
+const TYPOON1_TIME = 202410231600; //태풍 발표 시각
 
 //태풍현황2
 const TYPOON3_SEQ = 18; //태풍 발생 호
 const TYPOON3_TIME = 202410041000; //태풍 발표 시각
 
 //태풍예측1
-const TYPOON2_NAME = "JEBI"; //태풍 이름
-const TYPOON2_SEQ = 17; //태풍 발생 호
-const TYPOON2_TIME = 2024100206; //태풍 발표 시각
+const TYPOON2_NAME = "TRAMI"; //태풍 이름
+const TYPOON2_SEQ = 20; //태풍 발생 호
+const TYPOON2_TIME = 2024102300; //태풍 발표 시각
 
 //태풍예측2
 const TYPOON4_NAME = "KRATHON"; //태풍 이름
@@ -58,7 +58,7 @@ const baseImages = {
 
     //태풍항목
     typoon1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
+    typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
     //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
     typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
