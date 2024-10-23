@@ -208,7 +208,7 @@ select {
 
 .widget iframe {
   /*width: 100%;*/
-  width: 900px;
+  width: 800px;
   height: 850px;
   border: 0;
 }
