@@ -191,7 +191,7 @@ footer button.outline {
 
 select {
   text-align: left;
-  width: 100px; /* 원하는 너비로 설정 */
+  width: 95px; /* 원하는 너비로 설정 */
 }
 
 .widget-container {
