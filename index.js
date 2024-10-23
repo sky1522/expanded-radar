@@ -98,7 +98,7 @@ const baseImages = {
     typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
 
     //typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
-    typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_${TYPOON2_TIME}.gif`,
+    typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_{T8}.gif`,
     typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
 
     typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
