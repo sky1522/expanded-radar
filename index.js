@@ -1,7 +1,7 @@
 // 사용자 하드 코딩 영역
 //태풍현황1
 const TYPOON1_SEQ = 20; //태풍 발생 호
-const TYPOON1_TIME = 202410231600; //태풍 발표 시각
+const TYPOON1_TIME = 202410232200; //태풍 발표 시각
 
 //태풍현황2
 const TYPOON3_SEQ = 18; //태풍 발생 호
@@ -10,7 +10,7 @@ const TYPOON3_TIME = 202410041000; //태풍 발표 시각
 //태풍예측1
 const TYPOON2_NAME = "TRAMI"; //태풍 이름
 const TYPOON2_SEQ = 20; //태풍 발생 호
-const TYPOON2_TIME = 2024102300; //태풍 발표 시각
+const TYPOON2_TIME = 2024102306; //태풍 발표 시각
 
 //태풍예측2
 const TYPOON4_NAME = "KRATHON"; //태풍 이름
