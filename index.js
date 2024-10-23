@@ -36,6 +36,7 @@ const $datePicker = document.querySelector("#datePicker");
 const $timeSlider = document.querySelector("#timeSlider");
 const dateStr = changeDateFormat(null, 4);
 
+//태풍 시간 
 function generateTUrl() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
@@ -61,7 +62,15 @@ function generateTUrl() {
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(nextUpdateHour).padStart(2, '0')}00`; // 22시 정시를 항상 사용
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_${TYPOON1_SEQ}_1.png`;
+    // 22시 업데이트 이후 다음날 04시 05분 전까지는 이전 날짜로 URL을 생성
+    if (currentHour < 4 || (currentHour === 4 && currentMinute < 5)) {
+        currentDate.setDate(currentDate.getDate() - 1);
+        const dayBefore = `${String(currentDate.getDate()).padStart(2, '0')}`;
+        const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${dayBefore}/RTKO63_108_${yearMonth}${dayBefore}2200_20_1.png`;
+        return url;
+    }
+
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_20_1.png`;
     return url;
 }
 
