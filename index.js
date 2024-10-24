@@ -361,7 +361,7 @@ function generateImageURL(time, url) {
 
     //6시간 단위
     if (url.includes("{T8}")) {
-        time = new Date(new Date(time) - 14 * 60 * 60 * 1000);
+        time = new Date(new Date(time) - 15 * 60 * 60 * 1000);
 
         time.setHours(Math.floor(time.getHours() / 6) * 6);
 
