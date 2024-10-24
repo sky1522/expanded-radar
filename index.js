@@ -88,7 +88,7 @@ function generateTsUrl() {
 
     // 만약 아침 4시 이전에 접속했고, 가장 최근 업데이트 시간이 22시라면
     // 이전 날짜의 22시 자료를 사용
-    if (!lastUpdateHour && currentHour < 4) {
+    if (!lastUpdateHour && currentHour < 4.6) {
         lastUpdateHour = 22;
         currentDate.setDate(currentDate.getDate() - 1);
     } else if (!lastUpdateHour) {
