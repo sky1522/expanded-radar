@@ -43,7 +43,7 @@ function generateTUrl() {
     const currentMinute = currentDate.getMinutes();
 
     // 업데이트 시간 설정
-    const updateHours = [22, 4, 10, 16];
+    const updateHours = [4, 10, 16, 22];
 
     // 가장 최근 업데이트 시간을 찾기 위한 로직
     let lastUpdateHour = updateHours.slice().reverse().find(hour =>
@@ -79,7 +79,7 @@ function generateTsUrl() {
     const currentMinute = currentDate.getMinutes();
 
     // 업데이트 시간 설정
-    const updateHours = [22, 4, 10, 16];
+    const updateHours = [4, 10, 16, 22];
 
     // 가장 최근 업데이트 시간을 찾기 위한 로직
     let lastUpdateHour = updateHours.slice().reverse().find(hour =>
