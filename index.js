@@ -41,34 +41,29 @@ function generateTUrl() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
+
+    // 업데이트 시간 설정
     const updateHours = [22, 4, 10, 16];
 
-    let nextUpdateHour;
-    if (currentHour > 22 || (currentHour === 22 && currentMinute >= 5)) {
-        // 22시 이후에 접속하면 당일의 22시 정시 자료를 사용
-        nextUpdateHour = 22;
-    } else {
-        // 22시 이전에는 다음 업데이트 시간을 찾습니다
-        nextUpdateHour = updateHours.find(hour => (hour > currentHour) || (hour === currentHour && currentMinute < 5)) || updateHours[0];
-        if (nextUpdateHour === 4 && currentHour < 4) {
-            // 4시 이전에 접속하면 이전 날의 22시 자료를 사용
-            nextUpdateHour = 22;
-            currentDate.setDate(currentDate.getDate() - 1);
-        }
+    // 가장 최근 업데이트 시간을 찾기 위한 로직
+    let lastUpdateHour = updateHours.slice().reverse().find(hour =>
+        currentHour > hour || (currentHour === hour && currentMinute >= 5)
+    );
+
+    // 만약 아침 4시 이전에 접속했고, 가장 최근 업데이트 시간이 22시라면
+    // 이전 날짜의 22시 자료를 사용
+    if (!lastUpdateHour && currentHour < 4) {
+        lastUpdateHour = 22;
+        currentDate.setDate(currentDate.getDate() - 1);
+    } else if (!lastUpdateHour) {
+        // 그 외의 경우 가장 늦은 시간인 22시를 가장 최근 업데이트 시간으로 설정
+        lastUpdateHour = 22;
     }
 
-    // URL을 위한 날짜와 시간 설정, 연월과 일을 분리한 형식으로
+    // URL을 위한 날짜와 시간 설정
     const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
-    const timeSuffix = `${String(nextUpdateHour).padStart(2, '0')}00`; // 22시 정시를 항상 사용
-
-    // 22시 업데이트 이후 다음날 04시 05분 전까지는 이전 날짜로 URL을 생성
-    if (currentHour < 4 || (currentHour === 4 && currentMinute < 5)) {
-        currentDate.setDate(currentDate.getDate() - 1);
-        const dayBefore = `${String(currentDate.getDate()).padStart(2, '0')}`;
-        const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${dayBefore}/RTKO63_108_${yearMonth}${dayBefore}2200_20_1.png`;
-        return url;
-    }
+    const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}00`;
 
     const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_20_1.png`;
     return url;
