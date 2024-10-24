@@ -5,7 +5,7 @@ const TYPOON1_TIME = 202410232200; //태풍 발표 시각
 
 //태풍현황2
 const TYPOON3_SEQ = 46; //태풍 발생 호
-const TYPOON3_TIME = 202410241110; //태풍 발표 시각
+const TYPOON3_TIME = 202410241630; //태풍 발표 시각
 
 //태풍예측1
 const TYPOON2_NAME = "TRAMI"; //태풍 이름
