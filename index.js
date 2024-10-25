@@ -4,19 +4,19 @@ const TYPOON1_SEQ = 20; //태풍 발생 호
 const TYPOON1_TIME = 202410232200; //태풍 발표 시각
 
 //태풍현황2
-const TYPOON3_SEQ = 46; //태풍 발생 호
+const TYPOON3_SEQ = 21; //태풍 발생 호
 const TYPOON3_TIME = 202410241630; //태풍 발표 시각
 
 //태풍예측1
 const TYPOON2_NAME = "TRAMI"; //태풍 이름
 const TYPOON2_SEQ = 20; //태풍 발생 호
-const TYPOON2_TIME = 2024102306; //태풍 발표 시각
+const TYPOON2_TIME = 2024102412; //태풍 발표 시각
 
 //태풍예측2
-const TYPOON4_NAME = "KRATHON"; //태풍 이름
+const TYPOON4_NAME = "KONG-REY"; //태풍 이름
 const TYPOON4_NAME1 = "23W"; //태풍 이름
-const TYPOON4_SEQ = 18; //태풍 발생 호
-const TYPOON4_TIME = 2024100312; //태풍 발표 시각
+const TYPOON4_SEQ = 21; //태풍 발생 호
+const TYPOON4_TIME = 2024102412; //태풍 발표 시각
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -79,7 +79,7 @@ function generateTsUrl() {
     const currentMinute = currentDate.getMinutes();
 
     // 업데이트 시간 설정
-    const updateHours = [4, 10, 16, 22];
+    const updateHours = [4, 7, 10, 16, 22];
 
     // 가장 최근 업데이트 시간을 찾기 위한 로직
     let lastUpdateHour = updateHours.slice().reverse().find(hour =>
@@ -101,7 +101,7 @@ function generateTsUrl() {
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`; // 30분에 해당하는 이미지
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO64_108_${yearMonth}${day}${timeSuffix}_46_1.png`;
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_21_1.png`;
     return url;
 }
 
@@ -152,7 +152,7 @@ const baseImages = {
     typoon6_right_default: generateTsUrl(),
     //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
-    typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_${TYPOON4_TIME}.gif`,
+    typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_{T8}.gif`,
     typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
 
     typoon8_left_default: `https://www.weather.go.kr/w/repositary/eng/irwp/down/sst_week.gif`,
