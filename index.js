@@ -224,25 +224,35 @@ const baseImages = {
 
 $(document).ready(function () {
 
-    let $ef = $('#select-ef');
-    for (let i = 30; i <= 720; i += 30) {
-        $ef.append(`<option value="${i}">${i}</option>`);
-    }
+    // let $ef = $('#select-ef');
+    // for (let i = 30; i <= 720; i += 30) {
+    //     $ef.append(`<option value="${i}">${i}</option>`);
+    // }
 
-    $('#select-fore').on('change', function () {
+    // $('#select-ef').on('change', function () {
+    //     let selOpt = $(this).find('option:selected');
+    //     let selVal = selOpt.val();
+    //     $('#select-ef').val(`${selVal}`);
+    //
+    //     updateImages(currentTime);
+    // });
+
+    $('#select-fore').on('click', function () {
         let selOpt = $(this).find('option:selected');
         let selVal = selOpt.val();
+
+        // 초단기 예측 메뉴 선택 시 초기화
+        if (selVal === "fore2") {
+            // currentTime = moment().toDate();
+            selectedTime = moment().toDate();
+            $("#currentTime").text(moment(selectedTime).format("YYYY-MM-DD HH:mm"));
+            $("#datePicker").val(moment(selectedTime).format("YYYY-MM-DDTHH:mm"));
+            $("#timeSlider-fore-ef").val(30);
+        }
+
         $('#select-fore').val(`${selVal}`);
 
         changeScreen(selVal);
-    });
-
-    $('#select-ef').on('change', function () {
-        let selOpt = $(this).find('option:selected');
-        let selVal = selOpt.val();
-        $('#select-ef').val(`${selVal}`);
-
-        updateImages(currentTime);
     });
 });
 
@@ -431,7 +441,8 @@ function generateImageURL(time, url) {
         console.log(`forDate: ${forDate.format('YYYY-MM-DD HH:mm')}`);
 
         url = url.replaceAll("{T20}", forDate.format('YYYYMMDDHHmm'));
-        url = url.replaceAll("{EF}", $("#select-ef").val());
+        // url = url.replaceAll("{EF}", $("#select-ef").val());
+        url = url.replaceAll("{EF}", $("#timeSlider-fore-ef").val());
     }
 
 
@@ -549,11 +560,24 @@ function setLatestTime() {
 }
 
 function adjustTime(hours) {
-    const slider = $timeSlider;
-    let newValue = parseFloat(slider.value) + hours;
-    newValue = Math.max(0, Math.min(48, newValue));
-    slider.value = newValue;
-    updateSlider();
+    if (currentScreenIndex === "fore2") {
+        let $timeSliderForeEf = $("#timeSlider-fore-ef");
+        let orgVal = parseFloat($timeSliderForeEf.val());
+        let offset = parseFloat(hours * 60);
+        let newValue = orgVal + offset;
+
+        if (newValue < 30) newValue = 30;
+        if (newValue > 720) newValue = 720;
+
+        $timeSliderForeEf.val(newValue)
+    } else {
+        const slider = $timeSlider;
+        let newValue = parseFloat(slider.value) + hours;
+        newValue = Math.max(0, Math.min(48, newValue));
+        slider.value = newValue;
+    }
+
+     updateSlider();
 }
 
 //전달된 시간 기준으로 이미지 정보 업데이트
@@ -589,9 +613,19 @@ function updateImages(time) {
         screen(generateImageURL(time, baseImages[`item${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, currentRightSrc));
     }
 
-    if (currentScreenIndex === "fore2"|| currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8") {
+    if (currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8") {
         $('#select-fore').find('option:selected');
         screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
+    }
+
+        if (currentScreenIndex === "fore2") {
+        $('#select-fore').find('option:selected');
+        $("#range-def").hide();
+        $("#range-fore").show();
+        screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
+    } else {
+         $("#range-def").show();
+         $("#range-fore").hide();
     }
 
     $("#screen, #widget-fore3, #widget-fore4, #widget-fore5").hide();
