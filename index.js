@@ -213,7 +213,7 @@ const baseImages = {
 
     // 초단기 예측
     fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    fore2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+    fore2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=ERmgGaXgS5CZoBml4OuQVw`,
     fore6_left_default: `./meteogram_suwon.png`,
     fore6_right_default: `./meteogram_paju.png`,
     fore7_left_default: `./meteogram_14day_suwon.png`,
