@@ -142,8 +142,8 @@ const baseImages = {
     typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_{T8}.gif`,
     typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
 
-    typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
-    typoon4_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
+    typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
+    typoon4_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
 
     typoon5_left_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
     typoon5_right_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
