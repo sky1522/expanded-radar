@@ -162,7 +162,7 @@ const baseImages = {
     typoon9_right_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/ao.gefs.sprd2.png`,
 
     typoon10_left_default: `./23W_gefs_latest.png`,
-    typoon10_right_default: `.//23W_geps_latest.png`,
+    typoon10_right_default: `./23W_geps_latest.png`,
 
     //항목 선택
     item1_left_default: "https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=70&size=330&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg",
