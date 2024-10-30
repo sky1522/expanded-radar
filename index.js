@@ -155,8 +155,8 @@ const baseImages = {
     typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_{T8}.gif`,
     typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
 
-    typoon8_left_default: `https://www.weather.go.kr/w/repositary/eng/irwp/down/sst_week.gif`,
-    typoon8_right_default: `https://www.weather.go.kr/w/repositary/eng/irwp/down/global.gif`,
+    typoon8_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241023.png`,
+    typoon8_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241023.png`,
 
     typoon9_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
     typoon9_right_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/ao.gefs.sprd2.png`,
