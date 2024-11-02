@@ -29,14 +29,14 @@
       <div id="widget-fore5" class="widget-container" style="display: none;">
         <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
-          <iframe width="700" height="600"
+          <iframe width="100" height="400"
                   src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108"
                   frameborder="0"></iframe>
         </div>
 
         <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
-          <iframe width="700" height="700"
+          <iframe width="400" height="400"
                   src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109"
                   frameborder="0"></iframe>
         </div>
@@ -46,15 +46,49 @@
         <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
          
         <div class="widget">
-          <iframe width="700" height="600"
+          <iframe width="400" height="700"
                   src="https://www.weather.go.kr/w/weather/forecast/short-term.do?stnId=109"
                   frameborder="0"></iframe>
         </div>
 
         <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
-          <iframe width="700" height="700"
+          <iframe width="400" height="700"
                   src="https://www.weather.go.kr/w/weather/forecast/mid-term.do?stnId1=109"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div id="widget-fore10" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+         
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/ocean/forecast/daily-forecast.do"
+                  frameborder="0"></iframe>
+        </div>
+
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/ocean/forecast/mid-term-forecast.do"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div id="widget-fore11" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+         
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/eqk-vol/recent-eqk.do"
+                  frameborder="0"></iframe>
+        </div>
+
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/eqk-vol/search/korea.do"
                   frameborder="0"></iframe>
         </div>
       </div>
@@ -178,6 +212,7 @@
           <option value="TP8">E N S O</option>
           <option value="TP9">Blocking/AO I</option>
           <option value="TP5">일기도</option>
+          <option value="fore11">지진 정보</option>  
         </select>
       </div>
 
@@ -189,9 +224,10 @@
           <!--         
           <option value="fore3">강수/구름 예측</option>
           <option value="fore4">강수/기온 예측</option> -->
-          <option value="fore5">기상청 통보문</option>
-          <option value="fore9">기상청 예보</option>
           <option value="fore2">초단기 예측</option>
+          <option value="fore5">전국/수도권 통보문</option>
+          <option value="fore9">단기/중기 예보</option>
+          <option value="fore10">바다 예보</option>                  
           <!--
           <option value="fore6">단기 예측</option>
           <option value="fore7">중기 예측</option>-->
