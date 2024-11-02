@@ -632,14 +632,17 @@ function updateImages(time) {
          $("#range-fore").hide();
     }
 
-    $("#screen, #widget-fore3, #widget-fore9, #widget-fore5").hide();
+    $("#screen, #widget-fore10, #widget-fore11, #widget-fore9, #widget-fore5").hide();
     switch (currentScreenIndex) {
-        case "fore3":
-            $("#widget-fore3").show();
+        case "fore10":
+            $("#widget-fore10").show();
+            break;
+        case "fore11":
+            $("#widget-fore11").show();
             break;
         case "fore9":
             $("#widget-fore9").show();
-            break;
+            break;    
         case "fore5":
             $("#widget-fore5").show();
             break;
@@ -672,6 +675,7 @@ function init() {
 
 init();
 
+/*
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
@@ -703,3 +707,4 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('dragstart', function (e) {
     e.preventDefault();
 }, false);
+*/
