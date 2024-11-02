@@ -632,13 +632,16 @@ function updateImages(time) {
          $("#range-fore").hide();
     }
 
-    $("#screen, #widget-fore10, #widget-fore11, #widget-fore9, #widget-fore5").hide();
+    $("#screen, #widget-fore10, #widget-fore11, #widget-fore12, #widget-fore9, #widget-fore5").hide();
     switch (currentScreenIndex) {
         case "fore10":
             $("#widget-fore10").show();
             break;
         case "fore11":
             $("#widget-fore11").show();
+            break;
+        case "fore12":
+            $("#widget-fore12").show();
             break;
         case "fore9":
             $("#widget-fore9").show();
