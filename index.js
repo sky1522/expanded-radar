@@ -223,9 +223,9 @@ const baseImages = {
     fore2_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=D2&grid=2&legend=1&size=300&itv=&zoom_level=1&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575`,
     fore2_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
     fore6_left_default: `./meteogram.png`,
-    fore6_right_default: `./meteogram(1).png`,
+    fore6_right_default: `./meteogram (1).png`,
     fore7_left_default: `./meteogram_14day.png`,
-    fore7_right_default: `./meteogram_14day(1).png`,
+    fore7_right_default: `./meteogram_14day (1).png`,
     fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/t2m.png`,
     fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/prec.png`,
 };
