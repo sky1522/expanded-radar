@@ -142,6 +142,7 @@ footer > div input[type="datetime-local"] {
   text-align: center; /* 텍스트를 가운데로 정렬 */
 }
 
+
 footer > div input:not([type="checkbox"], [type="radio"]),
 select,
 textarea {
@@ -165,7 +166,7 @@ footer [type="button"],
 }
 
 footer button.outline {
-  padding-left: 2px;
+  padding-left: 5px;
   padding-right: 2px;
 }
 
@@ -226,7 +227,15 @@ select {
 /* 2024.10.23 모바일 > #widget-fore5 iframe  설정 */
 @media screen and (max-width: 600px) {
   #widget-fore5 iframe {
-    width: 350px;
+    width: 450px;
+    height: 1200px;
+  }
+}
+
+/* 2024.10.23 모바일 > #widget-fore5 iframe  설정 */
+@media screen and (max-width: 600px) {
+  #widget-fore9 iframe {
+    width: 450px;
     height: 1200px;
   }
 }
