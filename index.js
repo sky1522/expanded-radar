@@ -592,7 +592,7 @@ function adjustTime(hours) {
 function updateImages(time) {
 
     // debugger;
-    if (currentScreenIndex === 1 || currentScreenIndex === 2 || currentScreenIndex === 3 || currentScreenIndex === 4 || currentScreenIndex === 5 || currentScreenIndex === 6) {
+    if (currentScreenIndex === 1 || currentScreenIndex === 2 || currentScreenIndex === 3 || currentScreenIndex === 4 || currentScreenIndex === 5 || currentScreenIndex === 6 || currentScreenIndex === 7) {
         document.querySelector("#items").options[0].selected = true;
         document.querySelector("#typoons").options[0].selected = true;
         console.log("sc", currentScreenIndex);
