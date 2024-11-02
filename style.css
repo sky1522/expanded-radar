@@ -137,8 +137,9 @@ footer fieldset {
 }
 
 footer > div input[type="datetime-local"] {
-  width: 205px;
-  font-size: 11px;
+  width: 180px;
+  font-size: 12px;
+  text-align: center; /* 텍스트를 가운데로 정렬 */
 }
 
 footer > div input:not([type="checkbox"], [type="radio"]),
