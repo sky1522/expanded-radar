@@ -26,36 +26,6 @@
         <div id="screenRight" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
       </div>
 
-      <div id="widget-fore3" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-        <div class="widget">
-<iframe width="650" height="450" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=37.684&lon=127.09&message=true" frameborder="0"></iframe>
-        </div>
-
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-        <div class="widget">
-          <iframe width="700" height="700"
-                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=clouds&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
-                  frameborder="0"></iframe>
-        </div>
-      </div>
-
-      <div id="widget-fore4" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-        <div class="widget">
-          <iframe width="700" height="700"
-                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
-                  frameborder="0"></iframe>
-        </div>
-
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-        <div class="widget">
-          <iframe width="700" height="700"
-                  src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=5&overlay=temp&product=ecmwf&level=surface&lat=38.031&lon=126.958&message=true"
-                  frameborder="0"></iframe>
-        </div>
-      </div>
-
       <div id="widget-fore5" class="widget-container" style="display: none;">
         <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
@@ -72,7 +42,22 @@
         </div>
       </div>
 
+      <div id="widget-fore9" class="widget-container" style="display: none;">
+        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+         
+        <div class="widget">
+          <iframe width="700" height="600"
+                  src="https://www.weather.go.kr/w/weather/forecast/short-term.do?stnId=109"
+                  frameborder="0"></iframe>
+        </div>
 
+        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+        <div class="widget">
+          <iframe width="700" height="700"
+                  src="https://www.weather.go.kr/w/weather/forecast/mid-term.do?stnId1=109"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
 
     </main>
     <footer class="center">
@@ -205,10 +190,12 @@
           <option value="fore3">강수/구름 예측</option>
           <option value="fore4">강수/기온 예측</option> -->
           <option value="fore5">기상청 통보문</option>
+          <option value="fore9">기상청 예보</option>
           <option value="fore2">초단기 예측</option>
+          <!--
           <option value="fore6">단기 예측</option>
-          <option value="fore7">중기 예측</option>
-          <option value="fore8">계절 예측</option>
+          <option value="fore7">중기 예측</option>-->
+          <option value="fore8">계절 예측</option>          
         </select>
 
 <!--    <select id="select-ef"></select>-->
