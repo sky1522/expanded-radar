@@ -269,10 +269,6 @@ function changeScreen(screenIndex) {
     currentScreenIndex = screenIndex;
     updateSlider();
 
-    if (screenIndex === "report1") {
-        document.getElementById("leftIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108";
-        document.getElementById("rightIframe").src = "https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109";
-    }
 }
 
 function screen(left, right) {
@@ -636,13 +632,13 @@ function updateImages(time) {
          $("#range-fore").hide();
     }
 
-    $("#screen, #widget-fore3, #widget-fore4, #widget-fore5").hide();
+    $("#screen, #widget-fore3, #widget-fore9, #widget-fore5").hide();
     switch (currentScreenIndex) {
         case "fore3":
             $("#widget-fore3").show();
             break;
-        case "fore4":
-            $("#widget-fore4").show();
+        case "fore9":
+            $("#widget-fore9").show();
             break;
         case "fore5":
             $("#widget-fore5").show();
