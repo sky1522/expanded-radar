@@ -133,7 +133,7 @@ footer small {
 footer fieldset {
   display: inline-block;
   margin: 0;
-  width: 130px;
+  width: 120px;
 }
 
 footer > div input[type="datetime-local"] {
