@@ -8,9 +8,9 @@ const TYPOON3_SEQ = 21; //태풍 발생 호
 const TYPOON3_TIME = 202410241630; //태풍 발표 시각
 
 //태풍예측1
-const TYPOON2_NAME = "TRAMI"; //태풍 이름
-const TYPOON2_SEQ = 20; //태풍 발생 호
-const TYPOON2_TIME = 2024102412; //태풍 발표 시각
+const TYPOON2_NAME = "YINXING"; //태풍 이름
+const TYPOON2_SEQ = 22; //태풍 발생 호
+const TYPOON2_TIME = 2024110312; //태풍 발표 시각
 
 //태풍예측2
 const TYPOON4_NAME = "KONG-REY"; //태풍 이름
@@ -65,7 +65,7 @@ function generateTUrl() {
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`;
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO64_108_${yearMonth}${day}${timeSuffix}_48_1.png`;
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_22_1.png`;
     return url;
 }
 
