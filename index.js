@@ -65,7 +65,7 @@ function generateTUrl() {
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`;
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_20_1.png`;
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO64_108_${yearMonth}${day}${timeSuffix}_48_1.png`;
     return url;
 }
 
