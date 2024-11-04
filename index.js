@@ -47,7 +47,7 @@ function generateTUrl() {
 
     // 가장 최근 업데이트 시간을 찾기 위한 로직
     let lastUpdateHour = updateHours.slice().reverse().find(hour =>
-        currentHour > hour || (currentHour === hour && currentMinute >= 35)
+        currentHour > hour || (currentHour === hour && currentMinute >= 5)
     );
 
     // 만약 아침 4시 이전에 접속했고, 가장 최근 업데이트 시간이 22시라면
