@@ -63,7 +63,7 @@ function generateTUrl() {
     // URL을 위한 날짜와 시간 설정
     const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
-    const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`;
+    const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}00`;
 
     const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_22_1.png`;
     return url;
