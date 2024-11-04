@@ -216,8 +216,8 @@ const baseImages = {
     dual16_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD24H`,
     dual17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SDTOT`,
     dual17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDTOT`,
-    dual17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
-    dual17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
+    dual18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
+    dual18_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
 
     // 초단기 예측
     //fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
