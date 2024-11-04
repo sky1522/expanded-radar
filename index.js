@@ -218,6 +218,8 @@ const baseImages = {
     dual17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDTOT`,
     dual18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
     dual18_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
+    dual19_left_default: `https://afso.kma.go.kr/php/alw//aws/aws_obs_pnt.php?obs=ch&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CH`,
+    dual19_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ca&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CA`,
 
     // 초단기 예측
     //fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
@@ -607,7 +609,7 @@ function updateImages(time) {
     }
 
     // 항목정보 두 화면 변경시
-    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13" || currentScreenIndex === "dual14" || currentScreenIndex === "dual15" || currentScreenIndex === "dual16" || currentScreenIndex === "dual17" || currentScreenIndex === "dual18") {
+    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13" || currentScreenIndex === "dual14" || currentScreenIndex === "dual15" || currentScreenIndex === "dual16" || currentScreenIndex === "dual17" || currentScreenIndex === "dual18" || currentScreenIndex === "dual19") {
         screen(generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_right_default`]));
         currentRightSrc = baseImages[`dual${currentScreenIndex.substr(4)}_right_default`];
     }
