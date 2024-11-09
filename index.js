@@ -1,11 +1,15 @@
 // 사용자 하드 코딩 영역
 //태풍현황1
-const TYPOON1_SEQ = 20; //태풍 발생 호
+const TYPOON1_SEQ = 22; //태풍 발생 호
 const TYPOON1_TIME = 202410232200; //태풍 발표 시각
 
 //태풍현황2
-const TYPOON3_SEQ = 21; //태풍 발생 호
+const TYPOON3_SEQ = 23; //태풍 발생 호
 const TYPOON3_TIME = 202410241630; //태풍 발표 시각
+
+//태풍현황2
+const TYPOON5_SEQ = 24; //태풍 발생 호
+const TYPOON5_TIME = 202410241630; //태풍 발표 시각
 
 //태풍예측1
 const TYPOON2_NAME = "YINXING"; //태풍 이름
@@ -13,10 +17,16 @@ const TYPOON2_SEQ = 22; //태풍 발생 호
 const TYPOON2_TIME = 2024110312; //태풍 발표 시각
 
 //태풍예측2
-const TYPOON4_NAME = "KONG-REY"; //태풍 이름
-const TYPOON4_NAME1 = "23W"; //태풍 이름
-const TYPOON4_SEQ = 21; //태풍 발생 호
+const TYPOON4_NAME = "TORAJI"; //태풍 이름
+const TYPOON4_SEQ = 23; //태풍 발생 호
 const TYPOON4_TIME = 2024102412; //태풍 발표 시각
+
+//태풍예측3
+const TYPOON6_NAME = "MAN-YI"; //태풍 이름
+const TYPOON6_SEQ = 24; //태풍 발생 호
+const TYPOON6_TIME = 2024102412; //태풍 발표 시각
+
+
 // 사용자 하드 코딩 영역
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
@@ -99,9 +109,42 @@ function generateTsUrl() {
     // URL을 위한 날짜와 시간 설정
     const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
+    const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`; // 30분에 해당하는 이미지
+
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_23_1.png`;
+    return url;
+}
+
+//태풍 시간 3
+function generateTsUrl() {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+
+    // 업데이트 시간 설정
+    const updateHours = [5, 11, 17, 23];
+
+    // 가장 최근 업데이트 시간을 찾기 위한 로직
+    let lastUpdateHour = updateHours.slice().reverse().find(hour =>
+        currentHour > hour || (currentHour === hour && currentMinute >= 5)
+    );
+
+    // 만약 아침 4시 이전에 접속했고, 가장 최근 업데이트 시간이 22시라면
+    // 이전 날짜의 22시 자료를 사용
+    if (!lastUpdateHour && currentHour < 4.6) {
+        lastUpdateHour = 23;
+        currentDate.setDate(currentDate.getDate() - 1);
+    } else if (!lastUpdateHour) {
+        // 그 외의 경우 가장 늦은 시간인 22시를 가장 최근 업데이트 시간으로 설정
+        lastUpdateHour = 23;
+    }
+
+    // URL을 위한 날짜와 시간 설정
+    const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+    const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}00`; // 30분에 해당하는 이미지
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_21_1.png`;
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_24_1.png`;
     return url;
 }
 
@@ -138,18 +181,9 @@ const baseImages = {
     //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
     //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
 
-    typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
-    typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
-
     //typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
     typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_{T8}.gif`,
     typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
-
-    typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
-    typoon4_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
-
-    typoon5_left_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
-    typoon5_right_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
 
     typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
     typoon6_right_default: generateTsUrl(),
@@ -157,6 +191,24 @@ const baseImages = {
 
     typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_{T8}.gif`,
     typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
+
+    typoon11_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    typoon11_right_default: generateTsUrl(),
+    //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
+
+    typoon12_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON6_SEQ}_{T8}.gif`,
+    typoon12_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON6_NAME}.PNG`,
+
+    typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
+    typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
+
+    typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
+    typoon4_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
+
+    typoon5_left_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
+    typoon5_right_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
+
+
 
     typoon8_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241023.png`,
     typoon8_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241023.png`,
@@ -604,7 +656,7 @@ function updateImages(time) {
         currentRightSrc = baseImages[`screen${currentScreenIndex}_right_default`];
     }
 
-    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8"|| currentScreenIndex === "TP9"|| currentScreenIndex === "TP10") {
+    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8"|| currentScreenIndex === "TP9"|| currentScreenIndex === "TP10"|| currentScreenIndex === "TP11"|| currentScreenIndex === "TP12") {
         document.querySelector("#items").options[0].selected = true;
         console.log("tp", currentScreenIndex);
 
