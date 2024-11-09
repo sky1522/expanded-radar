@@ -79,6 +79,9 @@ function generateTUrl() {
     return url;
 }
 
+// URL 생성 및 출력
+console.log("Updated URL:", generateTUrl());
+
 //태풍 시간 2
 function generateT1Url() {
     const currentDate = new Date();
@@ -145,8 +148,6 @@ function generateT2Url() {
     return url;
 }
 
-// URL 생성 및 출력
-console.log("Updated URL:", generateTsUrl());
 
 
 const baseImages = {
