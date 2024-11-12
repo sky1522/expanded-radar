@@ -26,6 +26,11 @@ const TYPOON6_NAME = "MAN-YI"; //태풍 이름
 const TYPOON6_SEQ = 24; //태풍 발생 호
 const TYPOON6_TIME = 2024102412; //태풍 발표 시각
 
+//태풍예측4
+const TYPOON7_NAME = "USAGI"; //태풍 이름
+const TYPOON7_SEQ = 25; //태풍 발생 호
+const TYPOON7_TIME = 2024102412; //태풍 발표 시각
+
 
 // 사용자 하드 코딩 영역
 
@@ -148,6 +153,39 @@ function generateT2Url() {
     return url;
 }
 
+//태풍 시간 4
+function generateT3Url() {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+
+    // 업데이트 시간 설정
+    const updateHours = [5, 11, 17, 23];
+
+    // 가장 최근 업데이트 시간을 찾기 위한 로직
+    let lastUpdateHour = updateHours.slice().reverse().find(hour =>
+        currentHour > hour || (currentHour === hour && currentMinute >= 35)
+    );
+
+    // 만약 아침 4시 이전에 접속했고, 가장 최근 업데이트 시간이 22시라면
+    // 이전 날짜의 22시 자료를 사용
+    if (!lastUpdateHour && currentHour < 4.6) {
+        lastUpdateHour = 23;
+        currentDate.setDate(currentDate.getDate() - 1);
+    } else if (!lastUpdateHour) {
+        // 그 외의 경우 가장 늦은 시간인 22시를 가장 최근 업데이트 시간으로 설정
+        lastUpdateHour = 23;
+    }
+
+    // URL을 위한 날짜와 시간 설정
+    const yearMonth = `${currentDate.getFullYear()}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+    const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
+    const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}30`; // 30분에 해당하는 이미지
+
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_25_1.png`;
+    return url;
+}
+
 
 
 const baseImages = {
@@ -196,6 +234,13 @@ const baseImages = {
 
     typoon12_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON6_SEQ}_{T8}.gif`,
     typoon12_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON6_NAME}.PNG`,
+
+    typoon13_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    typoon13_right_default: generateT3Url(),
+    //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
+
+    typoon14_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON7_SEQ}_{T8}.gif`,
+    typoon14_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON7_NAME}.PNG`,
 
     typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
     typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
@@ -654,7 +699,7 @@ function updateImages(time) {
         currentRightSrc = baseImages[`screen${currentScreenIndex}_right_default`];
     }
 
-    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8"|| currentScreenIndex === "TP9"|| currentScreenIndex === "TP10"|| currentScreenIndex === "TP11"|| currentScreenIndex === "TP12") {
+    if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8"|| currentScreenIndex === "TP9"|| currentScreenIndex === "TP10"|| currentScreenIndex === "TP11"|| currentScreenIndex === "TP12"|| currentScreenIndex === "TP13"|| currentScreenIndex === "TP14") {
         document.querySelector("#items").options[0].selected = true;
         console.log("tp", currentScreenIndex);
 
