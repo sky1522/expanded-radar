@@ -236,7 +236,7 @@ const baseImages = {
     typoon12_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON6_NAME}.PNG`,
 
     typoon13_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon13_right_default: generateT3Url(),
+    typoon13_right_default: generateTUrl(),
     //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
     typoon14_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON7_SEQ}_{T8}.gif`,
