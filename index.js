@@ -80,7 +80,7 @@ function generateTUrl() {
     const day = `${String(currentDate.getDate()).padStart(2, '0')}`;
     const timeSuffix = `${String(lastUpdateHour).padStart(2, '0')}00`;
 
-    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_25_1.png`;
+    const url = `https://dmdw.kma.go.kr/data/IDS/IMG/${yearMonth}/${day}/RTKO63_108_${yearMonth}${day}${timeSuffix}_24_1.png`;
     return url;
 }
 
@@ -222,14 +222,14 @@ const baseImages = {
     typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
 
     typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon6_right_default: generateT1Url(),
+    typoon6_right_default: generateTUrl(),
     //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
     typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_{T8}.gif`,
     typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
 
     typoon11_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon11_right_default: generateT1Url(),
+    typoon11_right_default: generateTUrl(),
     //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
 
     typoon12_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON6_SEQ}_{T8}.gif`,
