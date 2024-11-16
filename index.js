@@ -329,8 +329,8 @@ const baseImages = {
     fore6_right_default: `./meteogram (1).png`,
     fore7_left_default: `./meteogram_14day.png`,
     fore7_right_default: `./meteogram_14day (1).png`,
-    fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/t2m.png`,
-    fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/SCM/2024/11/Seasonal/NDJ/East_asia/prec.png`,
+    fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/t2m.png`,
+    fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/prec.png`,
 };
 
 $(document).ready(function () {
