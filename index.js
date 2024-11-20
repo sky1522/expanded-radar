@@ -50,6 +50,7 @@ const $screenRight = document.querySelector("#screenRight img");
 const $datePicker = document.querySelector("#datePicker");
 const $timeSlider = document.querySelector("#timeSlider");
 const dateStr = changeDateFormat(null, 4);
+const dateStr1 = changeDateFormat(null, 5);
 
 //태풍 시간 1
 function generateTUrl() {
@@ -331,6 +332,8 @@ const baseImages = {
     fore7_right_default: `./meteogram_14day (1).png`,
     fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/t2m.png`,
     fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/prec.png`,
+    fore13_left_default: `https://afso.kma.go.kr/afsOut/rsw/cht/retChtSvrImgView.kfrm?cmdType=VIEW&tm=${dateStr1}&dirName=/DATA/CHT/GDPS/&fileName=gdps_lc20_fxkorh_{T8}.gif`,
+    fore13_right_default: `https://afso.kma.go.kr/afsOut/rsw/cht/retChtSvrImgView.kfrm?cmdType=VIEW&tm=${dateStr1}&dirName=/DATA/CHT/LDPS/&fileName=ldps_l1p5_fxko4s1_{T8}.gif`,
 };
 
 $(document).ready(function () {
@@ -403,6 +406,7 @@ function changeDateFormat(date, format = 0) {
     if (format === 2) return `${year}${month}/${day}/${hours}`;
     if (format === 3) return `${year}${month}${day}${hours}`;
     if (format === 4) return `${year}${month}/${day}`;
+    if (format === 5) return `${year}${month}${day}`;
 }
 
 //현재까지 선택된 시간 데이터 기준으로 슬라이드/시간/이미지 업데이트
@@ -720,7 +724,7 @@ function updateImages(time) {
         screen(generateImageURL(time, baseImages[`item${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, currentRightSrc));
     }
 
-    if (currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8") {
+    if (currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8"|| currentScreenIndex === "fore13") {
         $('#select-fore').find('option:selected');
         screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
     }
