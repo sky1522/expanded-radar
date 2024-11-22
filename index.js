@@ -254,8 +254,8 @@ const baseImages = {
 
 
 
-    typoon8_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241023.png`,
-    typoon8_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241023.png`,
+    typoon8_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241122.png`,
+    typoon8_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241122.png`,
 
     typoon9_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
     typoon9_right_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/ao.gefs.sprd2.png`,
