@@ -26,15 +26,14 @@
         <div id="screenRight" class="image-container"><img src="" alt="" class="full-screen-image" /></div>
       </div>
 
-      <div id="widget-fore5" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+      <!-- 전국/수도권 통보문 -->
+      <div id="widget-fore2" class="widget-container" style="display: none;">
         <div class="widget">
           <iframe width="100" height="400"
                   src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=108&prevKind=&stn=108"
                   frameborder="0"></iframe>
         </div>
 
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
           <iframe width="400" height="400"
                   src="https://www.kma.go.kr/weather/special/api/iframe/warning_report.jsp?prevStn=109&prevKind=&stn=109"
@@ -42,8 +41,8 @@
         </div>
       </div>
 
-      <div id="widget-fore9" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+      <!-- 단기/중기 예보 -->
+      <div id="widget-fore3" class="widget-container" style="display: none;">
          
         <div class="widget">
           <iframe width="400" height="700"
@@ -51,7 +50,6 @@
                   frameborder="0"></iframe>
         </div>
 
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
           <iframe width="400" height="700"
                   src="https://www.weather.go.kr/w/weather/forecast/mid-term.do?stnId1=109"
@@ -59,8 +57,8 @@
         </div>
       </div>
 
-      <div id="widget-fore10" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+      <!-- 바다 예보 -->
+      <div id="widget-fore4" class="widget-container" style="display: none;">
          
         <div class="widget">
           <iframe width="400" height="700"
@@ -68,7 +66,6 @@
                   frameborder="0"></iframe>
         </div>
 
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
           <iframe width="400" height="700"
                   src="https://www.weather.go.kr/w/ocean/forecast/mid-term-forecast.do"
@@ -76,25 +73,8 @@
         </div>
       </div>
 
-      <div id="widget-fore11" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-         
-        <div class="widget">
-          <iframe width="400" height="700"
-                  src="https://www.weather.go.kr/w/eqk-vol/recent-eqk.do"
-                  frameborder="0"></iframe>
-        </div>
-
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
-        <div class="widget">
-          <iframe width="400" height="700"
-                  src="https://www.weather.go.kr/w/eqk-vol/search/korea.do"
-                  frameborder="0"></iframe>
-        </div>
-      </div>
-
-      <div id="widget-fore12" class="widget-container" style="display: none;">
-        <!-- 1행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
+      <!-- 조석 정보 -->
+      <div id="widget-fore5" class="widget-container" style="display: none;">
          
         <div class="widget">
           <iframe width="400" height="700"
@@ -102,7 +82,6 @@
                   frameborder="0"></iframe>
         </div>
 
-        <!-- 2행의 위젯 (1행과 동일한 크기 및 수치 정보, 다른 위치 정보) -->
         <div class="widget">
           <iframe width="400" height="700"
                   src="https://www.khoa.go.kr/swtc/mobile.do"
@@ -110,9 +89,25 @@
         </div>
       </div>
 
+      <!-- 지진 정보 -->
+      <div id="widget-fore8" class="widget-container" style="display: none;">
+         
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/eqk-vol/recent-eqk.do"
+                  frameborder="0"></iframe>
+        </div>
+
+        <div class="widget">
+          <iframe width="400" height="700"
+                  src="https://www.weather.go.kr/w/eqk-vol/search/korea.do"
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+     
     </main>
     <footer class="center">
-      <!-- 화면 1 ~ 6 : 각화면 초기화용-->
+      <!-- 화면 1 ~ 7 : 각 화면 초기화용-->
       <div>
         <button type="button" onclick="changeScreen(1)" title="레이더영상(1)">R1</button>
         <button type="button" onclick="changeScreen(2)" title="레이더영상(2)">R2</button>
@@ -123,12 +118,16 @@
         <button type="button" onclick="changeScreen(7)" title="위성영상(아시아/한반도)">S</button>
       </div>
 
+      <!-- 달력 -->
       <div class="flex-type">
         <input type="datetime-local" id="datePicker" />
         <button type="button" onclick="jumpToDate()">이동</button>
       </div>
 
+
       <div class="flex-type">
+
+      <!-- 시간 조정 축 (1) / 초단기 예측 외 -->
         <div class="range" id="range-def">
           <div>
             <input type="range" min="0" max="48" value="48" step="0.5" id="timeSlider"
@@ -136,6 +135,8 @@
           </div>
           <small><span>-48H</span><span>-36H</span><span>-24H</span><span>-12H</span><span>0H</span></small>
         </div>
+
+      <!-- 시간 조정 축 (2) / 초단기 예측 -->       
         <div class="range" id="range-fore">
           <div>
             <input type="range" min="30" max="720" value="30" step="30" id="timeSlider-fore-ef"
@@ -145,9 +146,24 @@
             <span>30m</span><span>180m</span><span>360m</span><span>540m</span><span>720m</span>
           </small>
         </div>
+
+      <!-- 시간 조정 축 (3) / 강수 형태 예측        
+        <div class="range" id="range-fore-raintype">
+          <div>
+            <input type="range" min="0" max="720" value="0" step="180" id="timeSlider-fore-raintype"
+              oninput="updateSlider(null, 'input')" onchange="updateSlider(null, 'change')" />
+          </div>
+          <small>
+            <span>0H</span><span>12H</span><span>24H</span><span>36H</span><span>48H</span>
+          </small>
+        </div>-->
+
+      <!-- 현재 시간 -->       
         <div id="currentTime"></div>
+
       </div>
 
+      <!-- 시간 조정 버튼 -->       
       <div>
         <button class="outline contrast" onclick="adjustTime(-3)">-3H</button>
         <button class="outline contrast" onclick="adjustTime(-1)">-1H</button>
@@ -158,21 +174,27 @@
         <button class="outline contrast" onclick="adjustTime(3)">+3H</button>
       </div>
 
+       <!-- 재생  / 반복 / 업데이트 버튼 -->       
+
       <div class="control">
         <button id="playButton" onclick="togglePlay()">재생</button>
         <div>
+
           <fieldset>
+            
             <input type="checkbox" id="repeatCheckbox" />
             <label for="repeatCheckbox">반복</label>
+
             <input type="checkbox" id="autoUpdateCheckbox" onchange="toggleAutoUpdate()" />
             <label for="autoUpdateCheckbox">업데이트</label>
+
           </fieldset>
 
           <div id="nextUpdateDisplay"></div>
         </div>
       </div>
 
-      <!-- 항목 선택-->
+      <!-- 항목 선택 -->
       <div>
         <select id="items" name="select" aria-label="Select" required
           onchange="changeScreen(this.options[this.selectedIndex].value)">
@@ -190,82 +212,72 @@
           <option value="item10">지상 시정</option>
           <option value="item11">AWS 관측 데이터</option>
           -->
-          <option value="dual0">기본 화면</option>
-          <option value="dual1">특보 현황</option>
-          <option value="dual2">예비 특보</option>
-          <option value="dual3">강수 유무</option>
-          <option value="dual14">눈/비 영역</option>
-          <option value="dual20">어는 비 가능성</option>
-          <option value="dual4">누적강수량(1H)</option>
-          <option value="dual5">누적강수량(3H)</option>
-          <option value="dual6">일 강수량</option>
-          <option value="dual7">2일 강수량</option>
-          <option value="dual8">3일 강수량</option>
-          <option value="dual15">신적설(3H)</option>
-          <option value="dual16">신적설(24H)</option>
-          <option value="dual17">적설량</option>
-          <option value="dual9">낙뢰 영상</option>
-          <option value="dual10">현재 기온</option>
-          <option value="dual18">체감 온도</option>
-          <option value="dual21">기온차(오늘-어제)</option>
-          <option value="dual11">지상 시정</option>
-          <option value="dual12">평균 풍속(10Min)</option>
-          <option value="dual13">순간 풍속(1Min)</option>
-          <option value="dual19">운저/운량</option>
+          <option value="weather0">기본 화면</option>
+          <option value="weather1">특보 현황</option>
+          <option value="weather2">예비 특보</option>
+          <option value="weather3">강수 유무</option>
+          <option value="weather4">눈/비 영역</option>
+          <option value="weather5">어는 비 가능성</option>
+          <option value="weather6">누적강수량(1H)</option>
+          <option value="weather7">누적강수량(3H)</option>
+          <option value="weather8">일 강수량</option>
+          <option value="weather9">2일 강수량</option>
+          <option value="weather10">3일 강수량</option>
+          <option value="weather11">신적설(3H)</option>
+          <option value="weather12">신적설(24H)</option>
+          <option value="weather13">적설량</option>
+          <option value="weather14">낙뢰 영상</option>
+          <option value="weather15">현재 기온</option>
+          <option value="weather16">체감 온도</option>
+          <option value="weather17">기온차(오늘-어제)</option>
+          <option value="weather18">지상 시정</option>
+          <option value="weather19">평균 풍속(10Min)</option>
+          <option value="weather20">순간 풍속(1Min)</option>
+          <option value="weather21">운저/운량</option>
         </select>
       </div>
 
-      <!-- 기후 정보-->
+      <!-- 기후 정보 -->
       <div>
-        <select id="typoons" name="select" aria-label="Select" required
+        <select id="typhoons" name="select" aria-label="Select" required
           onchange="changeScreen(this.options[this.selectedIndex].value)">
           <option selected disabled value="">태풍/기후/지진 정보</option>
           <!--
           <option value="TP1">(22호) 태풍 현황</option>       
-          <option value="TP3">(22호) 태풍 예측</option>       
+          <option value="TP2">(22호) 태풍 예측</option>       
 
-          <option value="TP6">(23호) 태풍 현황</option>
-          <option value="TP7">(23호) 태풍 예측</option>
-
-          <option value="TP11">(24호) 태풍 현황</option>
-          <option value="TP12">(24호) 태풍 예측</option>
-
-          <option value="TP13">(25호) 태풍 현황</option>
-          <option value="TP14">(25호) 태풍 예측</option>
+          <option value="TP3">(23호) 태풍 현황</option>
+          <option value="TP4">(23호) 태풍 예측</option>
           
-          <option value="TP10">(21호) 모델 예측</option>
+          <option value="TP5">(24호) 태풍 현황</option>
+          <option value="TP6">(24호) 태풍 예측</option>
+          
+          <option value="TP7">(25호) 태풍 현황</option>
+          <option value="TP8">(25호) 태풍 예측</option>
+          
+          <option value="TP9">(21호) 모델 예측</option>
           -->
-          <option value="TP5">일기도</option>
-          <option value="TP2">태풍 감시</option>
-          <option value="TP4">해수면 온도</option>
-          <option value="TP8">E N S O</option>
-          <option value="TP9">Blocking/AO I</option>
-          <option value="fore11">지진 정보</option>  
+          <option value="TP10">일기도</option>
+          <option value="TP11">태풍 감시</option>
+          <option value="TP12">해수면 온도</option>
+          <option value="TP13">E N S O</option>
+          <option value="TP14">Blocking/AO I</option>
+          <option value="fore8">지진 정보</option>  
         </select>
       </div>
 
-      <!-- 2024.10.15 예측 정보-->
+      <!-- 예측 정보 -->
       <div>
-<!--        <select id="fore" name="select" aria-label="Select" required onchange="changeScreen(this.options[this.selectedIndex].value)">-->
         <select id="select-fore" name="select" aria-label="Select" required>
           <option disabled selected>예측 정보</option>          
-          <!--         
-          <option value="fore3">강수/구름 예측</option>
-          <option value="fore4">강수/기온 예측</option> -->
-          <option value="fore2">초단기 예측</option>
-          <option value="fore5">전국/수도권 통보문</option>
-          <option value="fore9">단기/중기 예보</option>
-          <option value="fore10">바다 예보</option>
-          <option value="fore12">조석 정보</option>
-          <!--
-          <option value="fore6">단기 예측</option>
-          <option value="fore7">중기 예측</option>-->
-          <option value="fore8">계절 예측</option>
-          <!--
-          <option value="fore13">안개 예측</option>-->          
+          <option value="fore1">초단기 예측</option>
+          <option value="fore2">전국/수도권 통보문</option>
+          <option value="fore3">단기/중기 예보</option>
+          <option value="fore4">바다 예보</option>
+          <option value="fore5">조석 정보</option>
+          <option value="fore6">계절 예측</option>          
+          <option value="fore7">test</option>          
         </select>
-
-<!--    <select id="select-ef"></select>-->
       </div>
 
     </footer>
