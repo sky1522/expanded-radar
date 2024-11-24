@@ -1,38 +1,23 @@
 // 사용자 하드 코딩 영역
-//태풍현황1
-const TYPOON1_SEQ = 22; //태풍 발생 호
-const TYPOON1_TIME = 202410232200; //태풍 발표 시각
-
-//태풍현황2
-const TYPOON3_SEQ = 23; //태풍 발생 호
-const TYPOON3_TIME = 202410241630; //태풍 발표 시각
-
-//태풍현황2
-const TYPOON5_SEQ = 24; //태풍 발생 호
-const TYPOON5_TIME = 202410241630; //태풍 발표 시각
 
 //태풍예측1
-const TYPOON2_NAME = "YINXING"; //태풍 이름
-const TYPOON2_SEQ = 22; //태풍 발생 호
-const TYPOON2_TIME = 2024110312; //태풍 발표 시각
+const TYPHOON1_NAME = "YINXING"; //태풍 이름
+const TYPHOON1_SEQ = 22; //태풍 발생 호
 
 //태풍예측2
-const TYPOON4_NAME = "TORAJI"; //태풍 이름
-const TYPOON4_SEQ = 23; //태풍 발생 호
-const TYPOON4_TIME = 2024102412; //태풍 발표 시각
+const TYPHOON2_NAME = "TORAJI"; //태풍 이름
+const TYPHOON2_SEQ = 23; //태풍 발생 호
 
 //태풍예측3
-const TYPOON6_NAME = "MAN-YI"; //태풍 이름
-const TYPOON6_SEQ = 24; //태풍 발생 호
-const TYPOON6_TIME = 2024102412; //태풍 발표 시각
+const TYPHOON3_NAME = "MAN-YI"; //태풍 이름
+const TYPHOON3_SEQ = 24; //태풍 발생 호
 
 //태풍예측4
-const TYPOON7_NAME = "USAGI"; //태풍 이름
-const TYPOON7_SEQ = 25; //태풍 발생 호
-const TYPOON7_TIME = 2024102412; //태풍 발표 시각
+const TYPHOON4_NAME = "USAGI"; //태풍 이름
+const TYPHOON4_SEQ = 25; //태풍 발생 호
 
 
-// 사용자 하드 코딩 영역
+// 상수 선언
 
 const UTC_TIME = 9 * 60 * 60 * 1000;
 
@@ -50,10 +35,10 @@ const $screenRight = document.querySelector("#screenRight img");
 const $datePicker = document.querySelector("#datePicker");
 const $timeSlider = document.querySelector("#timeSlider");
 const dateStr = changeDateFormat(null, 4);
-const dateStr1 = changeDateFormat(null, 5);
 
 //태풍 시간 1
-function generateTUrl() {
+//업데이트 시간 설정(51), 업데이트 분(55), 정시/30분 구분(71), 태풍 호수 / 태풍(63) 열대저압부 구분(64) (73)
+function generateT1Url() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -85,11 +70,9 @@ function generateTUrl() {
     return url;
 }
 
-// URL 생성 및 출력
-console.log("Updated URL:", generateTUrl());
-
 //태풍 시간 2
-function generateT1Url() {
+//업데이트 시간 설정(87), 업데이트 분(91), 정시/30분 구분(107), 태풍(63) 열대저압부 구분(64) (109)
+function generateT2Url() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -122,7 +105,8 @@ function generateT1Url() {
 }
 
 //태풍 시간 3
-function generateT2Url() {
+//업데이트 시간 설정(120), 업데이트 분(124), 정시/30분 구분(140), 태풍(63) 열대저압부 구분(64) (142)
+function generateT3Url() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -155,7 +139,9 @@ function generateT2Url() {
 }
 
 //태풍 시간 4
-function generateT3Url() {
+//업데이트 시간 설정(154), 업데이트 분(159), 정시/30분 구분(174), 태풍(63) 열대저압부 구분(64) (176)
+
+function generateT4Url() {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -187,83 +173,33 @@ function generateT3Url() {
     return url;
 }
 
-
-
+    //이미지 링크
 const baseImages = {
-    //화면 1 ~ 6
+    //화면 1 ~ 7
+
+    //레이더영상(1)
     screen1_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen1_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HC&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=`,
-
+    //레이더영상(2)
     screen2_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=OTH&qcd=HSO&obs=ECHD&map=H3&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=1&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen2_right_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
-
+    //레이더영상(3)
     screen3_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen3_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3300000&zoom_y=4200000&gov=`,
-
+    //레이더-위성영상
     screen4_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen4_right_default: `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/{T12}/gk2a_ami_le1b_rgb-s-daynight_ko020lc_{T13}.png`,
-
+    //레이더-수증기영상
     screen5_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen5_right_default: `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/{T12}/gk2a_ami_le1b_enhc-wv069_ko020lc_{T13}.srv.png`,
-
+    //레이더-바람벡터영상
     screen6_left_default: `https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=2&wv=01&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen6_right_default: `https://radar.kma.go.kr/cgi-bin/tablet2/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=E&size=800&xp=330&yp=620&zoom=5&wv=01&ht=800&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
-
+    //아시아/한반도 위성영상
     screen7_left_default: `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/EA/{T10}/gk2a_ami_le1b_rgb-s-daynight_ea020lc_{T11}.png`,
     screen7_right_default: `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/{T12}/gk2a_ami_le1b_rgb-s-daynight_ko020lc_{T13}.png`,
 
-    //태풍항목
-    typoon1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon1_right_default: generateTUrl(),
-    //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO63_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`, //typoon1_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON1_TIME}_${TYPOON1_SEQ}_1.png`,
-    //typoon1_right_default: `https://www.weather.go.kr/repositary/image/typ/img/RTKO64_${TYPOON1_TIME}]${TYPOON1_SEQ}_ko.png`,
-
-    //typoon3_left_default: `https://www.easterlywave.com/media/typhoon/ensemble/${TYPOON2_TIME}/${TYPOON2_NAME}.png`,
-    typoon3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON2_SEQ}_{T8}.gif`,
-    typoon3_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON2_NAME}.PNG`,
-
-    typoon6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon6_right_default: generateTUrl(),
-    //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
-
-    typoon7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON4_SEQ}_{T8}.gif`,
-    typoon7_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON4_NAME}.PNG`,
-
-    typoon11_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon11_right_default: generateTUrl(),
-    //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
-
-    typoon12_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON6_SEQ}_{T8}.gif`,
-    typoon12_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON6_NAME}.PNG`,
-
-    typoon13_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
-    typoon13_right_default: generateTUrl(),
-    //typoon6_right_default: `https://dmdw.kma.go.kr/data/IDS/IMG/${dateStr}/RTKO64_108_${TYPOON3_TIME}_${TYPOON3_SEQ}_1.png`,
-
-    typoon14_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPOON7_SEQ}_{T8}.gif`,
-    typoon14_right_default: `https://www.typhoon2000.ph/multi/data/${TYPOON7_NAME}.PNG`,
-
-    typoon2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
-    typoon2_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
-
-    typoon4_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
-    typoon4_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
-
-    typoon5_left_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
-    typoon5_right_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
-
-
-
-    typoon8_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241122.png`,
-    typoon8_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241122.png`,
-
-    typoon9_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
-    typoon9_right_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/ao.gefs.sprd2.png`,
-
-    typoon10_left_default: `./23W_gefs_latest.png`,
-    typoon10_right_default: `./23W_geps_latest.png`,
-
-    //항목 선택
+    /* //항목 선택
     item1_left_default: "https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=70&size=330&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg",
     item2_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX",
     item3_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M",
@@ -274,66 +210,139 @@ const baseImages = {
     item8_left_default: "https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT",
     item9_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA",
     item10_left_default: "https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=",
+    */
 
     // 항목정보 두화면 변경시
-    dual0_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
-    dual0_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HC&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=`,
-    dual1_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    dual1_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=ERmgGaXgS5CZoBml4OuQVw`,
-    dual2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    dual2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=ERmgGaXgS5CZoBml4OuQVw`,
-    dual3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNEX`,
-    dual3_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX`,
-    dual4_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN60M`,
-    dual4_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M`,
-    dual5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03H`,
-    dual5_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03H`,
-    dual6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNDAY1`,
-    dual6_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNDAY1`,
-    dual7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN02D`,
-    dual7_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN02D`,
-    dual8_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03D`,
-    dual8_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03D`,
-    dual9_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RDRLGT`,
-    dual9_right_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT`,
-    dual10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TA`,
-    dual10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA`,
-    dual11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-    dual11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
-    dual12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
-    dual12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
-    dual13_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-    dual13_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
-    dual14_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-    dual14_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
-    dual15_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD3HR`,
-    dual15_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD3HR`,
-    dual16_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD24H`,
-    dual16_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD24H`,
-    dual17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SDTOT`,
-    dual17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDTOT`,
-    dual18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
-    dual18_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
-    dual19_left_default: `https://afso.kma.go.kr/php/alw//aws/aws_obs_pnt.php?obs=ch&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CH`,
-    dual19_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ca&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CA`,
-    dual20_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
-    dual20_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
-    dual21_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TADIF`,
-    dual21_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TADIF`,
+    // 기본 화면
+    weather0_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
+    weather0_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HC&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=`,
+    // 특보 현황
+    weather1_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+    weather1_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=ERmgGaXgS5CZoBml4OuQVw`,
+    // 예비 특보
+    weather2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
+    weather2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=ERmgGaXgS5CZoBml4OuQVw`,
+    // 강수 유무
+    weather3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNEX`,
+    weather3_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX`,
+    // 눈/비 영역
+    weather4_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather4_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+    // 어는 비 가능성
+    weather5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather5_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+    // 누적강수량(1H)    
+    weather6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN60M`,
+    weather6_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M`,
+    // 누적강수량(3H)
+    weather7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03H`,
+    weather7_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03H`,
+    // 일 강수량
+    weather8_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNDAY1`,
+    weather8_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNDAY1`,
+    // 2일 강수량
+    weather9_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN02D`,
+    weather9_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN02D`,
+    // 3일 강수량
+    weather10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03D`,
+    weather10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03D`,
+    // 신적설(3H)
+    weather11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD3HR`,
+    weather11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD3HR`,
+    // 신적설(24H)
+    weather12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD24H`,
+    weather12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD24H`,
+    // 적설량
+    weather13_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SDTOT`,
+    weather13_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDTOT`,
+    // 낙뢰 영상
+    weather14_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RDRLGT`,
+    weather14_right_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT`,
+    // 현재 기온
+    weather15_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TA`,
+    weather15_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA`,
+    // 체감 온도
+    weather16_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
+    weather16_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
+    // 기온차(오늘-어제)
+    weather17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TADIF`,
+    weather17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TADIF`,
+    // 지상 시정
+    weather18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather18_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+    // 평균 풍속(10Min)
+    weather19_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
+    weather19_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
+    // 순간 풍속(1Min)
+    weather20_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather20_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
+    // 운저/운량    
+    weather21_left_default: `https://afso.kma.go.kr/php/alw//aws/aws_obs_pnt.php?obs=ch&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CH`,
+    weather21_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ca&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CA`,    
+
+    //태풍항목
+    //태풍현황(1)
+    TYPHOON1_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    TYPHOON1_right_default: generateT1Url(),
+    //태풍예측(1)
+    TYPHOON2_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPHOON1_SEQ}_{T8}.gif`,
+    TYPHOON2_right_default: `https://www.typhoon2000.ph/multi/data/${TYPHOON1_NAME}.PNG`,
+
+    //태풍현황(2)
+    TYPHOON3_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    TYPHOON3_right_default: generateT2Url(),
+    //태풍예측(2)
+    TYPHOON4_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPHOON2_SEQ}_{T8}.gif`,
+    TYPHOON4_right_default: `https://www.typhoon2000.ph/multi/data/${TYPHOON2_NAME}.PNG`,
+
+    //태풍현황(3)
+    TYPHOON5_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    TYPHOON5_right_default: generateT3Url(),
+    //태풍예측(3)
+    TYPHOON6_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPHOON3_SEQ}_{T8}.gif`,
+    TYPHOON6_right_default: `https://www.typhoon2000.ph/multi/data/${TYPHOON3_NAME}.PNG`,
+
+    //태풍현황(4)
+    TYPHOON7_left_default: `https://www.weather.go.kr/w/repositary/image/typ/sat/bt6_{T2}.png`,
+    TYPHOON7_right_default: generateT4Url(),
+    //태풍예측(4)
+    TYPHOON8_left_default: `https://www.weather.go.kr/w/repositary/image/typ/cht/typh_muti_prob_pb4_middl_24${TYPHOON4_SEQ}_{T8}.gif`,
+    TYPHOON8_right_default: `https://www.typhoon2000.ph/multi/data/${TYPHOON4_NAME}.PNG`,
+
+    //모델 예측
+    TYPHOON9_left_default: `./23W_gefs_latest.png`,
+    TYPHOON9_right_default: `./23W_geps_latest.png`,
+
+    //일기도
+    TYPHOON10_left_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kim_surf_newsur_pa4_{T8}.gif",
+    TYPHOON10_right_default: "https://www.weather.go.kr/w/repositary/image/cht/img/kor1_anlmod_pb4_{T9}.gif",
+
+    //태풍 감시
+    TYPHOON11_left_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wnd850_ft06_pa4_s000_{T8}.gif`,
+    TYPHOON11_right_default: `https://www.weather.go.kr/w/repositary/image/typ/monitor/kim_typh_fcst_wndshr_ft06_pa4_s000_{T8}.gif`,
+    
+    //해수면 온도    
+    TYPHOON12_left_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_rdps_anal_{T5}.gif",
+    TYPHOON12_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
+    
+    //E N S O
+    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241122.png`,
+    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241122.png`,
+
+    //Blocking, AO INDEX
+    TYPHOON14_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
+    TYPHOON14_right_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/ao.gefs.sprd2.png`,
+
 
     // 초단기 예측
-    //fore2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
-    //fore2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=600&zoom_level=0&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575&authKey=ERmgGaXgS5CZoBml4OuQVw`,
-    fore2_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=D2&grid=2&legend=1&size=300&itv=&zoom_level=1&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575`,
-    fore2_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
-    fore6_left_default: `./meteogram.png`,
-    fore6_right_default: `./meteogram (1).png`,
-    fore7_left_default: `./meteogram_14day.png`,
-    fore7_right_default: `./meteogram_14day (1).png`,
-    fore8_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/t2m.png`,
-    fore8_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/prec.png`,
-    fore13_left_default: `https://afso.kma.go.kr/afsOut/rsw/cht/retChtSvrImgView.kfrm?cmdType=VIEW&tm=${dateStr1}&dirName=/DATA/CHT/GDPS/&fileName=gdps_lc20_fxkorh_{T8}.gif`,
-    fore13_right_default: `https://afso.kma.go.kr/afsOut/rsw/cht/retChtSvrImgView.kfrm?cmdType=VIEW&tm=${dateStr1}&dirName=/DATA/CHT/LDPS/&fileName=ldps_l1p5_fxko4s1_{T8}.gif`,
+    fore1_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=D2&grid=2&legend=1&size=300&itv=&zoom_level=1&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575`,
+    fore1_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
+    // 계절 예측
+    fore6_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/t2m.png`,
+    fore6_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/prec.png`,
+    // 동네 예보 test
+    fore7_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-dfs_shrt_ana_5d_test?data0=GEMD&data1=R06&tm_ef=202411230900&tm_fc=202411230800&dtm=H0&map=G1&mask=M&color=E&size=450&effect=NTL&overlay=S&zoom_rate=2&zoom_level=0&zoom_x=0000000&zoom_y=0000000&move=1&auto_man=m&mode=I&interval=1`,
+    fore7_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-dfs_shrt_ana_5d_test?data0=GEMD&data1=R06&tm_ef=202411230900&tm_fc=202411230800&dtm=H0&map=D1&mask=M&color=E&size=450&effect=NTL&overlay=S&zoom_rate=2&zoom_level=0&zoom_x=3400000&zoom_y=8900000&move=1&auto_man=m&mode=I&interval=1`,
 };
 
 $(document).ready(function () {
@@ -356,7 +365,7 @@ $(document).ready(function () {
         let selVal = selOpt.val();
 
         // 초단기 예측 메뉴 선택 시 초기화
-        if (selVal === "fore2") {
+        if (selVal === "fore1") {
             // currentTime = moment().toDate();
             selectedTime = moment().toDate();
             $("#currentTime").text(moment(selectedTime).format("YYYY-MM-DD HH:mm"));
@@ -406,7 +415,6 @@ function changeDateFormat(date, format = 0) {
     if (format === 2) return `${year}${month}/${day}/${hours}`;
     if (format === 3) return `${year}${month}${day}${hours}`;
     if (format === 4) return `${year}${month}/${day}`;
-    if (format === 5) return `${year}${month}${day}`;
 }
 
 //현재까지 선택된 시간 데이터 기준으로 슬라이드/시간/이미지 업데이트
@@ -560,6 +568,8 @@ function generateImageURL(time, url) {
     return url;
 }
 
+
+// 업데이트 버튼
 function toggleAutoUpdate() {
     const autoUpdateCheckbox = document.getElementById("autoUpdateCheckbox");
     if (autoUpdateCheckbox.checked) {
@@ -571,6 +581,7 @@ function toggleAutoUpdate() {
     }
 }
 
+// 재생 버튼
 function togglePlay() {
     const playButton = document.getElementById("playButton");
     const slider = document.getElementById("timeSlider");
@@ -598,6 +609,7 @@ function togglePlay() {
     }
     isPlaying = !isPlaying;
 }
+
 
 function getNextUpdateTime() {
     const now = new Date();
@@ -656,6 +668,9 @@ function stopAutoUpdate() {
     clearTimeout(autoUpdateInterval);
 }
 
+
+// 현재 시간 버튼
+
 function setLatestTime() {
     const now = new Date();
     currentTime = new Date(now);
@@ -670,8 +685,10 @@ function setLatestTime() {
     updateSlider();
 }
 
+// 현재 시간 버튼
+
 function adjustTime(hours) {
-    if (currentScreenIndex === "fore2") {
+    if (currentScreenIndex === "fore1") {
         let $timeSliderForeEf = $("#timeSlider-fore-ef");
         let orgVal = parseFloat($timeSliderForeEf.val());
         let offset = parseFloat(hours * 60);
@@ -695,41 +712,44 @@ function adjustTime(hours) {
 function updateImages(time) {
 
     // debugger;
+    // 화면 버튼(레이더, 위성) 이미지 업데이트
     if (currentScreenIndex === 1 || currentScreenIndex === 2 || currentScreenIndex === 3 || currentScreenIndex === 4 || currentScreenIndex === 5 || currentScreenIndex === 6 || currentScreenIndex === 7) {
         document.querySelector("#items").options[0].selected = true;
-        document.querySelector("#typoons").options[0].selected = true;
+        document.querySelector("#typhoons").options[0].selected = true;
         console.log("sc", currentScreenIndex);
         screen(generateImageURL(time, baseImages[`screen${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`screen${currentScreenIndex}_right_default`]));
         currentRightSrc = baseImages[`screen${currentScreenIndex}_right_default`];
     }
 
+    // 태풍 정보 이미지 업데이트
     if (currentScreenIndex === "TP1" || currentScreenIndex === "TP2" || currentScreenIndex === "TP3" || currentScreenIndex === "TP4" || currentScreenIndex === "TP5" || currentScreenIndex === "TP6" || currentScreenIndex === "TP7"|| currentScreenIndex === "TP8"|| currentScreenIndex === "TP9"|| currentScreenIndex === "TP10"|| currentScreenIndex === "TP11"|| currentScreenIndex === "TP12"|| currentScreenIndex === "TP13"|| currentScreenIndex === "TP14") {
         document.querySelector("#items").options[0].selected = true;
         console.log("tp", currentScreenIndex);
 
-        screen(generateImageURL(time, baseImages[`typoon${currentScreenIndex.substr(2)}_left_default`]), generateImageURL(time, baseImages[`typoon${currentScreenIndex.substr(2)}_right_default`]));
-        currentRightSrc = baseImages[`typoon${currentScreenIndex.substr(2)}_right_default`];
+        screen(generateImageURL(time, baseImages[`TYPHOON${currentScreenIndex.substr(2)}_left_default`]), generateImageURL(time, baseImages[`TYPHOON${currentScreenIndex.substr(2)}_right_default`]));
+        currentRightSrc = baseImages[`TYPHOON${currentScreenIndex.substr(2)}_right_default`];
     }
 
-    // 항목정보 두 화면 변경시
-    if (currentScreenIndex === "dual0" ||currentScreenIndex === "dual1" || currentScreenIndex === "dual2" || currentScreenIndex === "dual3" || currentScreenIndex === "dual4" || currentScreenIndex === "dual5" || currentScreenIndex === "dual6" || currentScreenIndex === "dual7" || currentScreenIndex === "dual8" || currentScreenIndex === "dual9" || currentScreenIndex === "dual10" || currentScreenIndex === "dual11" || currentScreenIndex === "dual12" || currentScreenIndex === "dual13" || currentScreenIndex === "dual14" || currentScreenIndex === "dual15" || currentScreenIndex === "dual16" || currentScreenIndex === "dual17" || currentScreenIndex === "dual18" || currentScreenIndex === "dual19" || currentScreenIndex === "dual20" || currentScreenIndex === "dual21") {
-        screen(generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, baseImages[`dual${currentScreenIndex.substr(4)}_right_default`]));
-        currentRightSrc = baseImages[`dual${currentScreenIndex.substr(4)}_right_default`];
+    // 기상 정보 이미지 업데이트
+    if (currentScreenIndex === "weather0" ||currentScreenIndex === "weather1" || currentScreenIndex === "weather2" || currentScreenIndex === "weather3" || currentScreenIndex === "weather4" || currentScreenIndex === "weather5" || currentScreenIndex === "weather6" || currentScreenIndex === "weather7" || currentScreenIndex === "weather8" || currentScreenIndex === "weather9" || currentScreenIndex === "weather10" || currentScreenIndex === "weather11" || currentScreenIndex === "weather12" || currentScreenIndex === "weather13" || currentScreenIndex === "weather14" || currentScreenIndex === "weather15" || currentScreenIndex === "weather16" || currentScreenIndex === "weather17" || currentScreenIndex === "weather18" || currentScreenIndex === "weather19" || currentScreenIndex === "weather20" || currentScreenIndex === "weather21") {
+        screen(generateImageURL(time, baseImages[`weather${currentScreenIndex.substr(7)}_left_default`]), generateImageURL(time, baseImages[`weather${currentScreenIndex.substr(7)}_right_default`]));
+        currentRightSrc = baseImages[`weather${currentScreenIndex.substr(7)}_right_default`];
     }
 
+    // 항목 정보 이미지 업데이트 (좌측 화면만 업데이트)
     if (currentScreenIndex === "item1" || currentScreenIndex === "item2" || currentScreenIndex === "item3" || currentScreenIndex === "item4" || currentScreenIndex === "item5" || currentScreenIndex === "item6" || currentScreenIndex === "item7" || currentScreenIndex === "item8" || currentScreenIndex === "item9" || currentScreenIndex === "item10") {
         console.log("item", currentScreenIndex);
 
         console.log("currentRightSrc", currentRightSrc);
         screen(generateImageURL(time, baseImages[`item${currentScreenIndex.substr(4)}_left_default`]), generateImageURL(time, currentRightSrc));
     }
-
-    if (currentScreenIndex === "fore6"|| currentScreenIndex === "fore7"|| currentScreenIndex === "fore8"|| currentScreenIndex === "fore13") {
+    //계절 예측
+    if (currentScreenIndex === "fore6") {
         $('#select-fore').find('option:selected');
         screen(generateImageURL(time, baseImages[`${currentScreenIndex}_left_default`]), generateImageURL(time, baseImages[`${currentScreenIndex}_right_default`]));
     }
-
-        if (currentScreenIndex === "fore2") {
+    //초단기 예측
+        if (currentScreenIndex === "fore1") {
         $('#select-fore').find('option:selected');
         $("#range-def").hide();
         $("#range-fore").show();
@@ -738,30 +758,28 @@ function updateImages(time) {
          $("#range-def").show();
          $("#range-fore").hide();
     }
-
-    $("#screen, #widget-fore10, #widget-fore11, #widget-fore12, #widget-fore9, #widget-fore5").hide();
+    // 전국/수도권 통보문, 단기/중기 예보, 바다 예보, 조석 정보
+    $("#screen, #widget-fore2, #widget-fore3, #widget-fore4, #widget-fore5, #widget-fore8").hide();
     switch (currentScreenIndex) {
-        case "fore10":
-            $("#widget-fore10").show();
+        case "fore2":
+            $("#widget-fore2").show();
             break;
-        case "fore11":
-            $("#widget-fore11").show();
+        case "fore3":
+            $("#widget-fore3").show();
             break;
-        case "fore12":
-            $("#widget-fore12").show();
+        case "fore4":
+            $("#widget-fore4").show();
             break;
-        case "fore9":
-            $("#widget-fore9").show();
-            break;    
         case "fore5":
             $("#widget-fore5").show();
-            break;
+            break;    
+        case "fore8":
+            $("#widget-fore8").show();
+            break;             
         default:
             $("#screen").show();
             break;
     }
-
-    if (currentScreenIndex === "item11") alert("aws 작업중");
 }
 
 function jumpToDate() {
@@ -785,7 +803,7 @@ function init() {
 
 init();
 
-
+/*
 // 마우스 우클릭 방지
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
@@ -817,4 +835,4 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('dragstart', function (e) {
     e.preventDefault();
 }, false);
-
+*/
