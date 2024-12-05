@@ -294,6 +294,9 @@ const baseImages = {
     // 노면상태
     weather26_left_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=sfs&tm={T1}&val=1&stn=3&obj=mq3d&grid=1&legend=1&map=D2&size=495&itv=5&unit=&city=0&zoom_level=0&zoom_x=0000000&zoom_y=0000000&gov=`,
     weather26_right_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=sfs&tm={T1}&val=1&stn=3&obj=mq3d&grid=1&legend=1&map=HC&size=495&itv=5&unit=&city=1&zoom_level=3&zoom_x=3350000&zoom_y=5120000&gov=`,    
+    // 습구온도(1.2)
+    weather27_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=tw_win&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather27_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=tw_win&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,    
 
     //태풍항목
     //태풍현황(1)
