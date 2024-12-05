@@ -350,8 +350,8 @@ const baseImages = {
 
 
     // 초단기 예측
-    fore1_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=K&ef={EF}&map=D2&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575`,
-    fore1_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=K&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
+    fore1_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=D2&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575`,
+    fore1_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
     // 계절 예측
     fore6_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/t2m.png`,
     fore6_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2024/12/Seasonal/DJF/East_asia/prec.png`,
