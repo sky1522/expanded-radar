@@ -185,7 +185,7 @@ const baseImages = {
     screen2_right_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     //레이더영상(3)
     screen3_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
-    screen3_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=3300000&zoom_y=4200000&gov=`,
+    screen3_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HSP&qcd=HSLP&obs=ECHD&color=C4&aws=0&acc=0&map=HB&grid=2&legend=1&size=700&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=`,
     //레이더-위성영상
     screen4_left_default: `https://radar.kma.go.kr/cgi-bin/center/nph-rdr_cmp_img?tm={T1}&cmp=HSP&qcd=HSO&obs=ECHD&map=HC&size=800&xp=-9999&yp=-9999&zoom=1&wv=00&ht=1500&color=C4&topo=1&ZRa=&ZRb=&lat=&lon=&lonlat=0&x1=&y1=&x2=&y2=&center=0&typ=0&aws=01&wt=0`,
     screen4_right_default: `https://nmsc.kma.go.kr/IMG/GK2A/AMI/PRIMARY/L1B/COMPLETE/KO/{T12}/gk2a_ami_le1b_rgb-s-daynight_ko020lc_{T13}.png`,
@@ -223,79 +223,79 @@ const baseImages = {
     weather2_left_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=0&tm={T1}&lon=127.7&lat=36.1&range=300&size=685&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=DMoNuRIXSjSKDbkSF_o0qg`,
     weather2_right_default: `https://apihub.kma.go.kr/api/typ03/cgi/wrn/nph-wrn7?out=0&tmef=1&city=1&name=1&tm={T1}&lon=127&lat=37.59&range=80&size=440&lv=1&wrn=W,R,C,D,O,V,T,S,Y,H,&authKey=ERmgGaXgS5CZoBml4OuQVw`,
     // 강수 유무
-    weather3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNEX`,
+    weather3_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RNEX`,
     weather3_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_ex&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNEX`,
     // 눈/비 영역
-    weather4_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather4_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather4_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_sfc_pty_img?tm={T1}&obs=RNSN&cmp=SFC&griddisp=0&rnexdisp=2&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
     // 어는 비 가능성
-    weather5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather5_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather5_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=frg&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
     // 누적강수량(1H)    
-    weather6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN60M`,
+    weather6_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RN60M`,
     weather6_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_60m&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=60&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN60M`,
     // 누적강수량(3H)
-    weather7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03H`,
+    weather7_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RN03H`,
     weather7_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_03h&tm={T1}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03H`,
     // 일 강수량
-    weather8_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RNDAY1`,
+    weather8_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RNDAY1`,
     weather8_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_day&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RNDAY1`,
     // 2일 강수량
-    weather9_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN02D`,
+    weather9_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RN02D`,
     weather9_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T5}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN02D`,
     // 3일 강수량
-    weather10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RN03D`,
+    weather10_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RN03D`,
     weather10_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=rn_acc&tm={T1}&tm_st={T7}&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RN03D`,
     // 신적설(3H)
-    weather11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD3HR`,
+    weather11_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:SD3HR`,
     weather11_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_3hr&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD3HR`,
     // 신적설(24H)
-    weather12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SD24H`,
+    weather12_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:SD24H`,
     weather12_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_24h&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SD24H`,
     // 적설량
-    weather13_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SDTOT`,
+    weather13_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:SDTOT`,
     weather13_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_tot&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDTOT`,
     // 낙뢰 영상
-    weather14_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:RDRLGT`,
+    weather14_left_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:RDRLGT`,
     weather14_right_default: `https://afso.kma.go.kr/cgi/lgt/nph-lgt_dst_img?obs=lgt_dst&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=30&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:RDRLGT`,
     // 현재 기온
-    weather15_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TA`,
+    weather15_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:TA`,
     weather15_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TA`,
     // 체감 온도
-    weather16_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TACHI`,
+    weather16_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:TACHI`,
     weather16_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_chi&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TACHI`,
     // 기온차(오늘-어제)
-    weather17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:TADIF`,
+    weather17_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:TADIF`,
     weather17_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ta_dif&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:TADIF`,
     // 지상 시정
-    weather18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather18_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather18_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=vis&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
     // 평균 풍속(10Min)
-    weather19_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:WS10M`,
+    weather19_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HB&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:WS10M`,
     weather19_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_10m&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:WS10M`,
     // 순간 풍속(1Min)
-    weather20_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather20_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather20_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ws_ins&tm={T1}&val=1&stn=1&obj=mq&ws_ms=ms&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,
     // 운저/운량    
     weather21_left_default: `https://afso.kma.go.kr/php/alw//aws/aws_obs_pnt.php?obs=ch&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CH`,
     weather21_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=ca&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=10&zoom_level=1&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:CA`,    
     // 레이더 수상체    
-    weather22_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HCI2&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather22_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HCI2&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather22_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HCI2&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,    
     // 레이더 우박 
-    weather23_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HAIL&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather23_left_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HAIL&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather23_right_default: `https://afso.kma.go.kr/cgi/rdr/nph-rdr_cmp1_img?tm={T1}&cmp=HAIL&qcd=EXT&obs=ECHO&color=C4&aws=0&acc=&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,    
     // 신적설(일)
-    weather24_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_day&tm={T1}&val=1&stn=1&obj=bn&map=D2&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=RSW:SDDAY`,
+    weather24_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_day&tm={T1}&val=1&stn=1&obj=bn&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:SDDAY`,
     weather24_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=sd_day&tm={T1}&val=1&stn=1&obj=bn&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:SDDAY`,    
     // 도로살얼음 상태
-    weather25_left_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=road_fzrp&tm={T1}&val=1&stn=1&obj=mq3d&disp=1&grid=1&legend=1&map=D2&size=495&itv=5&unit=&city=0&zoom_level=3&zoom_x=0000000&zoom_y=0000000&gov=`,
+    weather25_left_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=road_fzrp&tm={T1}&val=1&stn=1&obj=mq3d&disp=1&grid=1&legend=1&map=HB&size=495&itv=5&unit=&city=0&zoom_level=3&zoom_x=4000000&zoom_y=2000000&gov=`,
     weather25_right_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=road_fzrp&tm={T1}&val=1&stn=1&obj=mq3d&disp=1&grid=1&legend=1&map=HC&size=495&itv=5&unit=&city=0&zoom_level=3&zoom_x=3350000&zoom_y=5120000&gov=`,    
     // 노면상태
-    weather26_left_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=sfs&tm={T1}&val=1&stn=3&obj=mq3d&grid=1&legend=1&map=D2&size=495&itv=5&unit=&city=0&zoom_level=0&zoom_x=0000000&zoom_y=0000000&gov=`,
+    weather26_left_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=sfs&tm={T1}&val=1&stn=3&obj=mq3d&grid=1&legend=1&map=HB&size=495&itv=5&unit=&city=0&zoom_level=0&zoom_x=4000000&zoom_y=2000000&gov=`,
     weather26_right_default: `https://afso.kma.go.kr/cgi/road/nph-road_aws3_min_img1?obs=sfs&tm={T1}&val=1&stn=3&obj=mq3d&grid=1&legend=1&map=HC&size=495&itv=5&unit=&city=1&zoom_level=3&zoom_x=3350000&zoom_y=5120000&gov=`,    
     // 습구온도(1.2)
-    weather27_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=tw_win&tm={T1}&val=1&stn=1&obj=mq&map=D2&grid=2&legend=1&size=495&itv=5&zoom_level=2&zoom_x=0000000&zoom_y=0000000&gov=&_DT=`,
+    weather27_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=tw_win&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=`,
     weather27_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=tw_win&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=`,    
     // 월 기온 예측(JMA)
     weather28_left_default: `https://www.data.jma.go.jp/gmd/risk/probability/figure/z500_k1.png`,
