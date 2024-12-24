@@ -348,7 +348,7 @@ const baseImages = {
     
     //E N S O
     TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241223.png`,
-    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241122.png`,
+    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241223.png`,
 
     //Blocking, AO INDEX
     TYPHOON14_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
