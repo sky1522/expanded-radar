@@ -347,7 +347,7 @@ const baseImages = {
     TYPHOON12_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
     
     //E N S O
-    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241122.png`,
+    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241223.png`,
     TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241122.png`,
 
     //Blocking, AO INDEX
