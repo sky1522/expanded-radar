@@ -300,6 +300,10 @@ const baseImages = {
     // 월 기온 예측(JMA)
     weather28_left_default: `https://www.data.jma.go.jp/gmd/risk/probability/figure/z500_k1.png`,
     weather28_right_default: `https://www.data.jma.go.jp/gmd/risk/probability/figure/t850_k1.png`,    
+    // 상대습도 
+    weather29_left_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=hm&tm={T1}&val=1&stn=1&obj=mq&map=HB&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=4000000&zoom_y=2000000&gov=&_DT=RSW:HM`,
+    weather29_right_default: `https://afso.kma.go.kr/cgi/aws3/nph-aws_min_img1?obs=hm&tm={T1}&val=1&stn=1&obj=mq&map=HC&grid=2&legend=1&size=495.00&itv=5&zoom_level=2&zoom_x=3350000&zoom_y=5120000&gov=&_DT=RSW:HM`,    
+    
 
     //태풍항목
     //태풍현황(1)
@@ -752,7 +756,7 @@ function updateImages(time) {
     }
 
     // 기상 정보 이미지 업데이트
-    if (currentScreenIndex === "weather0" ||currentScreenIndex === "weather1" || currentScreenIndex === "weather2" || currentScreenIndex === "weather3" || currentScreenIndex === "weather4" || currentScreenIndex === "weather5" || currentScreenIndex === "weather6" || currentScreenIndex === "weather7" || currentScreenIndex === "weather8" || currentScreenIndex === "weather9" || currentScreenIndex === "weather10" || currentScreenIndex === "weather11" || currentScreenIndex === "weather12" || currentScreenIndex === "weather13" || currentScreenIndex === "weather14" || currentScreenIndex === "weather15" || currentScreenIndex === "weather16" || currentScreenIndex === "weather17" || currentScreenIndex === "weather18" || currentScreenIndex === "weather19" || currentScreenIndex === "weather20" || currentScreenIndex === "weather21" || currentScreenIndex === "weather22" || currentScreenIndex === "weather23" || currentScreenIndex === "weather24" || currentScreenIndex === "weather25" || currentScreenIndex === "weather26" || currentScreenIndex === "weather27" || currentScreenIndex === "weather28") {
+    if (currentScreenIndex === "weather0" ||currentScreenIndex === "weather1" || currentScreenIndex === "weather2" || currentScreenIndex === "weather3" || currentScreenIndex === "weather4" || currentScreenIndex === "weather5" || currentScreenIndex === "weather6" || currentScreenIndex === "weather7" || currentScreenIndex === "weather8" || currentScreenIndex === "weather9" || currentScreenIndex === "weather10" || currentScreenIndex === "weather11" || currentScreenIndex === "weather12" || currentScreenIndex === "weather13" || currentScreenIndex === "weather14" || currentScreenIndex === "weather15" || currentScreenIndex === "weather16" || currentScreenIndex === "weather17" || currentScreenIndex === "weather18" || currentScreenIndex === "weather19" || currentScreenIndex === "weather20" || currentScreenIndex === "weather21" || currentScreenIndex === "weather22" || currentScreenIndex === "weather23" || currentScreenIndex === "weather24" || currentScreenIndex === "weather25" || currentScreenIndex === "weather26" || currentScreenIndex === "weather27" || currentScreenIndex === "weather28" || currentScreenIndex === "weather29") {
         screen(generateImageURL(time, baseImages[`weather${currentScreenIndex.substr(7)}_left_default`]), generateImageURL(time, baseImages[`weather${currentScreenIndex.substr(7)}_right_default`]));
         currentRightSrc = baseImages[`weather${currentScreenIndex.substr(7)}_right_default`];
     }
