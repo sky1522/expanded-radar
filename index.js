@@ -351,8 +351,8 @@ const baseImages = {
     TYPHOON12_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
     
     //E N S O
-    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20241223.png`,
-    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20241223.png`,
+    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20250123.png`,
+    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20250123.png`,
 
     //Blocking, AO INDEX
     TYPHOON14_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
@@ -363,8 +363,8 @@ const baseImages = {
     fore1_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HB&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=4000000&zoom_y=2000000&stn=108&x1=470&y1=575`,
     fore1_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-qpf_ana_img?eva=1&tm={T20}&qpf=B&ef={EF}&map=HC&grid=2&legend=1&size=450&itv=&zoom_level=1&zoom_x=3350000&zoom_y=5120000&stn=108&x1=470&y1=575`,
     // 계절 예측
-    fore6_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2025/1/Seasonal/JFM/East_asia/t2m.png`,
-    fore6_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2025/1/Seasonal/JFM/East_asia/prec.png`,
+    fore6_left_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2025/2/Seasonal/FMA/East_asia/t2m.png`,
+    fore6_right_default: `https://www.apcc21.org/apcc_images/MME_FIG/MME_OUT/3-MON/FORECAST/GAUS/2025/2/Seasonal/FMA/East_asia/prec.png`,
     // 동네 예보 test
     fore7_left_default: `https://afso.kma.go.kr/cgi/dfs/nph-dfs_shrt_ana_5d_test?data0=GEMD&data1=R06&tm_ef=202411230900&tm_fc=202411230800&dtm=H0&map=G1&mask=M&color=E&size=450&effect=NTL&overlay=S&zoom_rate=2&zoom_level=0&zoom_x=0000000&zoom_y=0000000&move=1&auto_man=m&mode=I&interval=1`,
     fore7_right_default: `https://afso.kma.go.kr/cgi/dfs/nph-dfs_shrt_ana_5d_test?data0=GEMD&data1=R06&tm_ef=202411230900&tm_fc=202411230800&dtm=H0&map=D1&mask=M&color=E&size=450&effect=NTL&overlay=S&zoom_rate=2&zoom_level=0&zoom_x=3400000&zoom_y=8900000&move=1&auto_man=m&mode=I&interval=1`,
