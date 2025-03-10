@@ -351,8 +351,8 @@ const baseImages = {
     TYPHOON12_right_default: "https://data.kma.go.kr/CHT/EXTJ/{T6}/usst_korea_anal_{T5}.gif",
     
     //E N S O
-    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli1_20250123.png`,
-    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20250123.png`,
+    TYPHOON13_left_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/gmap_eli2_20250224.png`,
+    TYPHOON13_right_default: `https://www.weather.go.kr/w/repositary/xml/fct/mon/img/nino34_img_20250224.png`,
 
     //Blocking, AO INDEX
     TYPHOON14_left_default: `https://www.cpc.ncep.noaa.gov/products/precip/CWlink/blocking/real_time_nh/forecast_1_nh.gif`,
